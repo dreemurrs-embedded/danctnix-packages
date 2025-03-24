@@ -15,7 +15,7 @@
 pkgname=qt6-base-es2
 _pkgver=6.8.2
 pkgver=${_pkgver/-/}
-pkgrel=3
+pkgrel=4
 arch=(x86_64 armv7h aarch64)
 url='https://www.qt.io'
 license=(GPL3 LGPL3 FDL custom)
@@ -134,7 +134,7 @@ build() {
 package() {
   pkgdesc='A cross-platform application and UI framework'
   depends+=(qt6-translations)
-  provides=(libQt6Core.so.6)
+  provides+=(libQt6Core.so.6)
   DESTDIR="$pkgdir" cmake --install build
 
   install -Dm644 $_pkgfn/LICENSES/* -t "$pkgdir"/usr/share/licenses/$pkgbase

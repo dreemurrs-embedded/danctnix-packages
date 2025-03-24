@@ -1,7 +1,7 @@
 pkgbase = qt6-base-es2
 	pkgdesc = A cross-platform application and UI framework
 	pkgver = 6.8.2
-	pkgrel = 3
+	pkgrel = 4
 	url = https://www.qt.io
 	arch = x86_64
 	arch = armv7h
@@ -132,4 +132,5 @@ pkgname = qt6-base-es2
 	depends = zlib
 	depends = zstd
 	depends = qt6-translations
+	provides = qt6-base
 	provides = libQt6Core.so.6
