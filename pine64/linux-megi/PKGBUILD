@@ -15,6 +15,7 @@ options=('!strip')
 
 # Source
 _tag="orange-pi-6.13-20250209-2341"
+_nvchecker_version="$_tag"
 source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar.gz"
         'config'
         'linux.preset'

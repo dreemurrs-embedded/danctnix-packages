@@ -9,6 +9,7 @@ pkgver=20200929.61beaa4
 options=(!strip)
 source=("git+https://github.com/pmsourcedump/ov5640")
 md5sums=('SKIP')
+_nvchecker_version=61beaa4eb1ad87ad067cfbe123fbcd0a0cf01246
 
 pkgver() {
   # Mimics ABS pkgver described like this:
