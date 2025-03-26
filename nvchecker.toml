@@ -1,0 +1,79 @@
+[__config__]
+oldver = "repo_packages.txt"
+newver = "nvchecker_packages.json"
+
+[autocutsel]
+source = "github"
+github = "sigmike/autocutsel"
+use_max_tag = true
+
+[clickclack]
+source = "git"
+git = "https://git.sr.ht/~proycon/clickclack"
+
+[codemadness-frontends]
+source = "git"
+git = "git://git.codemadness.org/frontends"
+
+[lisgd]
+source = "git"
+git = "https://git.sr.ht/~mil/lisgd"
+
+[mnc]
+source = "git"
+git = "https://git.sr.ht/~anjan/mnc"
+
+[pnc]
+source = "git"
+git = "https://git.sr.ht/~anjan/pnc"
+
+[sfeed]
+source = "git"
+git = "git://git.codemadness.org/sfeed"
+
+[superd]
+source = "git"
+git = "https://git.sr.ht/~craftyguy/superd"
+
+[svkbd]
+source = "git"
+git = "https://git.suckless.org/svkbd"
+
+[sxmo-dmenu]
+source = "git"
+git = "https://git.sr.ht/~mil/sxmo-dmenu"
+
+[sxmo-dwm]
+source = "git"
+git = "https://git.sr.ht/~mil/sxmo-dwm"
+
+[sxmo-st]
+source = "git"
+git = "https://git.sr.ht/~mil/sxmo-st"
+
+[sxmo-surf]
+source = "git"
+git = "https://git.sr.ht/~mil/sxmo-surf"
+
+[sxmo-utils]
+source = "git"
+git = "https://git.sr.ht/~mil/sxmo-utils"
+
+[tinydm]
+source = "git"
+git = "https://gitlab.com/postmarketOS/tinydm.git"
+
+[wayout]
+source = "git"
+git = "https://git.sr.ht/~proycon/wayout"
+
+[wvkbd]
+source = "git"
+git = "https://git.sr.ht/~proycon/wvkbd"
+prefix = "v"
+
+[xob]
+source = "github"
+github = "florentc/xob"
+use_max_tag = true
+prefix = "v"
