@@ -9,6 +9,7 @@ url='https://mobile.danctnix.org'
 depends=('lightdm' 'danctnix-pm-ui-meta')
 install="$pkgname.install"
 source=("60-plasma-al.conf")
+_nvchecker_skip=1
 
 package() {
     install -Dm644 "${srcdir}/60-plasma-al.conf" -t "${pkgdir}/usr/share/lightdm/lightdm.conf.d/"

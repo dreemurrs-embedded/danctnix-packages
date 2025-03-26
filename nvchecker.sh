@@ -36,6 +36,12 @@ process_pkgbuild() (
 		return
 	fi
 
+	# If the format of pkgver is too different from what nvchecker expects,
+	# we may need to specificy it the version nvchecker expects too.
+	if [ -n "$_nvchecker_version" ]; then
+		pkgver="$_nvchecker_version"
+	fi
+
 	# Disable "SC2154 var is referenced but not assigned", these will be
 	# defined by the pkgbuild, but shellcheck doesn't know about that.
 	# shellcheck disable=SC2154
@@ -43,7 +49,7 @@ process_pkgbuild() (
 )
 
 generate_published() {
-	find ./sxmo -name PKGBUILD | while read -r pkgbuild; do
+	find ./sxmo ./plasma -name PKGBUILD | while read -r pkgbuild; do
 		process_pkgbuild "$pkgbuild"
 	done
 }

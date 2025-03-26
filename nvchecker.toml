@@ -15,13 +15,57 @@ git = "https://git.sr.ht/~proycon/clickclack"
 source = "git"
 git = "git://git.codemadness.org/frontends"
 
+[hfd-service]
+source = "git"
+git = "https://gitlab.com/ubports/core/hfd-service.git"
+
 [lisgd]
 source = "git"
 git = "https://git.sr.ht/~mil/lisgd"
 
+[lomiri-deviceinfo]
+source = "git"
+git = "https://gitlab.com/ubports/development/core/deviceinfo.git"
+
 [mnc]
 source = "git"
 git = "https://git.sr.ht/~anjan/mnc"
+
+[plasma-dialer]
+source = "git"
+git = "https://invent.kde.org/plasma-mobile/plasma-dialer.git"
+prefix = "v"
+
+[plasma-mobile]
+source = "git"
+git = "https://invent.kde.org/plasma/plasma-mobile.git"
+prefix = "v"
+
+[plasma-mobile-sounds]
+source = "git"
+git = "https://invent.kde.org/plasma-mobile/plasma-mobile-sounds.git"
+prefix = "v"
+
+[plasma-nano]
+source = "git"
+git = "https://invent.kde.org/plasma/plasma-nano.git"
+prefix = "v"
+
+[plasma-phone-settings]
+source = "git"
+git = "https://invent.kde.org/plasma-mobile/plasma-phone-settings.git"
+use_commit = true
+branch = "master"
+
+[plasma-phonebook]
+source = "git"
+git = "https://invent.kde.org/plasma-mobile/plasma-phonebook.git"
+prefix = "v"
+
+[plasma-settings]
+source = "git"
+git = "https://invent.kde.org/plasma-mobile/plasma-settings.git"
+prefix = "v"
 
 [pnc]
 source = "git"
@@ -30,6 +74,11 @@ git = "https://git.sr.ht/~anjan/pnc"
 [sfeed]
 source = "git"
 git = "git://git.codemadness.org/sfeed"
+
+[spacebar]
+source = "git"
+git = "https://invent.kde.org/plasma-mobile/spacebar.git"
+prefix = "v"
 
 [superd]
 source = "git"
