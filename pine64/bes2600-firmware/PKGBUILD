@@ -7,6 +7,7 @@ arch=('any')
 license=('custom')
 options=(!strip)
 _commit="7a305de61771a84f1264866b204cf172df6d9195" # 20231227
+_nvchecker_version="$_commit"
 source=(git+https://gitlab.com/pine64-org/bes2600-firmware.git)
 sha256sums=('SKIP')
 

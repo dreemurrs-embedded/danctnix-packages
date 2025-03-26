@@ -49,7 +49,7 @@ process_pkgbuild() (
 )
 
 generate_published() {
-	find ./sxmo ./plasma -name PKGBUILD | while read -r pkgbuild; do
+	find ./sxmo ./plasma ./pine64 -name PKGBUILD | while read -r pkgbuild; do
 		process_pkgbuild "$pkgbuild"
 	done
 }

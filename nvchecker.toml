@@ -2,10 +2,29 @@
 oldver = "repo_packages.txt"
 newver = "nvchecker_packages.json"
 
+[alsa-ucm-conf]
+source = "git"
+git = "git://git.alsa-project.org/alsa-ucm-conf"
+
+[anx7688-firmware]
+source = "git"
+git = "https://xff.cz/git/linux-firmware"
+use_commit = true
+
 [autocutsel]
 source = "github"
 github = "sigmike/autocutsel"
 use_max_tag = true
+
+[bes2600-firmware]
+source = "git"
+git = "https://gitlab.com/pine64-org/bes2600-firmware.git"
+use_commit = true
+
+[brcm-firmware]
+source = "git"
+git = "https://xff.cz/git/linux-firmware"
+use_commit = true
 
 [clickclack]
 source = "git"
@@ -19,6 +38,18 @@ git = "git://git.codemadness.org/frontends"
 source = "git"
 git = "https://gitlab.com/ubports/core/hfd-service.git"
 
+[linux-megi]
+source = "git"
+git = "https://codeberg.org/megi/linux.git"
+
+[linux-pinetab2]
+source = "git"
+git = "https://github.com/dreemurrs-embedded/linux-pinetab2"
+include_regex = '.*-danctnix.*'
+from_pattern = "-danctnix"
+to_pattern = ".danctnix"
+prefix = "v"
+
 [lisgd]
 source = "git"
 git = "https://git.sr.ht/~mil/lisgd"
@@ -30,6 +61,16 @@ git = "https://gitlab.com/ubports/development/core/deviceinfo.git"
 [mnc]
 source = "git"
 git = "https://git.sr.ht/~anjan/mnc"
+
+[modemmanager]
+source = "git"
+git = "https://gitlab.freedesktop.org/mobile-broadband/ModemManager.git"
+exclude_regex = ".*-dev"
+
+[ov5640-firmware]
+source = "git"
+git = "https://github.com/pmsourcedump/ov5640.git"
+use_commit = true
 
 [plasma-dialer]
 source = "git"
@@ -70,6 +111,10 @@ prefix = "v"
 [pnc]
 source = "git"
 git = "https://git.sr.ht/~anjan/pnc"
+
+[ppkb-tools]
+source = "git"
+git = "https://xff.cz/git/pinephone-keyboard"
 
 [sfeed]
 source = "git"

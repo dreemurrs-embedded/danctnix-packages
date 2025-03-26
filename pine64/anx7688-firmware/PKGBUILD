@@ -6,6 +6,7 @@ arch=('any')
 url="https://xff.cz/git/linux-firmware"
 license=('custom')
 pkgver=20201030.4ec2645
+_nvchecker_version=4ec2645b007ba4c3f2962e38b50c06f274abbf7c
 options=(!strip)
 source=("git+https://megous.com/git/linux-firmware")
 md5sums=('SKIP')

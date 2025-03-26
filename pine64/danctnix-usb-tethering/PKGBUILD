@@ -16,6 +16,7 @@ source=('usb-tethering'
 	'dhcpd.conf'
 	'dhcpd4.service-customexec.conf'
 	'tmpfiles.d.danctnix-usb.conf')
+_nvchecker_skip=1
 
 package() {
   cd "${srcdir}"
