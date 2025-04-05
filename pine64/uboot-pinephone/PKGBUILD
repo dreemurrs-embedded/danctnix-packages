@@ -16,6 +16,7 @@ install=${pkgname}.install
 backup=("boot/boot.txt")
 
 _commit_atf="b6c0948400594e3cc4dbb5a4ef04b815d2675808" # v2.10.0
+_nvchecker_skip=1
 
 source=("https://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
         "arm-trusted-firmware-$_commit_atf.tar.gz::https://github.com/ARM-software/arm-trusted-firmware/archive/${_commit_atf}.tar.gz"

@@ -17,6 +17,7 @@ backup=("boot/boot.txt")
 
 _commit_uboot="81dac0348fb1d1d8279634d1438bf2a88b1ca9b7"
 _commit_rkbin="b4558da0860ca48bf1a571dd33ccba580b9abe23"
+_nvchecker_skip=1
 
 source=("$pkgname::git+https://github.com/Kwiboo/u-boot-rockchip.git#commit=$_commit_uboot"
         "rkbin::git+https://github.com/rockchip-linux/rkbin.git#commit=$_commit_rkbin"
