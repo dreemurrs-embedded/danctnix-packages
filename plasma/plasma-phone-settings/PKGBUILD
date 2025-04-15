@@ -3,6 +3,7 @@
 
 pkgname=plasma-phone-settings
 pkgver=r75.648f779
+_nvchecker_version=648f779f1cd4fe245400d07b299667719a0007ce
 pkgrel=1
 arch=('any')
 url="https://invent.kde.org/plasma-mobile/plasma-phone-settings"
