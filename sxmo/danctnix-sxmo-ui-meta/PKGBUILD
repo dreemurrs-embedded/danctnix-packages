@@ -8,3 +8,4 @@ arch=('any')
 depends=('danctnix-sxmo-settings' 'dnsmasq' 'polkit' 'sxmo-utils')
 license=('MIT')
 replaces=('sxmo-alarm')
+_nvchecker_skip=1

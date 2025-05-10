@@ -8,6 +8,7 @@ url="https://github.com/dreemurrs-embedded/Pine64-Arch"
 license=('MIT')
 depends=('alsa-ucm-conf')
 source=(HiFi.conf PineTab.conf)
+_nvchecker_skip=1
 
 package() {
     install -D -m644 "$srcdir"/PineTab.conf \

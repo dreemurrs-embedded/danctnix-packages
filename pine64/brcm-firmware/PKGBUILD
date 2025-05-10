@@ -1,3 +1,4 @@
+# TODO: combine with anx7688-firmware as split package
 pkgname=brcm-firmware
 pkgrel=2
 pkgdesc="Firmware files for BCM43 chips"
@@ -6,6 +7,7 @@ arch=('any')
 url="https://xff.cz/git/linux-firmware"
 license=('custom')
 pkgver=20211027.6e8e591
+_nvchecker_version=6e8e591e17e207644dfe747e51026967bb1edab5
 options=(!strip)
 depends=('linux-firmware')
 source=("git+https://megous.com/git/linux-firmware")

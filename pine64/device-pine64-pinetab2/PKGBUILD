@@ -15,6 +15,7 @@ source=(machine-info
     kscreen-b5350822fc24a835e633b5bf90f2b56d
     kscreen-outputs-b5350822fc24a835e633b5bf90f2b56d
     phoc.ini)
+_nvchecker_skip=1
 
 package() {
     install -Dm644 "$srcdir"/machine-info "$pkgdir"/etc/machine-info

@@ -16,6 +16,7 @@ source=(pinetab-suspend-hook.sh
 	machine-info
 	pulseaudio-pinetweaks.conf
 	gsk-renderer-gl.sh)
+_nvchecker_skip=1
 
 package() {
 	# Current workaround for suspend

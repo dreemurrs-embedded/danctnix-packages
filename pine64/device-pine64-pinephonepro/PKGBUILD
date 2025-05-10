@@ -16,6 +16,7 @@ source=(boot.txt
         pinephone-suspend-hook.sh
         machine-info
         pulseaudio-pinetweaks.conf)
+_nvchecker_skip=1
 
 package() {
     # Install boot script and mkscr, we've moved on to Tow-Boot.
