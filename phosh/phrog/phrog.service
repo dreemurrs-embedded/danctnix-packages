@@ -1,0 +1,31 @@
+[Unit]
+Description=phrog
+After=getty@tty1.service
+Conflicts=getty@tty1.service
+Conflicts=phosh.service
+
+# Needs all the dependencies of the services it's replacing
+# (currently getty@tty1.service):
+After=rc-local.service plymouth-quit-wait.service systemd-user-sessions.service
+
+OnFailure=getty@tty1.service
+
+# Since we are part of the graphical session, make sure we are started before
+# it is complete.
+Before=graphical.target
+
+
+[Service]
+Type=simple
+ExecStart=greetd --config /etc/greetd/phrog.toml
+IgnoreSIGPIPE=no
+SendSIGHUP=yes
+TimeoutStopSec=30s
+KeyringMode=shared
+Restart=always
+RestartSec=1
+StartLimitBurst=5
+StartLimitInterval=30
+
+[Install]
+WantedBy=graphical.target
