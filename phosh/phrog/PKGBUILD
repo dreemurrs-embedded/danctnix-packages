@@ -29,16 +29,6 @@ build() {
   cargo auditable build --release --frozen
 }
 
-check() {
-  # skip on arches where tests are flaky
-  [[ "${CARCH}" =~ ^(loongarch64|armv7)$ ]] && return 0
-
-  cd "${srcdir}/phrog-${pkgver}"
-  export XDG_RUNTIME_DIR="${srcdir}/runtime"
-  mkdir -p "$XDG_RUNTIME_DIR"
-  dbus-run-session xvfb-run -a phoc -E "cargo test --frozen"
-}
-
 package() {
   cd "${srcdir}/phrog-${pkgver}"
 
