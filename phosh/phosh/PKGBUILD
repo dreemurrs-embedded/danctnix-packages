@@ -56,6 +56,7 @@ build() {
         -D gtk_doc=true
         -D man=true
         -D phoc_tests=disabled
+        -D bindings-lib=true
     )
     arch-meson $pkgname-$pkgver output "${meson_options[@]}"
     meson compile -C output
