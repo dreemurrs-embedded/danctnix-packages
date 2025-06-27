@@ -1,0 +1,67 @@
+pkgname=phrog
+pkgver=0.46.0
+pkgrel=0
+pkgdesc="Mobile device greeter"
+url="https://github.com/samcday/phrog"
+arch=('any')
+license=('GPL-3.0-only')
+
+depends=(phosh greetd)
+makedepends=(cargo cargo-auditable foot pkgconf phosh)
+checkdepends=(xorg-server-xvfb)
+
+source=("https://github.com/samcday/phrog/archive/refs/tags/${pkgver}.tar.gz"
+        'phrog.service'
+        'phrog.toml')
+sha256sums=('640b9c66def0870f1051e97f436fbce7a0c83061613f9f3d64cb5617aabbb1e4'
+            '0c43e42f3326f312f31e0ac7464061e31c30096b40e02bf3b3281825f7aa9ef9'
+            '262ab50f90486d62a3fcad726c6b2f9ac6b38e5347a315f0cc69a913fda6977a')
+
+prepare() {
+  cd "${srcdir}/phrog-${pkgver}"
+  # download every dependency so that build() can stay --frozen
+  cargo fetch --locked --target="${CARCH}-unknown-linux-gnu"
+}
+
+build() {
+  cd "${srcdir}/phrog-${pkgver}"
+  export RUSTFLAGS="$RUSTFLAGS --remap-path-prefix=${PWD}=/build/"
+  cargo auditable build --release --frozen
+}
+
+check() {
+  # skip on arches where tests are flaky
+  [[ "${CARCH}" =~ ^(loongarch64|armv7)$ ]] && return 0
+
+  cd "${srcdir}/phrog-${pkgver}"
+  export XDG_RUNTIME_DIR="${srcdir}/runtime"
+  mkdir -p "$XDG_RUNTIME_DIR"
+  dbus-run-session xvfb-run -a phoc -E "cargo test --frozen"
+}
+
+package() {
+  cd "${srcdir}/phrog-${pkgver}"
+
+  install -Dm644 \
+    "${srcdir}/phrog-${pkgver}/data/mobi.phosh.phrog.gschema.xml" \
+    "${pkgdir}/usr/share/glib-2.0/schemas/mobi.phosh.phrog.gschema.xml"
+
+  install -Dm644 data/phrog.session \
+    -t "${pkgdir}/usr/share/gnome-session/sessions/"
+  install -Dm644 data/mobi.phosh.Phrog.desktop \
+    -t "${pkgdir}/usr/share/applications/"
+  install -Dm644 dist/alpine/greetd-config.toml \
+    -t "${pkgdir}/etc/phrog/"
+  install -d "${pkgdir}/usr/share/phrog/autostart" \
+           "${pkgdir}/etc/phrog/autostart"
+  install -Dm755 target/release/phrog \
+    -t "${pkgdir}/usr/bin/"
+  install -Dm755 data/phrog-greetd-session \
+    -t "${pkgdir}/usr/libexec/"
+
+  install -Dm644 "${srcdir}/phrog.service" \
+        "${pkgdir}/usr/lib/systemd/system/phrog.service"
+  install -Dm644 "${srcdir}/phrog.toml" \
+        "${pkgdir}/etc/greetd/phrog.toml"
+
+}
