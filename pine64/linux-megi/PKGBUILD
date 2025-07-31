@@ -6,11 +6,11 @@ buildarch=8
 pkgbase=linux-megi
 _desc="Megous Kernel"
 pkgver=6.15.6
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
 license=(GPL-2.0-only)
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 'cpio')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 'cpio' 'pahole')
 options=('!strip')
 
 # Source
@@ -116,6 +116,7 @@ _package-headers() {
   provides=("linux-headers=${pkgver}")
   replaces=('linux-pine64-headers')
   conflicts=('linux-headers')
+  depends=(pahole)
 
   cd linux
   local builddir="$pkgdir/usr/lib/modules/$(<version)/build"
@@ -129,6 +130,9 @@ _package-headers() {
 
   # add xfs and shmem for aufs building
   mkdir -p "$builddir"/{fs/xfs,mm}
+
+  # required when DEBUG_INFO_BTF_MODULES is enabled
+  install -Dt "$builddir/tools/bpf/resolve_btfids" tools/bpf/resolve_btfids/resolve_btfids
 
   echo "Installing headers..."
   cp -t "$builddir" -a include
@@ -203,7 +207,7 @@ for _p in "${pkgname[@]}"; do
 done
 
 md5sums=('ada5e3264942e8bbc164b29b152fcac3'
-         '3b7c1ab7ddc7f6bac6e238ba8d4a8ff2'
+         '849c99570b4ca52f9d68c388164c284b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'bf29207a84f9d217c0bf40074f122416'
          '571aee8d8a58c719288fee4185ab1713'
