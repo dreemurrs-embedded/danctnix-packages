@@ -1,18 +1,19 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=postprocessd
-pkgver=0.3.0
-pkgrel=2
+pkgver=0.4.0_git20250630
+pkgrel=1
+_commit=d97a24ddfa58764a9d131a4b5ea790a86e35f51f
 pkgdesc="A native postprocessing pipeline for Megapixels"
 url="https://git.sr.ht/~martijnbraam/postprocessd"
 license=('GPL')
 arch=('x86_64' 'armv7h' 'aarch64')
-depends=('libraw' 'libtiff4' 'libjpeg-turbo' 'libexif' 'opencv')
+depends=('lensfun' 'libraw' 'libtiff4' 'libjpeg-turbo' 'libexif' 'opencv')
 makedepends=('scdoc' 'meson' 'ninja')
-source=("$pkgname-$pkgver.tar.gz::https://git.sr.ht/~martijnbraam/postprocessd/archive/$pkgver.tar.gz")
-sha256sums=('4fa41f0ebd0321d3abd51084b3546c97bef95f34ed0614c01d77250d9e5274c3')
+source=("$pkgname-$_commit.tar.gz::https://gitlab.com/megapixels-org/postprocessd/-/archive/$_commit/postprocessd-$_commit.tar.gz")
+sha512sums=('c241bce2139e6c61621700dcfdaef32a0d027f44fa2ef0bd9f4782a20c1db8f7881059f86c7da2454d0885322085d5c132c051cc9c49639bb5f4440e9b580948')
 
 build() {
-    arch-meson $pkgname-$pkgver build
+    arch-meson $pkgname-$_commit build
     ninja -C build
 }
 
