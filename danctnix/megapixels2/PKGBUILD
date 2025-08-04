@@ -1,0 +1,29 @@
+# Maintainer: 1peter10 <peter@linmob.net>
+pkgname=megapixels2
+_pkgname=Megapixels
+pkgver=2.0.0_alpha2
+_pkgver=2.0.0-alpha2
+pkgrel=1
+pkgdesc="The Linux-phone camera application - 2.0.0 alpha"
+url="https://gitlab.com/megapixels-org/Megapixels"
+license=('GPL-3.0-or-later')
+arch=('x86_64' 'armv7h' 'aarch64')
+depends=('feedbackd' 'glib2' 'gtk4' 'imagemagick' 'libdng' 'libepoxy' 'libjpeg-turbo' 'libraw' 'zbar')
+makedepends=('cmake' 'meson' 'ninja')
+optdepends=('postprocessd: additional postprocess config')
+replaces=('megaixels')
+source=("https://gitlab.com/megapixels-org/Megapixels/-/archive/${_pkgver}/Megapixels-${_pkgver}.tar.gz"
+        '90-megapixels.rules')
+sha512sums=('68894585dba3a38efd35c3c6200550384a40b26f1930c5b04480f751118f453f860374e3a210301218d07315854446b153b340203d365afbc53b9a5206fff924'
+	    'b8b70fb48fbdaf227936a5dcfb75637d8cd576c5c22a141d880c51746a6e53cc52544986e2908ccecdb29a0347b940003a3ebeeff371d6f748b0ceb4145a435c')
+
+build() {
+    arch-meson $_pkgname-$_pkgver build
+    ninja -C build
+}
+
+package() {
+    DESTDIR="$pkgdir" ninja -C build install
+
+    install -Dm644 "${srcdir}/90-megapixels.rules" -t "${pkgdir}/usr/lib/udev/rules.d/"
+}
