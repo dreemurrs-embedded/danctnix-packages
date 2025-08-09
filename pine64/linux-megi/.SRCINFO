@@ -1,6 +1,6 @@
 pkgbase = linux-megi
 	pkgver = 6.15.6
-	pkgrel = 1
+	pkgrel = 2
 	url = https://codeberg.org/megi/linux
 	arch = aarch64
 	license = GPL-2.0-only
@@ -13,6 +13,7 @@ pkgbase = linux-megi
 	makedepends = dtc
 	makedepends = python
 	makedepends = cpio
+	makedepends = pahole
 	options = !strip
 	source = linux-orange-pi-6.15-20250710-2218.tar.gz::https://codeberg.org/megi/linux/archive/orange-pi-6.15-20250710-2218.tar.gz
 	source = config
@@ -23,7 +24,7 @@ pkgbase = linux-megi
 	source = dts-pinephone-pro-add-modem-ri.patch
 	source = Revert-arm64-allwinner-dts-a64-enable-K101-IM2BYL02.patch
 	md5sums = ada5e3264942e8bbc164b29b152fcac3
-	md5sums = 3b7c1ab7ddc7f6bac6e238ba8d4a8ff2
+	md5sums = 176c39a987e3692c2f3c8c770a961596
 	md5sums = 86d4a35722b5410e3b29fc92dae15d4b
 	md5sums = bf29207a84f9d217c0bf40074f122416
 	md5sums = 571aee8d8a58c719288fee4185ab1713
@@ -47,6 +48,7 @@ pkgname = linux-megi
 
 pkgname = linux-megi-headers
 	pkgdesc = Header files and scripts for building modules for linux kernel - Megous Kernel
+	depends = pahole
 	provides = linux-headers=6.15.6
 	conflicts = linux-headers
 	replaces = linux-pine64-headers
