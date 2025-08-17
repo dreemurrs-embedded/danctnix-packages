@@ -2,14 +2,14 @@
 # Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-pinetab2
-pkgver=6.15.2.danctnix2
-pkgrel=1
+pkgver=6.15.10.danctnix1
+pkgrel=2
 pkgdesc='PineTab2'
 _srcname=linux-pinetab2
 _srctag=v${pkgver%.*}-${pkgver##*.}
 arch=(aarch64)
-_url_git="https://github.com/dreemurrs-embedded/${_srcname}"
-url="${_url_git}/commits/$_srctag"
+_url_git="https://codeberg.org/DanctNIX/${_srcname}"
+url="${_url_git}/commits/tag/$_srctag"
 license=(GPL-2.0-only)
 makedepends=(
   bc
@@ -37,9 +37,9 @@ validpgpkeys=(
   647F28654894E3BD457199BE38DBBDC86092693E  # Greg Kroah-Hartman
   F09A933C0FE0331E558CA4E166CAB7EAA45DD781  # Danct12
 )
-b2sums=('c2b23abc39af6d2cf67f5963121f16d4a231869203d3915ed6260d6f39ef0d7dbd5c86abac9cc6f9af5b00f8ad6c754f212bdde1d670e60e3a91866718980799'
+b2sums=('fa7b18596aa1e508a99a416e77cef9d4f6ef496d6b3b8190936bafca8ba933742e52a4352ec433a139b5ca2b87b6b793243213a0f0cd7da54d7b276d033ed294'
         'SKIP'
-        '0e7826631a5a9856a2127518283f870a5c99d68a7e604ce8b1ca067eabaf9fc2da731ca568529fcf050295d62a5707305c6b7a6a01de2ba3e3004797fc5c6687'
+        '84202b196f68aab4f2da3cef367bd2d3c1ee0d57e05256ae853633913b7d84a342e53d2f6e67424667224d4ff5eb207c4e3d1329049b16acde501baec26c934e'
         'SKIP'
         'f68ba813858de4ea83a3baac907932e7233a74cfac2065365e7cf61ac18e35759ea5a1e09fa071f502c0f4fafa58a20a0226cac602fcd740c2ba177bb0a69659')
 
