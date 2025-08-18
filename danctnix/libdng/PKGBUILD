@@ -1,0 +1,20 @@
+# Maintainer: 1peter10 <peter@linmob.net>
+pkgname=libdng
+pkgver=0.2.1
+pkgrel=1
+pkgdesc="Interface library between libtiff and the world to make sure the output is valid DNG"
+url="https://gitlab.com/megapixels-org/libdng"
+license=('MIT')
+arch=('x86_64' 'armv7h' 'aarch64')
+makedepends=('cmake' 'linux-megi-headers' 'meson' 'scdoc' 'libtiff')
+source=("https://gitlab.com/megapixels-org/libdng/-/archive/${pkgver}/libdng-${pkgver}.tar.gz")
+sha512sums=('9a2bee7f4d33dd087bfdfe744319edcbfd22dbc420c506dcb978974cbc6724141fa6ecc2ff5c6c43419d4bb8054e9ed97550590259c325887ec93fef68e17a83')
+
+build() {
+    arch-meson $pkgname-$pkgver build
+    ninja -C build
+}
+
+package() {
+    DESTDIR="$pkgdir" ninja -C build install
+}

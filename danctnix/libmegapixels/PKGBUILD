@@ -1,0 +1,21 @@
+# Maintainer: 1peter10 <peter@linmob.net>
+pkgname=libmegapixels
+pkgver=0.2.2
+pkgrel=1
+pkgdesc="The device abstraction for the Megapixels application"
+url="https://gitlab.com/megapixels-org/libmegapixels"
+license=('GPL-3.0-or-later')
+arch=('x86_64' 'armv7h' 'aarch64')
+depends=('libconfig')
+makedepends=('meson' 'ninja' 'cmake')
+source=("https://gitlab.com/megapixels-org/libmegapixels/-/archive/${pkgver}/libmegapixels-${pkgver}.tar.gz")
+sha512sums=('af80989e0499cb3f6ba6c3dc599a08a2507659dc3abebf4834937c05cdbd8bd4ff0ba0d1568971753562a192853b06b5782843aec15d18577844e5e971b4e387')
+
+build() {
+    arch-meson ${pkgname}-$pkgver build
+    ninja -C build
+}
+
+package() {
+    DESTDIR="$pkgdir" ninja -C build install
+}
