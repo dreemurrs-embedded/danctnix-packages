@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phoc
-pkgver=0.48.0
+pkgver=0.49.0
 pkgrel=1
 pkgdesc="wlroots based Wayland compositor for mobile phones"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -31,7 +31,7 @@ makedepends=(
 )
 checkdepends=('xorg-server-xvfb')
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc})
-b2sums=('8397c25208e4238e0aa8d4c79d18731fa9134ef61ddfc199f370886c01c00899030a24dae1c4717869888ee594c28752d4eb413c1418e81edcc7f049a63e7ed9'
+b2sums=('e99808c9a1b6c49fc65b959e983fb9bbafa8e00d42e759d43e30ea4f12bdf22f31594c8d846d9d66681b8b3d3dab03cd2a5f28afb514e7ca313051d2bf68346a'
         'SKIP')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
