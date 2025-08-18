@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=feedbackd
-pkgver=0.8.3
-pkgrel=2
+pkgver=0.8.4
+pkgrel=1
 pkgdesc="A daemon to provide haptic, led and audio feedback triggered by application events"
 url="https://gitlab.freedesktop.org/agx/feedbackd"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -28,7 +28,7 @@ source=(
   https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc}
   fbd-sysusers.conf
 )
-sha256sums=('87b955cfc4ee951179576f6dcbf4de9c0053c8226c6190117a164768342f44fd'
+sha256sums=('b0b5b22216940b485d0d43679dce403583e33438f06c49a83cf1820cdbbca174'
             'SKIP'
             '4d46dbd3c6eaa762bea773331a4149bb83d29e7740b6ec501e708b3f8e4c1a22')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')

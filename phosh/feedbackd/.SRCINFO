@@ -1,7 +1,7 @@
 pkgbase = feedbackd
 	pkgdesc = A daemon to provide haptic, led and audio feedback triggered by application events
-	pkgver = 0.8.3
-	pkgrel = 2
+	pkgver = 0.8.4
+	pkgrel = 1
 	url = https://gitlab.freedesktop.org/agx/feedbackd
 	install = feedbackd.install
 	arch = x86_64
@@ -21,11 +21,11 @@ pkgbase = feedbackd
 	depends = libgmobile
 	depends = libgudev
 	optdepends = feedbackd-device-themes: Device-specific themes
-	source = https://sources.phosh.mobi/releases/feedbackd/feedbackd-0.8.3.tar.xz
-	source = https://sources.phosh.mobi/releases/feedbackd/feedbackd-0.8.3.tar.xz.asc
+	source = https://sources.phosh.mobi/releases/feedbackd/feedbackd-0.8.4.tar.xz
+	source = https://sources.phosh.mobi/releases/feedbackd/feedbackd-0.8.4.tar.xz.asc
 	source = fbd-sysusers.conf
 	validpgpkeys = 0DB3932762F78E592F6522AFBB5A2C77584122D3
-	sha256sums = 87b955cfc4ee951179576f6dcbf4de9c0053c8226c6190117a164768342f44fd
+	sha256sums = b0b5b22216940b485d0d43679dce403583e33438f06c49a83cf1820cdbbca174
 	sha256sums = SKIP
 	sha256sums = 4d46dbd3c6eaa762bea773331a4149bb83d29e7740b6ec501e708b3f8e4c1a22
 
