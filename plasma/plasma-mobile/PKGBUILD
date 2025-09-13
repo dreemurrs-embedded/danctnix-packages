@@ -3,7 +3,7 @@
 # Contributor: Bhushan Shah <bhush94 at gmail dot com>
 
 pkgname=plasma-mobile
-pkgver=6.4.4
+pkgver=6.4.5
 _dirver=$(echo $pkgver | cut -d. -f1-3)
 pkgrel=1
 pkgdesc="Plasma shell for mobile devices"
@@ -32,7 +32,7 @@ validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
               'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
               '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
-sha512sums=('b10047267974e81efed6ae22a84aed0291d59be1ae202dd31ac7d955e7928c0f260afc2e22d1e6f2d239ffee1174199e38c9b58d733227452d59d211c9796e6d'
+sha512sums=('02886196bfee65cd3003a017ad8a4d36440e4268f23fafe4c2fb19476993fce362dd4da0106b3f68952e3653157f30d178183b9b1d25e786dde3cbf819972b5b'
             'SKIP')
 
 build() {
