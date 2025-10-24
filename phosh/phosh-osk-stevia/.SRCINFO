@@ -1,6 +1,6 @@
 pkgbase = phosh-osk-stevia
 	pkgdesc = On-screen keyboard for Phosh
-	pkgver = 0.50.0
+	pkgver = 0.50.1
 	pkgrel = 1
 	url = https://phosh.mobi
 	arch = x86_64
@@ -23,10 +23,10 @@ pkgbase = phosh-osk-stevia
 	depends = libgmobile
 	depends = libhandy
 	depends = wayland
-	source = https://sources.phosh.mobi/releases/phosh-osk-stevia/phosh-osk-stevia-0.50.0.tar.xz
-	source = https://sources.phosh.mobi/releases/phosh-osk-stevia/phosh-osk-stevia-0.50.0.tar.xz.asc
+	source = https://sources.phosh.mobi/releases/phosh-osk-stevia/phosh-osk-stevia-0.50.1.tar.xz
+	source = https://sources.phosh.mobi/releases/phosh-osk-stevia/phosh-osk-stevia-0.50.1.tar.xz.asc
 	validpgpkeys = 0DB3932762F78E592F6522AFBB5A2C77584122D3
-	b2sums = 1dc66fa762acfdc17039dcd7cb642a2a5f9e858734525fd90c25c6ffca5034732d063605cacc6371ad30065a7d4bb8479c29e9f12cd426aa4dfd722358871578
+	b2sums = 82dd91439c7daf976389ee129388c4c45d0b63a47909f51659e5314021302b260090307adc7fedafb60780b728408a2f8dc6831ce736c5c28ea246becdd5b324
 	b2sums = SKIP
 
 pkgname = phosh-osk-stevia

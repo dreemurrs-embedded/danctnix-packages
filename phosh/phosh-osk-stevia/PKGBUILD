@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh-osk-stevia
-pkgver=0.50.0
+pkgver=0.50.1
 pkgrel=1
 pkgdesc="On-screen keyboard for Phosh"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -27,7 +27,7 @@ makedepends=(
 )
 checkdepends=('xorg-server-xvfb')
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc})
-b2sums=('1dc66fa762acfdc17039dcd7cb642a2a5f9e858734525fd90c25c6ffca5034732d063605cacc6371ad30065a7d4bb8479c29e9f12cd426aa4dfd722358871578'
+b2sums=('82dd91439c7daf976389ee129388c4c45d0b63a47909f51659e5314021302b260090307adc7fedafb60780b728408a2f8dc6831ce736c5c28ea246becdd5b324'
         'SKIP')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
