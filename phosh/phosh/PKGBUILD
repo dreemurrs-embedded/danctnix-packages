@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh
-pkgver=0.50.0
+pkgver=0.50.1
 pkgrel=1
 pkgdesc="Wayland shell for GNOME on mobile devices."
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -40,7 +40,7 @@ install="$pkgname.install"
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc}
         'pam_phosh'
         'phosh.service')
-b2sums=('7844c293097e6b8b6a540fa4df8d222190834117897283ce26de252411d54683d2df3275ea808ddbae4122ba4603c6c5d44237269da24d4b27c025494cfdb43b'
+b2sums=('3450c6df5059d5206bbfe7424d7efa24dced1f57a44d31cc68c105c16fe4b5d692c2ccdbf2b8f6911496b377682750f9cdb209f28e615e36d954e561d2509f94'
         'SKIP'
         'd89e16605e2e8e29834f9537bd09ef3f76f1cf6420cdd99346a760cab8c7217f86898be66c24b206b464239fc8b5277150abd19bae81af72187a435bd8c2f869'
         '5a769e4bda9c2c23cc386ac657dfb4267f130ee22644c3bf247f7373ee53afcf30d3086906e020d005e0b860742356f004cc5543bd1ed62fb82fb71d7e9b430e')
