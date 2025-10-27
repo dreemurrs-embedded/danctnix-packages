@@ -3,7 +3,7 @@
 # Contributor: Bhushan Shah <bhush94 at gmail dot com>
 
 pkgname=plasma-mobile
-pkgver=6.4.5
+pkgver=6.5.0
 _dirver=$(echo $pkgver | cut -d. -f1-3)
 pkgrel=1
 pkgdesc="Plasma shell for mobile devices"
@@ -23,6 +23,7 @@ depends=(
 makedepends=(
   cmake
   extra-cmake-modules
+  plasma-wayland-protocols
 )
 optdepends=('hfd-service: Haptic feedback')
 replaces=('plasma-phone-components')
@@ -32,7 +33,7 @@ validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
               'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
               '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
-sha512sums=('02886196bfee65cd3003a017ad8a4d36440e4268f23fafe4c2fb19476993fce362dd4da0106b3f68952e3653157f30d178183b9b1d25e786dde3cbf819972b5b'
+sha512sums=('00232dda0de7963e3a526820c93bcdbe2472cd9654a1c51d0d41260cfa7292ab08b75c1eacf8c906e36bc5956bb897355366973c6a7bb825ca3ecad06d2a7863'
             'SKIP')
 
 build() {
