@@ -1,0 +1,21 @@
+pkgbase = postprocessd
+	pkgdesc = A native postprocessing pipeline for Megapixels
+	pkgver = 0.3.0
+	pkgrel = 3
+	url = https://git.sr.ht/~martijnbraam/postprocessd
+	arch = x86_64
+	arch = armv7h
+	arch = aarch64
+	license = GPL
+	makedepends = scdoc
+	makedepends = meson
+	makedepends = ninja
+	depends = libraw
+	depends = libtiff
+	depends = libjpeg-turbo
+	depends = libexif
+	depends = opencv
+	source = postprocessd-0.3.0.tar.gz::https://git.sr.ht/~martijnbraam/postprocessd/archive/0.3.0.tar.gz
+	sha256sums = 4fa41f0ebd0321d3abd51084b3546c97bef95f34ed0614c01d77250d9e5274c3
+
+pkgname = postprocessd
