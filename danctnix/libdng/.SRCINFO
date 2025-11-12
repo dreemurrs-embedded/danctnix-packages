@@ -1,0 +1,17 @@
+pkgbase = libdng
+	pkgdesc = Interface library between libtiff to make sure the output is valid DNG
+	pkgver = 0.2.2
+	pkgrel = 1
+	url = https://gitlab.com/megapixels-org/libdng
+	arch = x86_64
+	arch = armv7h
+	arch = aarch64
+	license = MIT
+	makedepends = meson
+	makedepends = ninja
+	makedepends = scdoc
+	depends = libtiff
+	source = https://gitlab.com/megapixels-org/libdng/-/archive/0.2.2/libdng-0.2.2.tar.gz
+	sha256sums = f0f99a8e47c9bd67087238b54ae33a9692fc32e855362c98c94b6aaceea96821
+
+pkgname = libdng
