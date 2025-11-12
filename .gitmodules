@@ -4,9 +4,6 @@
 [submodule "danctnix/waydroid-image"]
 	path = danctnix/waydroid-image
 	url = https://aur.archlinux.org/waydroid-image.git
-[submodule "danctnix/python-gbinder"]
-	path = danctnix/python-gbinder
-	url = https://aur.archlinux.org/python-gbinder.git
 [submodule "sxmo/wvkbd"]
 	path = sxmo/wvkbd
 	url = https://aur.archlinux.org/wvkbd.git
