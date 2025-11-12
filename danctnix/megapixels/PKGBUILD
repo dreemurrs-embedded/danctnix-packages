@@ -1,23 +1,38 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=megapixels
-pkgver=1.8.3
+pkgver=2.0.0
 pkgrel=1
 pkgdesc="The Linux-phone camera application"
 url="https://gitlab.com/megapixels-org/Megapixels"
 license=('GPL-3.0-or-later')
 arch=('x86_64' 'armv7h' 'aarch64')
-depends=('feedbackd' 'glib2' 'gtk4' 'imagemagick' 'libraw' 'zbar')
+depends=(
+    'feedbackd'
+    'glib2'
+    'gtk4'
+    'imagemagick'
+    'libdng'
+    'libepoxy'
+    'libjpeg'
+    'libmegapixels'
+    'libraw'
+    'zbar'
+)
 makedepends=('meson' 'ninja')
 optdepends=('postprocessd: additional postprocess config')
 replaces=('pinhole' 'gnome-camera')
 source=("https://gitlab.com/megapixels-org/Megapixels/-/archive/${pkgver}/Megapixels-${pkgver}.tar.gz"
         '90-megapixels.rules')
-sha256sums=('898d45ab6dce5ff532e8554b90045dc7be2682c32ac7d48573438c7827a34931'
+sha256sums=('99869a7ce4b352a28ac76da00c777716b9cd7b98ccab1bc56def0d1c9223b707'
             'c9ff69c5963f6231ac6a7de5adc3e0327f47b501de9b084b49546bfb00e7fc58')
 
 build() {
     arch-meson ${pkgname^}-$pkgver build
     ninja -C build
+}
+
+check() {
+    ninja -C build test
 }
 
 package() {
