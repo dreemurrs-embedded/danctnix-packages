@@ -1,7 +1,7 @@
 pkgbase = osk-sdl
 	pkgdesc = SDL2 On-screen Keyboard for FDE
 	pkgver = 0.66
-	pkgrel = 7
+	pkgrel = 8
 	url = https://gitlab.com/postmarketOS/osk-sdl
 	arch = x86_64
 	arch = armv7h
@@ -22,7 +22,7 @@ pkgbase = osk-sdl
 	source = fix-config-parsing-with-libstdc++.patch
 	md5sums = fb608060dea423d221bdfff9a6101624
 	md5sums = 32b89734fc22fe0dc470e10c3c2e8034
-	md5sums = 6c4e4af9bbfdca1804997253c8e58de0
+	md5sums = de080fe9f61926b7babb0b12742031c0
 	md5sums = 8fef952dada64ff63040b5406e71ecac
 	md5sums = e6dff50a2f9a27d5de92437394e9cfda
 
