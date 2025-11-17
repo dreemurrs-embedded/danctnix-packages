@@ -2,8 +2,8 @@
 # Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-pinetab2
-pkgver=6.17.6.danctnix1
-pkgrel=2
+pkgver=6.17.8.danctnix1
+pkgrel=1
 pkgdesc='PineTab2'
 _srcname=linux-pinetab2
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -31,19 +31,17 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/linux-${pkgver%.*}.tar.{xz,sign}
   ${_url_git}/releases/download/${_srctag}/${_srctag}.patch.zst{,.sig}
   config  # the main kernel config file
-  vop2_use_ovl_layer_sel_configuration_instead_of_use_win_mask_calculat.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
   647F28654894E3BD457199BE38DBBDC86092693E  # Greg Kroah-Hartman
   F09A933C0FE0331E558CA4E166CAB7EAA45DD781  # Danct12
 )
-b2sums=('00861fe396f5024c50aa62d0cb235281726061200aa32aa27ae7aeeda13928c5d92cab8a27687884ae7c317f0e682ea2c779ab0ce2ebec19dc0b1f4740e2d143'
+b2sums=('1476969a9ad9252f97c16edb3c9fb37d75de3c00280af42057a2704666aa4945ac50d458e61d1e2b751e224ec38c99789b80f23636bc93f79f5b5e51a163980b'
         'SKIP'
-        'e39e59fa0405fd895d4910140f5c6cd5a8931abd2134b48c0770120cd125d294155bab1da428256e382051d8c6c78c604b1a05325ee74fa8d7521d468307f307'
+        '31941d6638ef3a206015c9989443dbaf4524d098a06de6605a818556a260c230bfd1c1a7d2787235a9af2609b1d327098f1fcc8f160a37d501ae174142d1d7fe'
         'SKIP'
-        '956158ba4bf882f53f4f4e73ca965fe5ff6cf17ed9ad175b1be6626fe17dbe8d804fbfd77b3410f685ac703f41d7aa0eee552a8d3c522719980a95bcebc99cdb'
-        '88c535381666df62fc2586c0728ec8addf2c47d6a2f1441fc6a59df04a82e816bf109fa9b7c8a87535cb72db59cb4c97448f94484c322949bbb7d4fb1ab8728d')
+        '956158ba4bf882f53f4f4e73ca965fe5ff6cf17ed9ad175b1be6626fe17dbe8d804fbfd77b3410f685ac703f41d7aa0eee552a8d3c522719980a95bcebc99cdb')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
