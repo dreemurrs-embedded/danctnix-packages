@@ -1,7 +1,8 @@
 From 6fa04ffa1ef192d51437c86133f008dad163e983 Mon Sep 17 00:00:00 2001
 From: Jonas Karlman <jonas@kwiboo.se>
 Date: Tue, 6 Aug 2024 09:06:00 +0000
-Subject: [PATCH 1/9] avutil/hwcontext: Add hwdevice type for V4L2 Request API
+Subject: [PATCH 01/10] avutil/hwcontext: Add hwdevice type for V4L2 Request
+ API
 
 Add a hwdevice type for V4L2 Request API with transfer_data_from support
 for AV_PIX_FMT_DRM_PRIME, based on AV_HWDEVICE_TYPE_DRM.
@@ -483,7 +484,7 @@ index 0000000000..6f26cb51c8
 From ccf42b0c6df83c98be2775cc78bdd74cb0911972 Mon Sep 17 00:00:00 2001
 From: Jonas Karlman <jonas@kwiboo.se>
 Date: Tue, 6 Aug 2024 09:06:01 +0000
-Subject: [PATCH 2/9] avcodec: Add common V4L2 Request API code
+Subject: [PATCH 02/10] avcodec: Add common V4L2 Request API code
 
 Add common helpers for supporting V4L2 Request API hwaccels.
 
@@ -1126,8 +1127,8 @@ index 0000000000..554b663ab4
 From 4d2a0a55c6a97b128101ff63ab8866df8416f3d8 Mon Sep 17 00:00:00 2001
 From: Jonas Karlman <jonas@kwiboo.se>
 Date: Tue, 6 Aug 2024 09:06:02 +0000
-Subject: [PATCH 3/9] avcodec/v4l2request: Probe for a capable media and video
- device
+Subject: [PATCH 03/10] avcodec/v4l2request: Probe for a capable media and
+ video device
 
 Probe all media devices and its linked video devices to locate a video
 device that support stateless decoding of the specific codec using the
@@ -1854,7 +1855,7 @@ index 0000000000..d547d4a04d
 From 4c26bc536907a0d6e92e8783921148894c4222d7 Mon Sep 17 00:00:00 2001
 From: Jonas Karlman <jonas@kwiboo.se>
 Date: Tue, 6 Aug 2024 09:06:03 +0000
-Subject: [PATCH 4/9] avcodec/v4l2request: Add common decode support for
+Subject: [PATCH 04/10] avcodec/v4l2request: Add common decode support for
  hwaccels
 
 Add common support for decoding using the V4L2 Request API.
@@ -2469,7 +2470,7 @@ index 0000000000..5af605f669
 From a244a4d1d046c5d495856d0eafa7506a2a7f6575 Mon Sep 17 00:00:00 2001
 From: Jonas Karlman <jonas@kwiboo.se>
 Date: Tue, 6 Aug 2024 09:06:04 +0000
-Subject: [PATCH 5/9] avcodec: Add V4L2 Request API mpeg2 hwaccel
+Subject: [PATCH 05/10] avcodec: Add V4L2 Request API mpeg2 hwaccel
 
 Add a V4L2 Request API hwaccel for MPEG2.
 
@@ -2774,7 +2775,7 @@ index 0000000000..4d2b53c2c4
 From a0e3aef24db347d93d9cf581ed0da441fb323c68 Mon Sep 17 00:00:00 2001
 From: Boris Brezillon <boris.brezillon@collabora.com>
 Date: Tue, 6 Aug 2024 09:06:05 +0000
-Subject: [PATCH 6/9] avcodec/h264dec: add ref_pic_marking and pic_order_cnt
+Subject: [PATCH 06/10] avcodec/h264dec: add ref_pic_marking and pic_order_cnt
  bit_size to slice context
 
 The V4L2_CID_STATELESS_H264_DECODE_PARAMS control require following:
@@ -2865,7 +2866,7 @@ index 1df99015cc..fb99ce9c4f 100644
 From b5383c0a702d1e2cd1eab1e5f54b276907fee62f Mon Sep 17 00:00:00 2001
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 Date: Tue, 6 Aug 2024 09:06:06 +0000
-Subject: [PATCH 7/9] avcodec: Add V4L2 Request API h264 hwaccel
+Subject: [PATCH 07/10] avcodec: Add V4L2 Request API h264 hwaccel
 
 Add a V4L2 Request API hwaccel for H.264, supporting both slice and
 frame decoding modes.
@@ -3514,7 +3515,7 @@ index 0000000000..31572b6274
 From f68edff7db603c558f4fd92d04fb469e27d50277 Mon Sep 17 00:00:00 2001
 From: Jernej Skrabec <jernej.skrabec@gmail.com>
 Date: Tue, 6 Aug 2024 09:06:07 +0000
-Subject: [PATCH 8/9] avcodec: Add V4L2 Request API hevc hwaccel
+Subject: [PATCH 08/10] avcodec: Add V4L2 Request API hevc hwaccel
 
 Add a V4L2 Request API hwaccel for HEVC, supporting both slice and
 frame decoding modes.
@@ -4398,7 +4399,7 @@ index 0000000000..57856802d8
 From ecc1fd7456428027f8844bad14da6ac49e60027b Mon Sep 17 00:00:00 2001
 From: Boris Brezillon <boris.brezillon@collabora.com>
 Date: Wed, 22 May 2019 14:46:58 +0200
-Subject: [PATCH 9/9] avcodec: Add V4L2 Request API vp8 hwaccel
+Subject: [PATCH 09/10] avcodec: Add V4L2 Request API vp8 hwaccel
 
 Add a V4L2 Request API hwaccel for VP8.
 
@@ -4731,6 +4732,38 @@ index 0ae50b1d7d..0606f78c86 100644
  #endif
                                 NULL
                             },
+-- 
+2.51.2
+
+
+From fcfb382d7eaa5347db462a7d88ce2f985780894a Mon Sep 17 00:00:00 2001
+From: Alex Bee <knaerzche@gmail.com>
+Date: Sun, 15 Dec 2024 01:16:13 +0100
+Subject: [PATCH 10/10] HACK: avcodec: Don't check VIDIOC_ENUM_FRAMESIZES
+ step_width / step_height
+
+Currently required, since hantro and rkvdec drivers expose wrong values.
+
+Signed-off-by: Alex Bee <knaerzche@gmail.com>
+---
+ libavcodec/v4l2_request_probe.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/libavcodec/v4l2_request_probe.c b/libavcodec/v4l2_request_probe.c
+index d547d4a04d..144abbac0e 100644
+--- a/libavcodec/v4l2_request_probe.c
++++ b/libavcodec/v4l2_request_probe.c
+@@ -199,9 +199,7 @@ static int v4l2_request_try_framesize(AVCodecContext *avctx,
+         } else if ((frmsize.type == V4L2_FRMSIZE_TYPE_STEPWISE ||
+                     frmsize.type == V4L2_FRMSIZE_TYPE_CONTINUOUS) &&
+                    avctx->coded_width <= frmsize.stepwise.max_width &&
+-                   avctx->coded_height <= frmsize.stepwise.max_height &&
+-                   avctx->coded_width % frmsize.stepwise.step_width == 0 &&
+-                   avctx->coded_height % frmsize.stepwise.step_height == 0) {
++                   avctx->coded_height <= frmsize.stepwise.max_height) {
+             return 0;
+         }
+ 
 -- 
 2.51.2
 
