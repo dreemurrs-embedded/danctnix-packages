@@ -1,12 +1,13 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh-mobile-settings
-pkgver=0.50.1
+pkgver=0.51.0
 pkgrel=1
 pkgdesc="Phosh-specific settings app"
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://phosh.mobi"
 license=('GPL-3.0-or-later')
 depends=(
+    'cellbroadcastd'
     'gtk4'
     'gsound'
     'libadwaita'
@@ -24,7 +25,7 @@ makedepends=(
     'wayland-protocols'
 )
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc})
-b2sums=('cece018b04cfb5090ff40dd8bb3fb4ea8dccdfbf529b509343ef178521ad1631a61a6a0dae0ffb04b979aeecab1b1624d050d13b4c3a151994449f94f29e46fc'
+b2sums=('b991546b1096b18cbe255fee30f2b3178e8fad320b86b1c589daa101f48fd76231b97416feb08b83f1fb1bcd1edd921fe224c83eeda36fbf941ca6aaaafb3ef7'
         'SKIP')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
