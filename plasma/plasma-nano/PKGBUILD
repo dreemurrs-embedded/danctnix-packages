@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 # Contributor: Devin Lin <devin@kde.org>
 pkgname=plasma-nano
-pkgver=6.5.3
+pkgver=6.5.4
 pkgrel=1
 pkgdesc="A minimal plasma shell package intended for embedded devices."
 arch=(x86_64 i686 i486 pentium4 arm armv6h armv7h aarch64)
@@ -22,7 +22,7 @@ validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
               'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
               '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
-sha256sums=('e30102b96ebfd4c61d30c9cfa80f9afb26d61efaedf7a52080d08a50eb7c0cb7'
+sha256sums=('80e21d6c0fcbdb3d5ffc24573ac938a9eff85bb596d2c72418c8db12854ed063'
             'SKIP')
 
 prepare() {
