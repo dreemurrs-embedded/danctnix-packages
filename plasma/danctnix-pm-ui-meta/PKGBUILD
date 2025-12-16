@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 
 pkgname=danctnix-pm-ui-meta
-pkgver=6.0
+pkgver=6.5
 pkgrel=1
 pkgdesc='Meta package to install Plasma Mobile'
 arch=(any)
@@ -15,10 +15,10 @@ depends=(
   kwallet-pam
   kwayland-integration
   iio-sensor-proxy
-  maliit-keyboard
   noto-fonts
   oxygen
   oxygen-sounds
+  plasma-keyboard
   plasma-mobile
   plasma-mobile-sounds
   plasma-phone-settings
@@ -26,7 +26,6 @@ depends=(
   polkit-kde-agent
   powerdevil
   qqc2-breeze-style
-  qt5-graphicaleffects # remove this after maliit-keyboard 2.3.1-3 lands
   xdg-desktop-portal
   xdg-desktop-portal-kde
 )
