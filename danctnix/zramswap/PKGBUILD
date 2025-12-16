@@ -8,7 +8,7 @@
 
 pkgname=zramswap
 pkgver=5
-pkgrel=2
+pkgrel=3
 pkgdesc="Sets up zram-based swap devices on boot"
 arch=('any')
 url="http://en.wikipedia.org/wiki/ZRam"
@@ -18,7 +18,7 @@ backup=("etc/zramswap.conf")
 source=("zramctrl"
         "zramswap.conf"
         "zramswap.service")
-md5sums=('fa0b8339c91cb2a45c57671839c46116'
+md5sums=('44174e5c08fcebda590f5923867b7044'
          '276be38c4ee18114083d1472d587f704'
          'a6c029dc942c85704b0f6ac1ca078a24')
 

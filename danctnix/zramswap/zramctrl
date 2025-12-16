@@ -5,6 +5,10 @@ if [ -f /etc/zramswap.conf ]; then
 fi
 
 start() {
+  if [ -f /sys/module/zswap/parameters/enabled ]; then
+    echo 0 > /sys/module/zswap/parameters/enabled
+  fi
+
   if [ ! "$ZRAM_SIZE_PERCENT" ]; then
     ZRAM_SIZE_PERCENT=20
   fi
