@@ -1,10 +1,9 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 # Contributor: Bernhard Landauer <oberon@manjaro.org>
 
-pkgbase=plasma-phone-settings
-pkgname=('plasma-phone-settings' 'maliit-keyboard-plasma')
+pkgname=plasma-phone-settings
 pkgver=r75.648f779
-pkgrel=2
+pkgrel=3
 arch=('any')
 url="https://invent.kde.org/plasma-mobile/plasma-phone-settings"
 license=('CC0-1.0')
@@ -19,7 +18,7 @@ pkgver() {
   printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
 }
 
-package_plasma-phone-settings() {
+package() {
   optdepends=('modemmanager: Telephony capabilities')
   replaces=('plasma-mobile-settings')
 
@@ -37,12 +36,4 @@ package_plasma-phone-settings() {
   mkdir -p $pkgdir/usr/lib/systemd/system/multi-user.target.wants
   ln -sfv /usr/lib/systemd/system/hfd-service.service \
       $pkgdir/usr/lib/systemd/system/multi-user.target.wants/hfd-service.service
-}
-
-package_maliit-keyboard-plasma() {
-  depends=('maliit-keyboard')
-
-  mkdir -p "$pkgdir/usr/share/maliit"
-  cp -rv "$srcdir/plasma-phone-settings/usr/share/maliit/keyboard2" \
-    "$pkgdir/usr/share/maliit"
 }
