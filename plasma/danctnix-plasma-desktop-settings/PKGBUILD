@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 
 pkgname=danctnix-plasma-desktop-settings
-pkgver=20250531
+pkgver=20251216
 pkgrel=1
 arch=('any')
 url="https://danctnix.org"
@@ -10,10 +10,10 @@ pkgdesc='Settings files for Plasma Desktop'
 depends=(
   'breeze-gtk'
   'kwin'
-  'layer-shell-qt5'
-  'maliit-keyboard-plasma'
+  'layer-shell-qt'
   'noto-fonts'
   'plasma-desktop'
+  'plasma-keyboard'
   'sddm'
 )
 makedepends=('git')
