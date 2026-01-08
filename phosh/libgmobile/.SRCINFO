@@ -1,6 +1,6 @@
 pkgbase = libgmobile
 	pkgdesc = Functions useful in mobile related, glib based projects
-	pkgver = 0.4.0
+	pkgver = 0.6.0
 	pkgrel = 1
 	url = https://gitlab.gnome.org/World/Phosh/gmobile
 	arch = x86_64
@@ -16,10 +16,10 @@ pkgbase = libgmobile
 	depends = glib2
 	depends = json-glib
 	depends = libgirepository
-	source = https://sources.phosh.mobi/releases/gmobile/gmobile-0.4.0.tar.xz
-	source = https://sources.phosh.mobi/releases/gmobile/gmobile-0.4.0.tar.xz.asc
+	source = https://sources.phosh.mobi/releases/gmobile/gmobile-0.6.0.tar.xz
+	source = https://sources.phosh.mobi/releases/gmobile/gmobile-0.6.0.tar.xz.asc
 	validpgpkeys = 0DB3932762F78E592F6522AFBB5A2C77584122D3
-	sha256sums = 99bf096d98f63b6aa14c5aeaf4d1c6e33e44185ae0ee3b15858c95bf22db067c
+	sha256sums = 0786ffd2b0423cd1e5e4998ae4d602fc1f9dbad35c4312b570e0756bfa24cde3
 	sha256sums = SKIP
 
 pkgname = libgmobile

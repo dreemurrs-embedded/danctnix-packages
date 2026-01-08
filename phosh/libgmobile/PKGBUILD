@@ -2,7 +2,7 @@
 
 _pkgname=gmobile
 pkgname=lib${_pkgname}
-pkgver=0.4.0
+pkgver=0.6.0
 pkgrel=1
 pkgdesc='Functions useful in mobile related, glib based projects'
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -22,7 +22,7 @@ makedepends=(
 )
 checkdepends=('xorg-server-xvfb')
 source=(https://sources.phosh.mobi/releases/${_pkgname}/${_pkgname}-${pkgver}.tar.xz{,.asc})
-sha256sums=('99bf096d98f63b6aa14c5aeaf4d1c6e33e44185ae0ee3b15858c95bf22db067c'
+sha256sums=('0786ffd2b0423cd1e5e4998ae4d602fc1f9dbad35c4312b570e0756bfa24cde3'
             'SKIP')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
