@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh
-pkgver=0.51.0
+pkgver=0.52.1
 pkgrel=1
 pkgdesc="Wayland shell for GNOME on mobile devices."
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -24,6 +24,7 @@ depends=(
     'gnome-session'
     'gnome-shell'
     'phosh-osk-stevia'
+    'qrcodegen-cmake'
     'upower'
 )
 makedepends=(
@@ -40,7 +41,7 @@ install="$pkgname.install"
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc}
         'pam_phosh'
         'phosh.service')
-b2sums=('fccc60f86ed0e3b8664092a90ed209473f671e9f6a0b10805fae295a0910aeb9d50cbbed1e62d91a8c88642195e43b19f5d83b068f3339eb83e209a8c50f36e7'
+b2sums=('436a4be606d57afd2c43009dfb11cb2a362df1bd4717c52aed4d3e35c7c32cde620a89b9ca9643422820499c7e791f38ab7737b43e2d163d11d9a36c1c21b91d'
         'SKIP'
         'd89e16605e2e8e29834f9537bd09ef3f76f1cf6420cdd99346a760cab8c7217f86898be66c24b206b464239fc8b5277150abd19bae81af72187a435bd8c2f869'
         '5a769e4bda9c2c23cc386ac657dfb4267f130ee22644c3bf247f7373ee53afcf30d3086906e020d005e0b860742356f004cc5543bd1ed62fb82fb71d7e9b430e')
