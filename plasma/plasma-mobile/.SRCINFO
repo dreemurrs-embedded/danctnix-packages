@@ -1,6 +1,6 @@
 pkgbase = plasma-mobile
 	pkgdesc = Plasma shell for mobile devices
-	pkgver = 6.5.4
+	pkgver = 6.5.5
 	pkgrel = 1
 	url = https://community.kde.org/Plasma/Mobile
 	install = plasma-mobile.install
@@ -18,16 +18,16 @@ pkgbase = plasma-mobile
 	depends = plasma-nano
 	depends = plasma-nm
 	depends = plasma-pa
-	depends = plasma-workspace=6.5.4
+	depends = plasma-workspace=6.5.5
 	optdepends = hfd-service: Haptic feedback
 	replaces = plasma-phone-components
-	source = https://download.kde.org/stable/plasma/6.5.4/plasma-mobile-6.5.4.tar.xz
-	source = https://download.kde.org/stable/plasma/6.5.4/plasma-mobile-6.5.4.tar.xz.sig
+	source = https://download.kde.org/stable/plasma/6.5.5/plasma-mobile-6.5.5.tar.xz
+	source = https://download.kde.org/stable/plasma/6.5.5/plasma-mobile-6.5.5.tar.xz.sig
 	validpgpkeys = E0A3EB202F8E57528E13E72FD7574483BB57B18D
 	validpgpkeys = 0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D
 	validpgpkeys = D07BD8662C56CB291B316EB2F5675605C74E02CF
 	validpgpkeys = 1FA881591C26B276D7A5518EEAAF29B42A678C20
-	sha512sums = 7f7b8265ee46ecca4d4680c0f6997169822d4d64cd9b0b9ddae97de181fd484b383b49fd8007723d2d7596483fe0e691004cfb1d7c9e27042a4e84dc8440fdbf
+	sha512sums = d642cf46d5e6e06caffaa2bde99a79ddf7eeca696ea5f7b391caaf6f67f5d0e97ff628e3f04c570ab34819014b96c3e8ed1b2a55ae72310a960016b1a4dc61b5
 	sha512sums = SKIP
 
 pkgname = plasma-mobile
