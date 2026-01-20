@@ -1,6 +1,6 @@
 pkgbase = linux-megi
-	pkgver = 6.15.6
-	pkgrel = 2
+	pkgver = 6.18.3
+	pkgrel = 1
 	url = https://codeberg.org/megi/linux
 	arch = aarch64
 	license = GPL-2.0-only
@@ -15,7 +15,7 @@ pkgbase = linux-megi
 	makedepends = cpio
 	makedepends = pahole
 	options = !strip
-	source = linux-orange-pi-6.15-20250710-2218.tar.gz::https://codeberg.org/megi/linux/archive/orange-pi-6.15-20250710-2218.tar.gz
+	source = linux-orange-pi-6.18-20260105-0049.tar.gz::https://codeberg.org/megi/linux/archive/orange-pi-6.18-20260105-0049.tar.gz
 	source = config
 	source = linux.preset
 	source = ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
@@ -23,10 +23,10 @@ pkgbase = linux-megi
 	source = dts-pinephone-pro-remove-modem-node.patch
 	source = dts-pinephone-pro-add-modem-ri.patch
 	source = Revert-arm64-allwinner-dts-a64-enable-K101-IM2BYL02.patch
-	md5sums = ada5e3264942e8bbc164b29b152fcac3
-	md5sums = 176c39a987e3692c2f3c8c770a961596
+	md5sums = 16589798c6f8791c614547b6b9e1434d
+	md5sums = 4b398924e91f39325bb6c153423974f0
 	md5sums = 86d4a35722b5410e3b29fc92dae15d4b
-	md5sums = bf29207a84f9d217c0bf40074f122416
+	md5sums = ebee5494287dbeec8f76da0e39b9d6eb
 	md5sums = 571aee8d8a58c719288fee4185ab1713
 	md5sums = da2ad89730c2fce222ca0e286585a868
 	md5sums = 7d80f76f1647afa00de320f5866484a1
@@ -40,7 +40,7 @@ pkgname = linux-megi
 	depends = mkinitcpio>=0.7
 	optdepends = crda: to set the correct wireless channels of your country
 	provides = kernel26
-	provides = linux=6.15.6
+	provides = linux=6.18.3
 	provides = WIREGUARD-MODULE
 	conflicts = linux
 	replaces = linux-pine64
@@ -49,6 +49,6 @@ pkgname = linux-megi
 pkgname = linux-megi-headers
 	pkgdesc = Header files and scripts for building modules for linux kernel - Megous Kernel
 	depends = pahole
-	provides = linux-headers=6.15.6
+	provides = linux-headers=6.18.3
 	conflicts = linux-headers
 	replaces = linux-pine64-headers

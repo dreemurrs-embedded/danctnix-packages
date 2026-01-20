@@ -1,4 +1,4 @@
-From 3505faa6ae2e9e7f3622b878af34df36bc05b912 Mon Sep 17 00:00:00 2001
+From 74c15b6d7cc32490623e04aacba330e2f50ee07e Mon Sep 17 00:00:00 2001
 From: Serge Hallyn <serge.hallyn@canonical.com>
 Date: Fri, 31 May 2013 19:12:12 +0100
 Subject: [PATCH] add sysctl to allow disabling unprivileged CLONE_NEWUSER
@@ -11,71 +11,54 @@ issues are found, we have a fail-safe.
 [bwh: Remove unneeded binary sysctl bits]
 [bwh: Keep this sysctl, but change the default to enabled]
 [heftig: correct commit subject to reduce confusion]
+[heftig: for 6.17, move all code into kernel/fork.c]
 ---
- kernel/fork.c           | 16 ++++++++++++++++
- kernel/sysctl.c         | 13 +++++++++++++
- kernel/user_namespace.c |  3 +++
- 3 files changed, 32 insertions(+)
+ kernel/fork.c | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
 diff --git a/kernel/fork.c b/kernel/fork.c
-index 168681fc4b25a9..74abab2c65c1aa 100644
+index 3da0f08615a95e..07349223afff68 100644
 --- a/kernel/fork.c
 +++ b/kernel/fork.c
-@@ -119,6 +119,12 @@
+@@ -123,6 +123,12 @@
  
  #include <kunit/visibility.h>
  
 +#ifdef CONFIG_USER_NS
-+extern int unprivileged_userns_clone;
++static int unprivileged_userns_clone = 1;
 +#else
-+#define unprivileged_userns_clone 0
++#define unprivileged_userns_clone 1
 +#endif
 +
  /*
   * Minimum number of threads to boot the kernel
   */
-@@ -2194,6 +2200,10 @@ __latent_entropy struct task_struct *copy_process(
- 	if ((clone_flags & (CLONE_NEWUSER|CLONE_FS)) == (CLONE_NEWUSER|CLONE_FS))
- 		return ERR_PTR(-EINVAL);
+@@ -1990,6 +1996,11 @@ __latent_entropy struct task_struct *copy_process(
+ 			return ERR_PTR(-EINVAL);
+ 	}
  
-+	if ((clone_flags & CLONE_NEWUSER) && !unprivileged_userns_clone)
++	if ((clone_flags & CLONE_NEWUSER) && !unprivileged_userns_clone) {
 +		if (!capable(CAP_SYS_ADMIN))
 +			return ERR_PTR(-EPERM);
-+
- 	/*
- 	 * Thread groups must share signals as well, and detached threads
- 	 * can only be started up within the thread group.
-@@ -3354,6 +3364,12 @@ int ksys_unshare(unsigned long unshare_flags)
- 	if (unshare_flags & CLONE_NEWNS)
- 		unshare_flags |= CLONE_FS;
- 
-+	if ((unshare_flags & CLONE_NEWUSER) && !unprivileged_userns_clone) {
-+		err = -EPERM;
-+		if (!capable(CAP_SYS_ADMIN))
-+			goto bad_unshare_out;
 +	}
 +
- 	err = check_unshare_flags(unshare_flags);
- 	if (err)
- 		goto bad_unshare_out;
-diff --git a/kernel/sysctl.c b/kernel/sysctl.c
-index 3b7a7308e35b09..cb4bab6a39bf5c 100644
---- a/kernel/sysctl.c
-+++ b/kernel/sysctl.c
-@@ -84,6 +84,10 @@ EXPORT_SYMBOL_GPL(sysctl_long_vals);
- static const int ngroups_max = NGROUPS_MAX;
- static const int cap_last_cap = CAP_LAST_CAP;
+ 	/*
+ 	 * Force any signals received before this point to be delivered
+ 	 * before the fork happens.  Collect up signals sent to multiple
+@@ -3025,6 +3036,10 @@ static int check_unshare_flags(unsigned long unshare_flags)
+ 		if (!current_is_single_threaded())
+ 			return -EINVAL;
+ 	}
++	if ((unshare_flags & CLONE_NEWUSER) && !unprivileged_userns_clone) {
++		if (!capable(CAP_SYS_ADMIN))
++			return -EPERM;
++	}
  
-+#ifdef CONFIG_USER_NS
-+extern int unprivileged_userns_clone;
-+#endif
-+
- #ifdef CONFIG_PROC_SYSCTL
- 
- /**
-@@ -1595,6 +1599,15 @@ static const struct ctl_table kern_table[] = {
+ 	return 0;
+ }
+@@ -3255,6 +3270,15 @@ static const struct ctl_table fork_sysctl_table[] = {
  		.mode		= 0644,
- 		.proc_handler	= proc_dointvec,
+ 		.proc_handler	= sysctl_max_threads,
  	},
 +#ifdef CONFIG_USER_NS
 +	{
@@ -86,23 +69,6 @@ index 3b7a7308e35b09..cb4bab6a39bf5c 100644
 +		.proc_handler	= proc_dointvec,
 +	},
 +#endif
- #ifdef CONFIG_PROC_SYSCTL
- 	{
- 		.procname	= "tainted",
-diff --git a/kernel/user_namespace.c b/kernel/user_namespace.c
-index 682f40d5632d44..bf265ad528f9ea 100644
---- a/kernel/user_namespace.c
-+++ b/kernel/user_namespace.c
-@@ -22,6 +22,9 @@
- #include <linux/bsearch.h>
- #include <linux/sort.h>
+ };
  
-+/* sysctl */
-+int unprivileged_userns_clone = 1;
-+
- static struct kmem_cache *user_ns_cachep __ro_after_init;
- static DEFINE_MUTEX(userns_state_mutex);
- 
--- 
-2.48.1
-
+ static int __init init_fork_sysctl(void)
