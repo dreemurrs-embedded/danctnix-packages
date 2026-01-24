@@ -1,7 +1,7 @@
 pkgbase = postprocessd
 	pkgdesc = A native postprocessing pipeline for Megapixels
 	pkgver = 0.3.0
-	pkgrel = 3
+	pkgrel = 4
 	url = https://git.sr.ht/~martijnbraam/postprocessd
 	arch = x86_64
 	arch = armv7h
