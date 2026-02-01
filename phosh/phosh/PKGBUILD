@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh
 pkgver=0.52.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Wayland shell for GNOME on mobile devices."
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://gitlab.gnome.org/World/Phosh/phosh"
@@ -23,8 +23,8 @@ depends=(
     'gnome-desktop'
     'gnome-session'
     'gnome-shell'
-    'phosh-osk-stevia'
     'qrcodegen-cmake'
+    'stevia'
     'upower'
 )
 makedepends=(
