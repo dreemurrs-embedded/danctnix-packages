@@ -1,0 +1,8 @@
+pkgname=phosh-osk-stevia
+pkgver=0.52.0
+pkgrel=2
+pkgdesc="This is a dummy package. It is no longer needed."
+arch=('x86_64' 'armv7h' 'aarch64')
+url="https://danctnix.org"
+license=('NONE')
+depends=('stevia')
