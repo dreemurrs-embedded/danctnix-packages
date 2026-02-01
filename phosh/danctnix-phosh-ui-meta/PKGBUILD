@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=danctnix-phosh-ui-meta
 pkgver=0.2
-pkgrel=6
+pkgrel=7
 pkgdesc="Meta package for Phosh"
 arch=(any)
 url="https://github.com/dreemurrs-embedded/Pine64-Arch"
@@ -16,8 +16,8 @@ depends=(
 	iio-sensor-proxy
 	phoc
 	phosh
-	phosh-osk-stevia
 	sound-theme-phosh
+	stevia
 	wys
 	xdg-desktop-portal-gtk
 	xdg-desktop-portal-phosh
