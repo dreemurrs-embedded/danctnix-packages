@@ -5,7 +5,7 @@
 pkgname=plasma-mobile
 pkgver=6.5.5
 _dirver=$(echo $pkgver | cut -d. -f1-3)
-pkgrel=1
+pkgrel=2
 pkgdesc="Plasma shell for mobile devices"
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://community.kde.org/Plasma/Mobile"
@@ -25,7 +25,7 @@ makedepends=(
   extra-cmake-modules
   plasma-wayland-protocols
 )
-optdepends=('hfd-service: Haptic feedback')
+optdepends=('feedbackd: Haptic feedback')
 replaces=('plasma-phone-components')
 source=(https://download.kde.org/stable/plasma/$_dirver/$pkgname-$pkgver.tar.xz{,.sig})
 install=$pkgname.install
