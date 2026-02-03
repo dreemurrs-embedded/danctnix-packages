@@ -3,7 +3,7 @@
 
 pkgname=plasma-phone-settings
 pkgver=r75.648f779
-pkgrel=3
+pkgrel=4
 arch=('any')
 url="https://invent.kde.org/plasma-mobile/plasma-phone-settings"
 license=('CC0-1.0')
@@ -31,9 +31,4 @@ package() {
   mkdir -p $pkgdir/usr/lib/systemd/user/default.target.wants
   ln -sfv /usr/lib/systemd/user/pipewire.service \
       $pkgdir/usr/lib/systemd/user/default.target.wants/pipewire.service
-
-  # Enable hfd-service for vibrations
-  mkdir -p $pkgdir/usr/lib/systemd/system/multi-user.target.wants
-  ln -sfv /usr/lib/systemd/system/hfd-service.service \
-      $pkgdir/usr/lib/systemd/system/multi-user.target.wants/hfd-service.service
 }
