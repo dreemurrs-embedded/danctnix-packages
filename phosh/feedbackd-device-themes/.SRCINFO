@@ -1,6 +1,6 @@
 pkgbase = feedbackd-device-themes
 	pkgdesc = Device-specific themes for Feedbackd
-	pkgver = 0.8.7
+	pkgver = 0.8.8
 	pkgrel = 1
 	url = https://gitlab.freedesktop.org/agx/feedbackd-device-themes
 	arch = any
@@ -8,10 +8,10 @@ pkgbase = feedbackd-device-themes
 	checkdepends = feedbackd
 	checkdepends = json-glib
 	makedepends = meson
-	source = https://sources.phosh.mobi/releases/feedbackd-device-themes/feedbackd-device-themes-0.8.7.tar.xz
-	source = https://sources.phosh.mobi/releases/feedbackd-device-themes/feedbackd-device-themes-0.8.7.tar.xz.asc
+	source = https://sources.phosh.mobi/releases/feedbackd-device-themes/feedbackd-device-themes-0.8.8.tar.xz
+	source = https://sources.phosh.mobi/releases/feedbackd-device-themes/feedbackd-device-themes-0.8.8.tar.xz.asc
 	validpgpkeys = 0DB3932762F78E592F6522AFBB5A2C77584122D3
-	sha256sums = 73daa199b80ec40ea6f5468e9d3c2948f91da35f6e5d2b52017201131ffe0a5d
+	sha256sums = df864623818ad58d64e981ed1fe026e6c274cbfc965b59545c70e9ffce3ff155
 	sha256sums = SKIP
 
 pkgname = feedbackd-device-themes
