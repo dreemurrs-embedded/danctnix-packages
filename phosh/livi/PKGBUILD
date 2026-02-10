@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=livi
-pkgver=0.3.1
+pkgver=0.4.0
 pkgrel=1
 pkgdesc="GTK4 video player using GStreamer as backend"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -19,10 +19,11 @@ makedepends=(
     'python-packaging'
 )
 checkdepends=('xorg-server-xvfb')
-source=("https://gitlab.gnome.org/guidog/livi/-/archive/v${pkgver}/livi-v${pkgver}.tar.gz")
+source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc})
+validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
 build() {
-    arch-meson ${pkgname}-v${pkgver} output
+    arch-meson ${pkgname}-${pkgver} output
     meson compile -C output
 }
 
@@ -34,4 +35,5 @@ package() {
     meson install -C output --destdir "$pkgdir"
 }
 
-md5sums=('6f6a29500a0c1acd753c8f3162a11233')
+md5sums=('17035503aaa726f4f10ed43d8e2999ec'
+         'SKIP')
