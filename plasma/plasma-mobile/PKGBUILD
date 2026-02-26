@@ -3,7 +3,7 @@
 # Contributor: Bhushan Shah <bhush94 at gmail dot com>
 
 pkgname=plasma-mobile
-pkgver=6.6.0
+pkgver=6.6.1
 _dirver=$(echo $pkgver | cut -d. -f1-3)
 pkgrel=1
 pkgdesc="Plasma shell for mobile devices"
@@ -19,6 +19,7 @@ depends=(
   plasma-nm
   plasma-pa
   plasma-workspace=$pkgver
+  qt6-sensors
 )
 makedepends=(
   cmake
@@ -33,7 +34,7 @@ validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
               'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
               '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
-sha512sums=('15c2c578e31ff194e31820e213ba77b05312edcbc1ea31523016a94a17c4b7474e7516a2050874a4bde1d6d1602747476a1b34a6ca1f03565d6c354da3379f23'
+sha512sums=('37e25e3fa0965b946219d57b25b781c88840495ce9f56357d1251b283c1d4650e8eb0ba93d1e18c373724c49835216bdf22fa9078cc911bc9f89367d5f4013dc'
             'SKIP')
 
 build() {
