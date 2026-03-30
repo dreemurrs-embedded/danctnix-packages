@@ -16,8 +16,8 @@
 #  - remove --enable-lto
 
 pkgname=ffmpeg-v4l2-request
-pkgver=8.0
-pkgrel=4
+pkgver=8.1
+pkgrel=3
 epoch=2
 pkgdesc='Complete solution to record, convert and stream audio and video'
 arch=(x86_64 armv7h aarch64)
@@ -40,6 +40,7 @@ depends=(
   harfbuzz
   jack
   lame
+  lcms2
   libass
   libavc1394
   libbluray
@@ -118,17 +119,15 @@ provides=(
   libswscale.so
 )
 conflicts=(ffmpeg)
-_tag=a4044e04486d1136022498891088a90baf5b2775
+_tag=a65b3bfe9dacc3b20597ef199d0afdd8bc8128e2
 source=(
   git+https://github.com/FFmpeg/ffmpeg.git?signed#tag=${_tag}
   0001-Add-av_stream_get_first_dts-for-Chromium.patch
-  0001-unbreak-glslang-build.patch
   ffmpeg-001-v4l2-request.patch
 )
-b2sums=('7c71ec5f098e248b584fd3e28e7f648e5929ff7c5a6cfc5dcce8300a8a0b91de804cd92ef72963ef86dc57a73d15ab03aeab61d99d1872baad1163462730d7d6'
+b2sums=('8e5818da4965fdd2dc7de521a2f20013a05bd4e9d6fc3eecb6ed261f91c3e4ed4b64687654bee190b0e3b702dc8184f86bfe1941a58cd0b002843c81f70fa904'
         'e5f7b79f7731be9ee5a7280a9221fb531ac5a2d9820fc5870b68b0eabea667dfbe8f39f41c1e1763a4c84982896afaa54c81ff57847d203b70afafd726689e5d'
-        '650631d4f06dffec55bd6419f680d95617a9093d8e548b3dac0b379496477dcbd4121883128438343c568e992cb5b455efc0b7c4e34a5e7200518f9b5beaa231'
-        'ed3152fe08c64f85e782ac535627f9ef697b29648d7c669944e1ce831e86d23c4f88fa8305e542659f63085290e3839d1b075e13379127bcd73b13766ecce380')
+        '5b9afacd67503d472e376122939a0143ce89db08848735d92c18ab923b5388f7ff7ef979910d2cd3340e05fc87f26f8cb33bd5f5a3e3d6093f070ad80432a12e')
 validpgpkeys=(DD1EC9E8DE085C629B3E1846B18E8928B3948D64) # Michael Niedermayer <michael@niedermayer.cc>
 
 prepare() {
@@ -136,9 +135,6 @@ prepare() {
 
   # https://crbug.com/1251779
   git apply -3 ../0001-Add-av_stream_get_first_dts-for-Chromium.patch
-
-  # https://github.com/FFmpeg/FFmpeg/commit/f1e9032a2000b8b885cffd6fed8eacd47b37673f
-  git apply -3 ../0001-unbreak-glslang-build.patch
 
   patch -Np1 -i ../ffmpeg-001-v4l2-request.patch
 }
@@ -166,6 +162,7 @@ build() {
     --enable-gnutls \
     --enable-gpl \
     --enable-ladspa \
+    --enable-lcms2 \
     --enable-libass \
     --enable-libbluray \
     --enable-libbs2b \
