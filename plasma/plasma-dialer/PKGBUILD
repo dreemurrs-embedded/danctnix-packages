@@ -3,8 +3,9 @@
 # Contributor: Bhushan Shah <bhush94 at gmail dot com>
 
 pkgname=plasma-dialer
-pkgver=24.08.0
-pkgrel=4
+epoch=1
+pkgver=6.6.3
+pkgrel=1
 pkgdesc="Phone Dialer for Plasma Mobile"
 arch=('aarch64' 'x86_64')
 url="https://community.kde.org/Plasma/Mobile"
@@ -24,22 +25,37 @@ depends=(callaudiod
          qtmpris)
 makedepends=(cmake
              extra-cmake-modules
-             kdoctools5
+             kdoctools
              plasma-wayland-protocols)
-source=("https://download.kde.org/stable/$pkgname/$pkgname-$pkgver.tar.xz")
+
+case "$pkgver" in
+	*.*.9*) _rel=unstable;;
+	*) _rel=stable;;
+esac
+
+source=(https://download.kde.org/$_rel/plasma/$pkgver/$pkgname-$pkgver.tar.xz{,.sig})
 install=$pkgname.install
-md5sums=('133b5484197f6ce4d994f323dea5e5fb')
+sha256sums=('5fb64b63351070e4ed71dccaa1f7b1cf70814e5da857149bf6ea274d91c5da9b'
+            'SKIP')
+validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell <jr@jriddell.org>
+              '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
+              'D07BD8662C56CB291B316EB2F5675605C74E02CF'  # David Edmundson <davidedmundson@kde.org>
+              '1FA881591C26B276D7A5518EEAAF29B42A678C20') # Marco Martin <notmart@gmail.com>
 
 build() {
-  cmake -B build -S $pkgname-$pkgver \
-    -DCMAKE_INSTALL_LIBEXECDIR=lib \
-    -DBUILD_TESTING=OFF
+  local cmake_options=(
+    -B build
+    -S $pkgname-$pkgver
+    -D CMAKE_BUILD_TYPE=None
+    -D CMAKE_INSTALL_PREFIX=/usr
+    -D CMAKE_INSTALL_LIBEXECDIR=lib
+  )
+  cmake "${cmake_options[@]}"
   cmake --build build
 }
 
 check() {
-  cd build
-  ctest --output-on-failure
+  ctest --output-on-failure --test-dir build
 }
 
 package() {
