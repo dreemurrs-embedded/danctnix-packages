@@ -16,9 +16,6 @@ post_upgrade() {
   flash_uboot
 
   if [ -f /boot/boot.txt.pacnew ]; then
-    echo "!! WARNING: SYSTEM FAILURE IMMINENT. DO NOT RESTART. !!"
-    echo "!! WARNING: SYSTEM FAILURE IMMINENT. DO NOT RESTART. !!"
-    echo
     echo "You have modified the device boot script."
     echo
     echo "It is recommended to compare /boot/boot.txt and /boot/boot.txt.pacnew for differences and manually apply these changes."
@@ -34,8 +31,5 @@ post_upgrade() {
     echo " $ cd /boot && sudo ./mkscr"
     echo
     echo "FAILING TO DO SO MAY RESULT IN A NON-BOOTABLE SYSTEM."
-    echo
-    echo "!! WARNING: SYSTEM FAILURE IMMINENT. DO NOT RESTART. !!"
-    echo "!! WARNING: SYSTEM FAILURE IMMINENT. DO NOT RESTART. !!"
   fi
 }

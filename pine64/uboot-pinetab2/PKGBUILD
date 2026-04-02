@@ -3,7 +3,7 @@
 buildarch=8
 
 pkgname=uboot-pinetab2
-pkgver=2025.07
+pkgver=2026.01
 pkgrel=1
 pkgdesc="U-Boot for PineTab 2"
 arch=('aarch64')
@@ -15,16 +15,18 @@ replaces=(uboot-pinetab2-mainline)
 install=${pkgname}.install
 backup=("boot/boot.txt")
 
-_commit_rkbin="f43a462e7a1429a9d407ae52b4745033034a6cf9"
+_commit_rkbin="74213af1e952c4683d2e35952507133b61394862"
 source=("git+https://github.com/u-boot/u-boot.git#tag=v$pkgver"
         "rkbin::git+https://github.com/rockchip-linux/rkbin.git#commit=$_commit_rkbin"
         'vop2.patch'
+        'bl31.elf'
         'boot.txt'
         'mkscr'
         'update-u-boot')
-md5sums=('27dc84d5ba3923701eabd2bcbb2efa2b'
-         '3c1f2e06bdc170f20cbc0cff196363fb'
-         '630a7fa401b0f454a30baa588511784d'
+md5sums=('23cb53812e9428fe2a482f09e5a4b71d'
+         'eaf22ccd32e4d70bf87dbe4df02d1c72'
+         'a18800c58c0462b6312c6bfcbac7e6e5'
+         '59013d6ccbd4881b9c6f06ee003a4030'
          'ed65ec486f0e0dc9e9c3118dffaa3782'
          '021623a04afd29ac3f368977140cfbfd'
          'ec7c2005cb5cc9a23d1eb0e1bf089bf9')
@@ -40,7 +42,7 @@ build() {
   make pinetab2-rk3566_defconfig
 
   make EXTRAVERSION=-${pkgrel} \
-    BL31=../rkbin/bin/rk35/rk3568_bl31_v1.44.elf \
+    BL31=${srcdir}/bl31.elf \
     ROCKCHIP_TPL=../rkbin/bin/rk35/rk3566_ddr_1056MHz_v1.23.bin
 }
 
