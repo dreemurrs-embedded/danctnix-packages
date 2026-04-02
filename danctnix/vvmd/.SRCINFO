@@ -1,7 +1,7 @@
 pkgbase = vvmd
 	pkgdesc = Visual Voicemail Daemon
 	pkgver = 1.1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://gitlab.com/kop316/vvmd
 	install = vvmd.install
 	arch = x86_64
