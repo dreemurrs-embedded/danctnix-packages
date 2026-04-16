@@ -1,4 +1,4 @@
-From 8f786a772ba21aa6d50dc86076efc451aceaab4f Mon Sep 17 00:00:00 2001
+From 7c2ffbaf23cb12717a571e4678a8818d5cc372c4 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 30 Nov 2024 10:22:48 +0000
 Subject: [PATCH 01/12] video: rockchip: dw-mipi-dsi: Depend on
@@ -14,7 +14,7 @@ Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/video/rockchip/Kconfig b/drivers/video/rockchip/Kconfig
-index 0f4550a29e3..dfd08f1e5d1 100644
+index 96af6d28ef0..e7c4b963fa6 100644
 --- a/drivers/video/rockchip/Kconfig
 +++ b/drivers/video/rockchip/Kconfig
 @@ -72,7 +72,7 @@ config DISPLAY_ROCKCHIP_MIPI
@@ -30,7 +30,7 @@ index 0f4550a29e3..dfd08f1e5d1 100644
 2.53.0
 
 
-From f23f4ceb89e38e8b33a98c1f1521a50438646180 Mon Sep 17 00:00:00 2001
+From 987b1371b4780b17833e884176dfb4284b393ac0 Mon Sep 17 00:00:00 2001
 From: Ondrej Jirman <megi@xff.cz>
 Date: Fri, 5 Jul 2024 17:02:10 +0200
 Subject: [PATCH 02/12] video: rockchip: dw_mipi_dsi: Improve pixel clock
@@ -104,7 +104,7 @@ index fa512173510..c47992dfb13 100644
 2.53.0
 
 
-From 807177403c3a14e493c5a821efac9b997a268801 Mon Sep 17 00:00:00 2001
+From a517ccc8da244bc5233a3ca2f18eb8a665d3de6c Mon Sep 17 00:00:00 2001
 From: Ondrej Jirman <megi@xff.cz>
 Date: Fri, 5 Jul 2024 17:03:16 +0200
 Subject: [PATCH 03/12] video: rockchip: dw_mipi_dsi: Proceed when external PHY
@@ -136,7 +136,7 @@ index c47992dfb13..95e825eb3d6 100644
 2.53.0
 
 
-From 4e6f2cfeb588088031d1e715728886d1c9b6c581 Mon Sep 17 00:00:00 2001
+From 7b70a4dab419720f48c62e31acc58a9d2ad2868e Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Thu, 20 Feb 2025 20:10:56 +0700
 Subject: [PATCH 04/12] video: rockchip: dw-mipi-dsi: Add get_display_timing
@@ -218,7 +218,7 @@ index 95e825eb3d6..d21ea7953a6 100644
 2.53.0
 
 
-From e393375129b26435de65258c99ba72ae3809510a Mon Sep 17 00:00:00 2001
+From adad4a071460d9c5d2e5df87331c8870877a0d14 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Tue, 7 Jan 2025 15:31:21 +0700
 Subject: [PATCH 05/12] video: Add BOE TH101MB31IG002-28A MIPI-DSI panel
@@ -236,10 +236,10 @@ Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
  create mode 100644 drivers/video/boe-th101mb31ig002-28a.c
 
 diff --git a/drivers/video/Kconfig b/drivers/video/Kconfig
-index b5777da5218..aeb3c56ec09 100644
+index 08c9b020788..ddae93c2a04 100644
 --- a/drivers/video/Kconfig
 +++ b/drivers/video/Kconfig
-@@ -530,6 +530,16 @@ config VIDEO_BCM2835
+@@ -533,6 +533,16 @@ config VIDEO_BCM2835
  	  that same resolution (or as near as possible) and 32bpp depth, so
  	  that U-Boot can access it with full colour depth.
  
@@ -257,13 +257,13 @@ index b5777da5218..aeb3c56ec09 100644
  	tristate "Endeavoru 720x1280 DSI video mode panel"
  	depends on PANEL && BACKLIGHT
 diff --git a/drivers/video/Makefile b/drivers/video/Makefile
-index 96c7ce7bb09..e5c3b46b1fd 100644
+index 984768ea156..dc18dda4258 100644
 --- a/drivers/video/Makefile
 +++ b/drivers/video/Makefile
-@@ -58,6 +58,7 @@ obj-$(CONFIG_VIDEO_EFI) += efi.o
+@@ -57,6 +57,7 @@ obj-$(CONFIG_VIDEO_EFI) += efi.o
  obj-y += imx/
  obj-$(CONFIG_VIDEO_IVYBRIDGE_IGD) += ivybridge_igd.o
- obj-$(CONFIG_VIDEO_LCD_ANX9804) += anx9804.o
+ obj-$(CONFIG_VIDEO_LCD_PANEL_EDP_4_LANE_1620M_VIA_ANX9804) += anx9804.o
 +obj-$(CONFIG_VIDEO_LCD_BOE_TH101MB31IG002_28A) += boe-th101mb31ig002-28a.o
  obj-$(CONFIG_VIDEO_LCD_ENDEAVORU) += endeavoru-panel.o
  obj-$(CONFIG_VIDEO_LCD_HIMAX_HX8394) += himax-hx8394.o
@@ -514,7 +514,7 @@ index 00000000000..2c377a31669
 2.53.0
 
 
-From 8a23cce81404753412a00d98c9189dc2ab82a459 Mon Sep 17 00:00:00 2001
+From 0c0e0a723c3c759c5ed717eca236fe753e63643b Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:32:46 +0700
 Subject: [PATCH 06/12] video: rockchip: Add VOP2 support
@@ -1720,7 +1720,7 @@ index 00000000000..0f591a65eea
 2.53.0
 
 
-From 8577ad9104474add28b5a012da91d75fc17e9d79 Mon Sep 17 00:00:00 2001
+From d769c8486a1d61d476f63572e862e3f01fab9e20 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Tue, 14 Jan 2025 21:24:36 +0700
 Subject: [PATCH 07/12] video: rockchip: vop2: Add video bridge support
@@ -1866,7 +1866,7 @@ index 30718b1f27b..bfaeefe029d 100644
 2.53.0
 
 
-From 041acc0575462d0a1c17069033537e18ae3604f4 Mon Sep 17 00:00:00 2001
+From 4ac2358cb098ae137e53656bc7d3dbad67a84f0c Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:34:22 +0700
 Subject: [PATCH 08/12] arm: dts: rockchip: rk356x: Prerelocate VOP in U-Boot
@@ -1899,7 +1899,7 @@ index 738b9673d35..1ed06239f05 100644
 2.53.0
 
 
-From 41009e8b1c07355563180b8e5aeee4549ae86ac3 Mon Sep 17 00:00:00 2001
+From d834c1c9c7883ea3cc7b174c8e36c138e67c79e5 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:35:53 +0700
 Subject: [PATCH 09/12] configs: quartz64: Enable vidconsole
@@ -1931,7 +1931,7 @@ index dfe0fee94cd..bf391458219 100644
 2.53.0
 
 
-From 111a24f5e0fdcc345cf732f0f0dbd710a7de7d88 Mon Sep 17 00:00:00 2001
+From 54b30f018a3ed3561a6d48c34ac8535dbe783301 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 18:39:35 +0700
 Subject: [PATCH 10/12] video: rockchip: Add HDMI support for RK3568
@@ -2039,7 +2039,7 @@ index 00000000000..c3f4504ca8f
 2.53.0
 
 
-From 68cdf9db0c0223555b61b0eef967e7a69dad72d9 Mon Sep 17 00:00:00 2001
+From 1bbf94bb5d85e5e0891f6eb613ed412f229fcaf0 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 11 Jan 2025 19:34:20 +0700
 Subject: [PATCH 11/12] configs: pinetab2-rk3566: Enable video and USB keyboard
@@ -2089,7 +2089,7 @@ index 6e5fde591d0..3b8441e3552 100644
 2.53.0
 
 
-From 00ca4eeec6b8ef232b555a057014fb0832cb4f35 Mon Sep 17 00:00:00 2001
+From e54e61ef9c497c9496cd98db57ed3f17d6a48132 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 12 Apr 2025 19:39:50 +0700
 Subject: [PATCH 12/12] clk: rockchip: rk3568: Use assigned VPLL clock when

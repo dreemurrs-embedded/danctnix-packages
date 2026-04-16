@@ -1,6 +1,6 @@
 pkgbase = uboot-pinetab2
 	pkgdesc = U-Boot for PineTab 2
-	pkgver = 2026.01
+	pkgver = 2026.04
 	pkgrel = 1
 	url = http://www.denx.de/wiki/U-Boot/WebHome
 	install = uboot-pinetab2.install
@@ -15,17 +15,17 @@ pkgbase = uboot-pinetab2
 	depends = uboot-tools
 	replaces = uboot-pinetab2-mainline
 	backup = boot/boot.txt
-	source = git+https://github.com/u-boot/u-boot.git#tag=v2026.01
+	source = git+https://github.com/u-boot/u-boot.git#tag=v2026.04
 	source = rkbin::git+https://github.com/rockchip-linux/rkbin.git#commit=74213af1e952c4683d2e35952507133b61394862
 	source = vop2.patch
 	source = bl31.elf
 	source = boot.txt
 	source = mkscr
 	source = update-u-boot
-	md5sums = 23cb53812e9428fe2a482f09e5a4b71d
+	md5sums = f0be5b9b87dcbc1ac7539ed0fdc2d468
 	md5sums = eaf22ccd32e4d70bf87dbe4df02d1c72
-	md5sums = a18800c58c0462b6312c6bfcbac7e6e5
-	md5sums = 59013d6ccbd4881b9c6f06ee003a4030
+	md5sums = a4b27e437ba54ad4bc26ac89cbdd9f0e
+	md5sums = b0d71a0760fb8134368225d5fd3ced06
 	md5sums = ed65ec486f0e0dc9e9c3118dffaa3782
 	md5sums = 021623a04afd29ac3f368977140cfbfd
 	md5sums = ec7c2005cb5cc9a23d1eb0e1bf089bf9
