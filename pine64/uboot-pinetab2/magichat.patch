@@ -1,0 +1,101 @@
+From ba9b242d0428d7a4e2f9431ef0950d8976e9fafb Mon Sep 17 00:00:00 2001
+From: Alicja Michalska <alicja.michalska@9elements.com>
+Date: Thu, 28 Nov 2024 16:12:33 +0100
+Subject: [PATCH] Environment: Change reporting "nowhere" as "magic hat" to
+ user
+
+Make string more user-friendly
+
+Signed-off-by: Alicja Michalska <alicja.michalska@9elements.com>
+---
+ doc/arch/sandbox/sandbox.rst       | 2 +-
+ doc/board/emulation/qemu-x86.rst   | 2 +-
+ doc/board/sophgo/milkv_duo.rst     | 2 +-
+ doc/develop/uefi/u-boot_on_efi.rst | 2 +-
+ env/nowhere.c                      | 2 +-
+ test/py/tests/test_env.py          | 4 ++--
+ 6 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/doc/arch/sandbox/sandbox.rst b/doc/arch/sandbox/sandbox.rst
+index 0aad7a57b5e..7a56f671340 100644
+--- a/doc/arch/sandbox/sandbox.rst
++++ b/doc/arch/sandbox/sandbox.rst
+@@ -469,7 +469,7 @@ Here is an example trace::
+    Address in environment is	02:00:11:22:33:44
+    Core:  103 devices, 51 uclasses, devicetree: board
+    MMC:
+-   Loading Environment from nowhere... OK
++   Loading Environment from a magic hat... OK
+    In:    serial,cros-ec-keyb,usbkbd
+    Out:   serial,vidconsole
+    Err:   serial,vidconsole
+diff --git a/doc/board/emulation/qemu-x86.rst b/doc/board/emulation/qemu-x86.rst
+index c604e42990e..06e9dcd9992 100644
+--- a/doc/board/emulation/qemu-x86.rst
++++ b/doc/board/emulation/qemu-x86.rst
+@@ -142,7 +142,7 @@ The output will be something like this::
+    CPU:   QEMU Virtual CPU version 2.5+
+    DRAM:  8 GiB
+    Core:  20 devices, 13 uclasses, devicetree: separate
+-   Loading Environment from nowhere... OK
++   Loading Environment from a magic hat... OK
+    Model: QEMU x86 (I440FX)
+    Net:   e1000: 52:54:00:12:34:56
+           eth0: e1000#0
+diff --git a/doc/board/sophgo/milkv_duo.rst b/doc/board/sophgo/milkv_duo.rst
+index cb2ed1ad987..243468bf108 100644
+--- a/doc/board/sophgo/milkv_duo.rst
++++ b/doc/board/sophgo/milkv_duo.rst
+@@ -53,7 +53,7 @@ Sample boot log from Milk-V Duo board
+ 
+    DRAM:  63.3 MiB
+    Core:  10 devices, 8 uclasses, devicetree: separate
+-   Loading Environment from nowhere... OK
++   Loading Environment from a magic hat... OK
+    In:    serial@4140000
+    Out:   serial@4140000
+    Err:   serial@4140000
+diff --git a/doc/develop/uefi/u-boot_on_efi.rst b/doc/develop/uefi/u-boot_on_efi.rst
+index 177e887ebd9..36f784faeb7 100644
+--- a/doc/develop/uefi/u-boot_on_efi.rst
++++ b/doc/develop/uefi/u-boot_on_efi.rst
+@@ -230,7 +230,7 @@ This shows running with serial enabled (see `include/configs/efi-x86_app.h`)::
+    DRAM:  32 MiB
+     0: efi_media_0  PciRoot(0x0)/Pci(0x3,0x0)/Sata(0x0,0xFFFF,0x0)
+     1: <partition>  PciRoot(0x0)/Pci(0x3,0x0)/Sata(0x0,0xFFFF,0x0)/HD(1,GPT,0FFD5E61-3B0C-4326-8049-BDCDC910AF72,0x800,0xB000)
+-   Loading Environment from nowhere... OK
++   Loading Environment from a magic hat... OK
+    Model: EFI x86 Application
+    Hit any key to stop autoboot:  0
+ 
+diff --git a/env/nowhere.c b/env/nowhere.c
+index 6b9b6e2fe0b..63fc4647f61 100644
+--- a/env/nowhere.c
++++ b/env/nowhere.c
+@@ -45,5 +45,5 @@ U_BOOT_ENV_LOCATION(nowhere) = {
+ 	.location	= ENVL_NOWHERE,
+ 	.init		= env_nowhere_init,
+ 	.load		= env_nowhere_load,
+-	ENV_NAME("nowhere")
++	ENV_NAME("a magic hat")
+ };
+diff --git a/test/py/tests/test_env.py b/test/py/tests/test_env.py
+index f8713a59ba9..fcce9b92040 100644
+--- a/test/py/tests/test_env.py
++++ b/test/py/tests/test_env.py
+@@ -562,10 +562,10 @@ def test_env_ext4(state_test_env):
+ 
+         # restore env location: NOWHERE (prio 0 in sandbox)
+         response = c.run_command('env select nowhere')
+-        assert 'Select Environment on nowhere: OK' in response
++        assert 'Select Environment from a magic hat: OK' in response
+ 
+         response = c.run_command('env load')
+-        assert 'Loading Environment from nowhere... OK' in response
++        assert 'Loading Environment from a magic hat... OK' in response
+ 
+         response = c.run_command('env info')
+         assert 'env_valid = invalid' in response
+-- 
+2.53.0
+
