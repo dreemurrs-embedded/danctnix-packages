@@ -1,7 +1,7 @@
 pkgbase = uboot-pinetab2
 	pkgdesc = U-Boot for PineTab 2
 	pkgver = 2026.04
-	pkgrel = 2
+	pkgrel = 3
 	url = http://www.denx.de/wiki/U-Boot/WebHome
 	install = uboot-pinetab2.install
 	arch = aarch64
@@ -12,6 +12,7 @@ pkgbase = uboot-pinetab2
 	makedepends = python-pyelftools
 	makedepends = python-setuptools
 	makedepends = swig
+	depends = mtd-utils
 	depends = uboot-tools
 	replaces = uboot-pinetab2-mainline
 	backup = boot/boot.txt
@@ -30,6 +31,6 @@ pkgbase = uboot-pinetab2
 	md5sums = 2e85121e0484b96642af4a0d9146b149
 	md5sums = ed65ec486f0e0dc9e9c3118dffaa3782
 	md5sums = 021623a04afd29ac3f368977140cfbfd
-	md5sums = ec7c2005cb5cc9a23d1eb0e1bf089bf9
+	md5sums = ba8a770aba341e33afb0c7ce00df4b0d
 
 pkgname = uboot-pinetab2

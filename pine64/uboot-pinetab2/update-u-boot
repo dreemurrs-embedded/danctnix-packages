@@ -106,10 +106,15 @@ fi
 set -e
 case "$board" in
 pinephone|pinetab)
-	[ -f /boot/idbloader.img ] || die "idbloader not found."
-	[ -f /boot/u-boot.itb ] || die "u-boot.itb not found."
-	$dryrun dd if=/boot/idbloader.img of=$device bs=512 seek=64
-	$dryrun dd if=/boot/u-boot.itb of=$device bs=512 seek=16384
+	if [[ $device == /dev/mtd[0-9] ]]; then
+		[ -f /boot/u-boot-rockchip-spi.bin ] || die "u-boot-rockchip-spi.bin not found"
+		$dryrun flashcp /boot/u-boot-rockchip-spi.bin $device
+	else
+		[ -f /boot/idbloader.img ] || die "idbloader not found."
+		[ -f /boot/u-boot.itb ] || die "u-boot.itb not found."
+		$dryrun dd if=/boot/idbloader.img of=$device bs=512 seek=64
+		$dryrun dd if=/boot/u-boot.itb of=$device bs=512 seek=16384
+	fi
 	;;
 esac
 $dryrun sync

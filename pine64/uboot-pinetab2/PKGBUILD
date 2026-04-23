@@ -4,12 +4,12 @@ buildarch=8
 
 pkgname=uboot-pinetab2
 pkgver=2026.04
-pkgrel=2
+pkgrel=3
 pkgdesc="U-Boot for PineTab 2"
 arch=('aarch64')
 url='http://www.denx.de/wiki/U-Boot/WebHome'
 license=('GPL')
-depends=('uboot-tools')
+depends=('mtd-utils' 'uboot-tools')
 makedepends=('bc' 'git' 'python' 'python-pyelftools' 'python-setuptools' 'swig')
 replaces=(uboot-pinetab2-mainline)
 install=${pkgname}.install
@@ -31,7 +31,7 @@ md5sums=('f0be5b9b87dcbc1ac7539ed0fdc2d468'
          '2e85121e0484b96642af4a0d9146b149'
          'ed65ec486f0e0dc9e9c3118dffaa3782'
          '021623a04afd29ac3f368977140cfbfd'
-         'ec7c2005cb5cc9a23d1eb0e1bf089bf9')
+         'ba8a770aba341e33afb0c7ce00df4b0d')
 
 prepare() {
   cd u-boot
@@ -56,6 +56,7 @@ package() {
 
   cp ./idbloader.img "${pkgdir}/boot/idbloader.img"
   cp ./u-boot.itb "${pkgdir}/boot/u-boot.itb"
+  cp ./u-boot-rockchip-spi.bin "${pkgdir}/boot/u-boot-rockchip-spi.bin"
 
   cp ../{boot.txt,mkscr} "${pkgdir}"/boot
   mkdir -p "${pkgdir}"/usr/bin && cp ../update-u-boot "${pkgdir}"/usr/bin
