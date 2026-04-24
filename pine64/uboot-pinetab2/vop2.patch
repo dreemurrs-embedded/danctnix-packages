@@ -1,7 +1,7 @@
 From 7c2ffbaf23cb12717a571e4678a8818d5cc372c4 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 30 Nov 2024 10:22:48 +0000
-Subject: [PATCH 01/12] video: rockchip: dw-mipi-dsi: Depend on
+Subject: [PATCH 01/14] video: rockchip: dw-mipi-dsi: Depend on
  CONFIG_VIDEO_BRIDGE
 
 The driver is in video bridge class, so we must depend on it or
@@ -33,7 +33,7 @@ index 96af6d28ef0..e7c4b963fa6 100644
 From 987b1371b4780b17833e884176dfb4284b393ac0 Mon Sep 17 00:00:00 2001
 From: Ondrej Jirman <megi@xff.cz>
 Date: Fri, 5 Jul 2024 17:02:10 +0200
-Subject: [PATCH 02/12] video: rockchip: dw_mipi_dsi: Improve pixel clock
+Subject: [PATCH 02/14] video: rockchip: dw_mipi_dsi: Improve pixel clock
  calculations
 
 Calculate burst mode overhead in one place for both internal
@@ -107,7 +107,7 @@ index fa512173510..c47992dfb13 100644
 From a517ccc8da244bc5233a3ca2f18eb8a665d3de6c Mon Sep 17 00:00:00 2001
 From: Ondrej Jirman <megi@xff.cz>
 Date: Fri, 5 Jul 2024 17:03:16 +0200
-Subject: [PATCH 03/12] video: rockchip: dw_mipi_dsi: Proceed when external PHY
+Subject: [PATCH 03/14] video: rockchip: dw_mipi_dsi: Proceed when external PHY
  is not defined
 
 In this case the DM returns ENOENT, not ENODATA.
@@ -139,7 +139,7 @@ index c47992dfb13..95e825eb3d6 100644
 From 7b70a4dab419720f48c62e31acc58a9d2ad2868e Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Thu, 20 Feb 2025 20:10:56 +0700
-Subject: [PATCH 04/12] video: rockchip: dw-mipi-dsi: Add get_display_timing
+Subject: [PATCH 04/14] video: rockchip: dw-mipi-dsi: Add get_display_timing
  support
 
 This allows video drivers to obtain display timings from the video
@@ -218,10 +218,44 @@ index 95e825eb3d6..d21ea7953a6 100644
 2.53.0
 
 
-From adad4a071460d9c5d2e5df87331c8870877a0d14 Mon Sep 17 00:00:00 2001
+From 3d3343315d0cb580a3c61d091dc34291f9c7a2b9 Mon Sep 17 00:00:00 2001
+From: Ondrej Jirman <megi@xff.cz>
+Date: Sun, 19 Apr 2026 01:13:02 +0200
+Subject: [PATCH 05/14] video: dw-mipi-dsi: Handle MIPI_DSI_MODE_EOT_PACKET
+ option properly
+
+Signed-off-by: Ondrej Jirman <megi@xff.cz>
+---
+ drivers/video/dw_mipi_dsi.c | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/video/dw_mipi_dsi.c b/drivers/video/dw_mipi_dsi.c
+index c74fe678d12..7c5b2b8e7cc 100644
+--- a/drivers/video/dw_mipi_dsi.c
++++ b/drivers/video/dw_mipi_dsi.c
+@@ -556,7 +556,13 @@ static void dw_mipi_dsi_dpi_config(struct dw_mipi_dsi *dsi,
+ 
+ static void dw_mipi_dsi_packet_handler_config(struct dw_mipi_dsi *dsi)
+ {
+-	dsi_write(dsi, DSI_PCKHDL_CFG, CRC_RX_EN | ECC_RX_EN | BTA_EN);
++	struct mipi_dsi_device *device = dsi->device;
++	u32 val = CRC_RX_EN | ECC_RX_EN | BTA_EN | EOTP_TX_EN;
++
++	if (device->mode_flags & MIPI_DSI_MODE_EOT_PACKET)
++		val &= ~EOTP_TX_EN;
++
++	dsi_write(dsi, DSI_PCKHDL_CFG, val);
+ }
+ 
+ static void dw_mipi_dsi_video_packet_config(struct dw_mipi_dsi *dsi,
+-- 
+2.53.0
+
+
+From 11243fda03be729e6d144bff2d7c53a53e6facfa Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Tue, 7 Jan 2025 15:31:21 +0700
-Subject: [PATCH 05/12] video: Add BOE TH101MB31IG002-28A MIPI-DSI panel
+Subject: [PATCH 06/14] video: Add BOE TH101MB31IG002-28A MIPI-DSI panel
 
 BOE TH101MB31IG002-28A is a MIPI-DSI panel used in the Pine64
 PineTab2.
@@ -514,24 +548,25 @@ index 00000000000..2c377a31669
 2.53.0
 
 
-From 0c0e0a723c3c759c5ed717eca236fe753e63643b Mon Sep 17 00:00:00 2001
+From 2fa8189eecc5499849cf225a85c9849adbee2e61 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:32:46 +0700
-Subject: [PATCH 06/12] video: rockchip: Add VOP2 support
+Subject: [PATCH 07/14] video: rockchip: Add VOP2 support
 
 VOP2 (Video Output Processor v2) is a display controller on Rockchip
 SoCs. It can be found on RK3566/8 and RK3588.
 
 This commit currently only supports RK3566/8.
 
+Co-developed-by: Ondrej Jirman <megi@xff.cz>
 Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
 ---
  .../include/asm/arch-rockchip/vop_rk3568.h    | 280 ++++++++++
  drivers/video/rockchip/Makefile               |   3 +-
  drivers/video/rockchip/rk3568_vop.c           | 260 +++++++++
- drivers/video/rockchip/rk_vop2.c              | 522 ++++++++++++++++++
+ drivers/video/rockchip/rk_vop2.c              | 524 ++++++++++++++++++
  drivers/video/rockchip/rk_vop2.h              |  76 +++
- 5 files changed, 1140 insertions(+), 1 deletion(-)
+ 5 files changed, 1142 insertions(+), 1 deletion(-)
  create mode 100644 arch/arm/include/asm/arch-rockchip/vop_rk3568.h
  create mode 100644 drivers/video/rockchip/rk3568_vop.c
  create mode 100644 drivers/video/rockchip/rk_vop2.c
@@ -842,7 +877,7 @@ index f55beceebf1..2f89a979a28 100644
  obj-hdmi-$(CONFIG_ROCKCHIP_RK3288) += rk3288_hdmi.o
 diff --git a/drivers/video/rockchip/rk3568_vop.c b/drivers/video/rockchip/rk3568_vop.c
 new file mode 100644
-index 00000000000..787060c1d80
+index 00000000000..eb49f5a03fa
 --- /dev/null
 +++ b/drivers/video/rockchip/rk3568_vop.c
 @@ -0,0 +1,260 @@
@@ -919,7 +954,7 @@ index 00000000000..787060c1d80
 +{
 +	struct rk_vop2_priv *priv = dev_get_priv(dev);
 +	struct rk3568_vop_sysctrl *sysctrl = priv->regs + VOP2_SYSREG_OFFSET;
-+	u32 reg;
++	u32 reg = 0;
 +
 +	switch (mode) {
 +	case VOP_MODE_EDP:
@@ -1108,10 +1143,10 @@ index 00000000000..787060c1d80
 +};
 diff --git a/drivers/video/rockchip/rk_vop2.c b/drivers/video/rockchip/rk_vop2.c
 new file mode 100644
-index 00000000000..30718b1f27b
+index 00000000000..7ad28058abb
 --- /dev/null
 +++ b/drivers/video/rockchip/rk_vop2.c
-@@ -0,0 +1,522 @@
+@@ -0,0 +1,524 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright (c) 2024 - 2025 Dang Huynh <dang.huynh@mainlining.org>
@@ -1315,7 +1350,9 @@ index 00000000000..30718b1f27b
 +	u32 pin_polarity;
 +	u32 reg;
 +
-+	pin_polarity = BIT(DCLK_INVERT);
++	pin_polarity = 0;
++	if (edid->flags & DISPLAY_FLAGS_PIXDATA_NEGEDGE)
++		pin_polarity |= BIT(DCLK_INVERT);
 +	if (edid->flags & DISPLAY_FLAGS_HSYNC_HIGH)
 +		pin_polarity |= BIT(HSYNC_POSITIVE);
 +	if (edid->flags & DISPLAY_FLAGS_VSYNC_HIGH)
@@ -1720,10 +1757,10 @@ index 00000000000..0f591a65eea
 2.53.0
 
 
-From d769c8486a1d61d476f63572e862e3f01fab9e20 Mon Sep 17 00:00:00 2001
+From acc1d7f49d9c4e139ff159b91f2e91d7f8734177 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Tue, 14 Jan 2025 21:24:36 +0700
-Subject: [PATCH 07/12] video: rockchip: vop2: Add video bridge support
+Subject: [PATCH 08/14] video: rockchip: vop2: Add video bridge support
 
 Add support for video bridge to VOP2 so we can use the MIPI DSI
 bridge driver that we have.
@@ -1735,7 +1772,7 @@ Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
  1 file changed, 59 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/video/rockchip/rk_vop2.c b/drivers/video/rockchip/rk_vop2.c
-index 30718b1f27b..bfaeefe029d 100644
+index 7ad28058abb..03cf5e3b11c 100644
 --- a/drivers/video/rockchip/rk_vop2.c
 +++ b/drivers/video/rockchip/rk_vop2.c
 @@ -13,10 +13,12 @@
@@ -1751,7 +1788,7 @@ index 30718b1f27b..bfaeefe029d 100644
  #include <asm/global_data.h>
  #include <asm/gpio.h>
  #include <asm/io.h>
-@@ -291,6 +293,7 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
+@@ -293,6 +295,7 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
  	int vop_id, port_id, win_id;
  	struct display_timing timing;
  	struct udevice *disp;
@@ -1759,7 +1796,7 @@ index 30718b1f27b..bfaeefe029d 100644
  	int ret;
  	u32 remote_phandle;
  	struct display_plat *disp_uc_plat;
-@@ -357,8 +360,11 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
+@@ -359,8 +362,11 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
  			return -EINVAL;
  		}
  
@@ -1772,7 +1809,7 @@ index 30718b1f27b..bfaeefe029d 100644
  			break;
  	};
  	compat = ofnode_get_property(remote, "compatible", NULL);
-@@ -392,27 +398,49 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
+@@ -394,27 +400,49 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
  	if (ret < 0)
  		return ret;
  
@@ -1840,7 +1877,7 @@ index 30718b1f27b..bfaeefe029d 100644
  	}
  
  	/* Set clock rate on video port to display timings */
-@@ -455,9 +483,18 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
+@@ -457,9 +485,18 @@ static int rk_display_init(struct udevice *dev, ulong fbbase, ofnode vp_node)
  
  	rkvop2_mode_set(dev, &timing, vop_id, port_id, platdata);
  
@@ -1866,75 +1903,10 @@ index 30718b1f27b..bfaeefe029d 100644
 2.53.0
 
 
-From 4ac2358cb098ae137e53656bc7d3dbad67a84f0c Mon Sep 17 00:00:00 2001
-From: Dang Huynh <dang.huynh@mainlining.org>
-Date: Sat, 4 Jan 2025 20:34:22 +0700
-Subject: [PATCH 08/12] arm: dts: rockchip: rk356x: Prerelocate VOP in U-Boot
- proper
-
-We need to prerelocate VOP2 memory so the driver can work. This
-will only support U-Boot proper.
-
-Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
----
- arch/arm/dts/rk356x-u-boot.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/arch/arm/dts/rk356x-u-boot.dtsi b/arch/arm/dts/rk356x-u-boot.dtsi
-index 738b9673d35..1ed06239f05 100644
---- a/arch/arm/dts/rk356x-u-boot.dtsi
-+++ b/arch/arm/dts/rk356x-u-boot.dtsi
-@@ -170,6 +170,10 @@
- 	bootph-all;
- };
- 
-+&vop {
-+	bootph-some-ram;
-+};
-+
- &xin24m {
- 	bootph-all;
- };
--- 
-2.53.0
-
-
-From d834c1c9c7883ea3cc7b174c8e36c138e67c79e5 Mon Sep 17 00:00:00 2001
-From: Dang Huynh <dang.huynh@mainlining.org>
-Date: Sat, 4 Jan 2025 20:35:53 +0700
-Subject: [PATCH 09/12] configs: quartz64: Enable vidconsole
-
-Now that we have VOP2 support, we should enable vidconsole.
-
-Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
----
- include/configs/quartz64_rk3566.h | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/include/configs/quartz64_rk3566.h b/include/configs/quartz64_rk3566.h
-index dfe0fee94cd..bf391458219 100644
---- a/include/configs/quartz64_rk3566.h
-+++ b/include/configs/quartz64_rk3566.h
-@@ -3,7 +3,10 @@
- #ifndef __QUARTZ64_RK3566_H
- #define __QUARTZ64_RK3566_H
- 
--#define ROCKCHIP_DEVICE_SETTINGS
-+#define ROCKCHIP_DEVICE_SETTINGS \
-+		"stdin=serial,usbkbd\0" \
-+		"stdout=serial,vidconsole\0" \
-+		"stderr=serial,vidconsole\0"
- 
- #include <configs/rk3568_common.h>
- 
--- 
-2.53.0
-
-
-From 54b30f018a3ed3561a6d48c34ac8535dbe783301 Mon Sep 17 00:00:00 2001
+From 16b16c13d1a4d456afae6d46a9001f00d92a5064 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 18:39:35 +0700
-Subject: [PATCH 10/12] video: rockchip: Add HDMI support for RK3568
+Subject: [PATCH 09/14] video: rockchip: Add HDMI support for RK3568
 
 HDMI on RK3568 is mostly simplified, all this does is enabling
 DDC for display timings and HPD.
@@ -2039,10 +2011,110 @@ index 00000000000..c3f4504ca8f
 2.53.0
 
 
-From 1bbf94bb5d85e5e0891f6eb613ed412f229fcaf0 Mon Sep 17 00:00:00 2001
+From 290217a54c8f5a569cba9ebb68bdb308f4a71391 Mon Sep 17 00:00:00 2001
+From: Dang Huynh <dang.huynh@mainlining.org>
+Date: Sat, 12 Apr 2025 19:39:50 +0700
+Subject: [PATCH 10/14] clk: rockchip: rk3568: Use assigned VPLL clock when
+ possible
+
+This matches how VPLL is configured under Linux and avoid weird
+behaviors when VPLL is reconfigured under Linux.
+
+Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
+---
+ drivers/clk/rockchip/clk_rk3568.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/clk/rockchip/clk_rk3568.c b/drivers/clk/rockchip/clk_rk3568.c
+index 533031caead..cd0e24d77dc 100644
+--- a/drivers/clk/rockchip/clk_rk3568.c
++++ b/drivers/clk/rockchip/clk_rk3568.c
+@@ -1820,7 +1820,11 @@ static ulong rk3568_dclk_vop_set_clk(struct rk3568_clk_priv *priv,
+ 			     ((div - 1) << DCLK0_VOP_DIV_SHIFT));
+ 		rk3568_pmu_pll_set_rate(priv, HPLL, div * rate);
+ 	} else if (sel == DCLK_VOP_SEL_VPLL) {
+-		div = DIV_ROUND_UP(RK3568_VOP_PLL_LIMIT_FREQ, rate);
++		if (priv->vpll_hz)
++			div = DIV_ROUND_UP(priv->vpll_hz, rate);
++		else
++			div = DIV_ROUND_UP(RK3568_VOP_PLL_LIMIT_FREQ, rate);
++
+ 		rk_clrsetreg(&cru->clksel_con[conid],
+ 			     DCLK0_VOP_DIV_MASK | DCLK0_VOP_SEL_MASK,
+ 			     (DCLK_VOP_SEL_VPLL << DCLK0_VOP_SEL_SHIFT) |
+-- 
+2.53.0
+
+
+From fdd7d2e680070794618835968871a6a100c23e75 Mon Sep 17 00:00:00 2001
+From: Dang Huynh <dang.huynh@mainlining.org>
+Date: Sat, 4 Jan 2025 20:34:22 +0700
+Subject: [PATCH 11/14] arm: dts: rockchip: rk356x: Prerelocate VOP in U-Boot
+ proper
+
+We need to prerelocate VOP2 memory so the driver can work. This
+will only support U-Boot proper.
+
+Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
+---
+ arch/arm/dts/rk356x-u-boot.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/arch/arm/dts/rk356x-u-boot.dtsi b/arch/arm/dts/rk356x-u-boot.dtsi
+index 738b9673d35..1ed06239f05 100644
+--- a/arch/arm/dts/rk356x-u-boot.dtsi
++++ b/arch/arm/dts/rk356x-u-boot.dtsi
+@@ -170,6 +170,10 @@
+ 	bootph-all;
+ };
+ 
++&vop {
++	bootph-some-ram;
++};
++
+ &xin24m {
+ 	bootph-all;
+ };
+-- 
+2.53.0
+
+
+From 1c92e3f4fd7f41cc921abce8f4831e2118a92930 Mon Sep 17 00:00:00 2001
+From: Dang Huynh <dang.huynh@mainlining.org>
+Date: Sat, 4 Jan 2025 20:35:53 +0700
+Subject: [PATCH 12/14] configs: quartz64: Enable vidconsole
+
+Now that we have VOP2 support, we should enable vidconsole.
+
+Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
+---
+ include/configs/quartz64_rk3566.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
+
+diff --git a/include/configs/quartz64_rk3566.h b/include/configs/quartz64_rk3566.h
+index dfe0fee94cd..bf391458219 100644
+--- a/include/configs/quartz64_rk3566.h
++++ b/include/configs/quartz64_rk3566.h
+@@ -3,7 +3,10 @@
+ #ifndef __QUARTZ64_RK3566_H
+ #define __QUARTZ64_RK3566_H
+ 
+-#define ROCKCHIP_DEVICE_SETTINGS
++#define ROCKCHIP_DEVICE_SETTINGS \
++		"stdin=serial,usbkbd\0" \
++		"stdout=serial,vidconsole\0" \
++		"stderr=serial,vidconsole\0"
+ 
+ #include <configs/rk3568_common.h>
+ 
+-- 
+2.53.0
+
+
+From 28506d23f0cf645d52582a44a258ff096577f4d8 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 11 Jan 2025 19:34:20 +0700
-Subject: [PATCH 11/12] configs: pinetab2-rk3566: Enable video and USB keyboard
+Subject: [PATCH 13/14] configs: pinetab2-rk3566: Enable video and USB keyboard
 
 Now that we have VOP2 support, let's enable it and support the
 built in USB keyboard.
@@ -2089,37 +2161,29 @@ index 6e5fde591d0..3b8441e3552 100644
 2.53.0
 
 
-From e54e61ef9c497c9496cd98db57ed3f17d6a48132 Mon Sep 17 00:00:00 2001
+From d7b73d6fdb3be4617c8801a61be67ed03621b0a3 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
-Date: Sat, 12 Apr 2025 19:39:50 +0700
-Subject: [PATCH 12/12] clk: rockchip: rk3568: Use assigned VPLL clock when
- possible
-
-This matches how VPLL is configured under Linux and avoid weird
-behaviors when VPLL is reconfigured under Linux.
+Date: Thu, 23 Apr 2026 01:54:46 +0000
+Subject: [PATCH 14/14] configs: pinetab2-rk3566: Enable USB keyboard on
+ preboot
 
 Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
 ---
- drivers/clk/rockchip/clk_rk3568.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ configs/pinetab2-rk3566_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/clk/rockchip/clk_rk3568.c b/drivers/clk/rockchip/clk_rk3568.c
-index 533031caead..cd0e24d77dc 100644
---- a/drivers/clk/rockchip/clk_rk3568.c
-+++ b/drivers/clk/rockchip/clk_rk3568.c
-@@ -1820,7 +1820,11 @@ static ulong rk3568_dclk_vop_set_clk(struct rk3568_clk_priv *priv,
- 			     ((div - 1) << DCLK0_VOP_DIV_SHIFT));
- 		rk3568_pmu_pll_set_rate(priv, HPLL, div * rate);
- 	} else if (sel == DCLK_VOP_SEL_VPLL) {
--		div = DIV_ROUND_UP(RK3568_VOP_PLL_LIMIT_FREQ, rate);
-+		if (priv->vpll_hz)
-+			div = DIV_ROUND_UP(priv->vpll_hz, rate);
-+		else
-+			div = DIV_ROUND_UP(RK3568_VOP_PLL_LIMIT_FREQ, rate);
-+
- 		rk_clrsetreg(&cru->clksel_con[conid],
- 			     DCLK0_VOP_DIV_MASK | DCLK0_VOP_SEL_MASK,
- 			     (DCLK_VOP_SEL_VPLL << DCLK0_VOP_SEL_SHIFT) |
+diff --git a/configs/pinetab2-rk3566_defconfig b/configs/pinetab2-rk3566_defconfig
+index 3b8441e3552..048331dc763 100644
+--- a/configs/pinetab2-rk3566_defconfig
++++ b/configs/pinetab2-rk3566_defconfig
+@@ -23,6 +23,7 @@ CONFIG_FIT_VERBOSE=y
+ CONFIG_SPL_FIT_SIGNATURE=y
+ CONFIG_SPL_LOAD_FIT=y
+ CONFIG_LEGACY_IMAGE_FORMAT=y
++CONFIG_USE_PREBOOT=y
+ CONFIG_DEFAULT_FDT_FILE="rockchip/rk3566-pinetab2-v2.0.dtb"
+ # CONFIG_DISPLAY_CPUINFO is not set
+ CONFIG_DISPLAY_BOARDINFO_LATE=y
 -- 
 2.53.0
 
