@@ -1,7 +1,7 @@
 # Maintainer: Aren Moynihan <aren@peacevolution.org>
 pkgname=vvmplayer
 pkgver=2.6
-pkgrel=1
+pkgrel=2
 pkgdesc="A frontend GUI to display, play, and delete visual voicemails"
 url="https://gitlab.com/kop316/vvmplayer"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -17,8 +17,16 @@ depends=(
   'vvmd'
 )
 makedepends=(meson)
-source=("$pkgname-$pkgver.tar.gz::https://gitlab.com/kop316/vvmplayer/-/archive/$pkgver/vvmplayer-$pkgver.tar.gz")
-sha256sums=('49869baa9d063b88b6c09596df65f794e403ea1f80cc49455535be07071b67a1')
+source=(
+  "$pkgname-$pkgver.tar.gz::https://gitlab.com/kop316/vvmplayer/-/archive/$pkgver/vvmplayer-$pkgver.tar.gz"
+  eds3.60.patch)
+sha256sums=('49869baa9d063b88b6c09596df65f794e403ea1f80cc49455535be07071b67a1'
+            'd914b54b48fe1e5aaa0e2d51d9269e70b14b697c430ce03a959d4c723422dd1f')
+
+prepare() {
+  cd $pkgname-$pkgver
+  patch -p1 -i "${srcdir}/eds3.60.patch"
+}
 
 build() {
   arch-meson "$pkgname-$pkgver" build

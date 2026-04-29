@@ -1,0 +1,24 @@
+pkgbase = vvmplayer
+	pkgdesc = A frontend GUI to display, play, and delete visual voicemails
+	pkgver = 2.6
+	pkgrel = 2
+	url = https://gitlab.com/kop316/vvmplayer
+	arch = x86_64
+	arch = armv7h
+	arch = aarch64
+	license = GPL-3.0-or-later AND CC0-1.0
+	makedepends = meson
+	depends = callaudiod
+	depends = evolution-data-server
+	depends = gst-plugins-base
+	depends = gst-plugins-good
+	depends = gst-plugins-ugly
+	depends = gtk4
+	depends = libadwaita
+	depends = vvmd
+	source = vvmplayer-2.6.tar.gz::https://gitlab.com/kop316/vvmplayer/-/archive/2.6/vvmplayer-2.6.tar.gz
+	source = eds3.60.patch
+	sha256sums = 49869baa9d063b88b6c09596df65f794e403ea1f80cc49455535be07071b67a1
+	sha256sums = d914b54b48fe1e5aaa0e2d51d9269e70b14b697c430ce03a959d4c723422dd1f
+
+pkgname = vvmplayer
