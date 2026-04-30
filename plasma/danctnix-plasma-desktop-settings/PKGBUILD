@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 
 pkgname=danctnix-plasma-desktop-settings
-pkgver=20251216
+pkgver=20260430
 pkgrel=1
 arch=('any')
 url="https://danctnix.org"
@@ -14,16 +14,11 @@ depends=(
   'noto-fonts'
   'plasma-desktop'
   'plasma-keyboard'
-  'sddm'
 )
 makedepends=('git')
 install=$pkgname.install
-source=('kwinrc'
-        '91_plasma.gschema.override'
-        'sddm.conf.d-danctnix.conf')
-sha256sums=('57ef45fb1065ca281786aca343f4a51584455c444e95f61f54c5545b1aa27eda'
-            'fd5a89ce81197a912a9879aa5aa33daf68c8f80a4b70192fff89364ef9d18734'
-            '1b3bd51533da9fb9f04c20ff5143b64238dff0ccc5cd47e114b93eff3a0bb6d8')
+source=('kwinrc')
+sha256sums=('f10f92db7a29eb16165c69f13d417a7bf3dfc2180e7eec3bab056a8a4c215976')
 
 pkgver() {
     date +%Y%m%d
@@ -32,8 +27,4 @@ pkgver() {
 package() {
     xdg=$pkgdir/etc/xdg
     install -Dm644 kwinrc $xdg/kwinrc
-    install -Dm644 "${srcdir}/91_plasma.gschema.override" -t "${pkgdir}/usr/share/glib-2.0/schemas"
-
-    # sddm login
-    install -Dm644 "${srcdir}/sddm.conf.d-danctnix.conf" "${pkgdir}/etc/sddm.conf.d/danctnix.conf"
 }

@@ -1,6 +1,6 @@
 pkgbase = danctnix-plasma-desktop-settings
 	pkgdesc = Settings files for Plasma Desktop
-	pkgver = 20251216
+	pkgver = 20260430
 	pkgrel = 1
 	url = https://danctnix.org
 	install = danctnix-plasma-desktop-settings.install
@@ -13,12 +13,7 @@ pkgbase = danctnix-plasma-desktop-settings
 	depends = noto-fonts
 	depends = plasma-desktop
 	depends = plasma-keyboard
-	depends = sddm
 	source = kwinrc
-	source = 91_plasma.gschema.override
-	source = sddm.conf.d-danctnix.conf
-	sha256sums = 57ef45fb1065ca281786aca343f4a51584455c444e95f61f54c5545b1aa27eda
-	sha256sums = fd5a89ce81197a912a9879aa5aa33daf68c8f80a4b70192fff89364ef9d18734
-	sha256sums = 1b3bd51533da9fb9f04c20ff5143b64238dff0ccc5cd47e114b93eff3a0bb6d8
+	sha256sums = f10f92db7a29eb16165c69f13d417a7bf3dfc2180e7eec3bab056a8a4c215976
 
 pkgname = danctnix-plasma-desktop-settings
