@@ -5,7 +5,7 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=6.18.3
+pkgver=7.0
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
@@ -14,7 +14,7 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 
 options=('!strip')
 
 # Source
-_tag="orange-pi-6.18-20260105-0049"
+_tag="orange-pi-7.0-20260417-2214"
 source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar.gz"
         'config'
         'linux.preset'
@@ -206,10 +206,10 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-md5sums=('16589798c6f8791c614547b6b9e1434d'
-         '4b398924e91f39325bb6c153423974f0'
+md5sums=('49f60b365e42f53c17047c4a20831614'
+         'ec37f636b5e003fd6ad7a6061d80f105'
          '86d4a35722b5410e3b29fc92dae15d4b'
-         'ebee5494287dbeec8f76da0e39b9d6eb'
+         '4919a5657242460d2f46a60545faf523'
          '571aee8d8a58c719288fee4185ab1713'
          'da2ad89730c2fce222ca0e286585a868'
          '7d80f76f1647afa00de320f5866484a1'
