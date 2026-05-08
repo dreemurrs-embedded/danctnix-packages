@@ -2,7 +2,7 @@
 
 pkgname=danctnix-tweaks
 pkgver=0.3
-pkgrel=4
+pkgrel=5
 pkgdesc="Tweaks made to DanctNIX Mobile."
 arch=(any)
 url="https://danctnix.org"
@@ -10,7 +10,8 @@ license=('MIT')
 install=$pkgname.install
 source=(00-journal-size.conf
         danctnix.sh
-        packagekit-rm-lock.service)
+        packagekit-rm-lock.service
+        blacklist-dirtyfrag.conf)
 
 package() {
   mkdir -p "$pkgdir"
@@ -25,7 +26,10 @@ package() {
   install -Dm644 "$srcdir/packagekit-rm-lock.service" "$pkgdir/usr/lib/systemd/system/packagekit-rm-lock.service"
   mkdir -p "$pkgdir/usr/lib/systemd/system/system-update.target.wants"
   ln -s ../packagekit-rm-lock.service "$pkgdir/usr/lib/systemd/system/system-update.target.wants/packagekit-rm-lock.service"
+
+  install -Dm644 -t "$pkgdir/etc/modprobe.d" "$srcdir/blacklist-dirtyfrag.conf"
 }
 md5sums=('3b3ccac2ebb5ada20d81f758c1591a19'
          '4e060d406b742a03336224389c2e648a'
-         '002308e4f5d9c10fade7eec8cfcde1b0')
+         '002308e4f5d9c10fade7eec8cfcde1b0'
+         '4927c5910ec3f3757bbde25cdd1d950f')

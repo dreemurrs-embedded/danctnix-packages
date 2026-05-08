@@ -1,0 +1,18 @@
+pkgbase = danctnix-tweaks
+	pkgdesc = Tweaks made to DanctNIX Mobile.
+	pkgver = 0.3
+	pkgrel = 5
+	url = https://danctnix.org
+	install = danctnix-tweaks.install
+	arch = any
+	license = MIT
+	source = 00-journal-size.conf
+	source = danctnix.sh
+	source = packagekit-rm-lock.service
+	source = blacklist-dirtyfrag.conf
+	md5sums = 3b3ccac2ebb5ada20d81f758c1591a19
+	md5sums = 4e060d406b742a03336224389c2e648a
+	md5sums = 002308e4f5d9c10fade7eec8cfcde1b0
+	md5sums = 4927c5910ec3f3757bbde25cdd1d950f
+
+pkgname = danctnix-tweaks
