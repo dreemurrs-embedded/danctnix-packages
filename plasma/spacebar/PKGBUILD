@@ -5,7 +5,7 @@
 
 pkgname=spacebar
 epoch=1
-pkgver=6.6.3
+pkgver=6.6.5
 pkgrel=1
 pkgdesc="SMS and messaging application for Mobile Devices running Plasma"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -41,7 +41,7 @@ case "$pkgver" in
 esac
 
 source=(https://download.kde.org/$_rel/plasma/$pkgver/$pkgname-$pkgver.tar.xz{,.sig})
-sha256sums=('7f81ca28f1a9e639e890f9289f369ac06d56bed020631932bebacfa2c6280ed9'
+sha256sums=('c142ea780e10a744232b674a02516f278289d9204e37757126098d2818a8e1f4'
             'SKIP')
 validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell <jr@jriddell.org>
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
