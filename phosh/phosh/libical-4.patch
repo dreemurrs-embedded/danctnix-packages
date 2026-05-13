@@ -1,0 +1,13 @@
+diff --git a/calendar-server/calendar-server.c b/calendar-server/calendar-server.c
+index cdb89eef..c21cfd80 100644
+--- a/calendar-server/calendar-server.c
++++ b/calendar-server/calendar-server.c
+@@ -106,7 +106,7 @@ static gboolean
+ get_time_from_property (ECalClient            *cal,
+                         ICalComponent         *icomp,
+                         ICalPropertyKind       prop_kind,
+-                        ICalTime * (* get_prop_func) (ICalProperty *prop),
++                        ICalTime * (* get_prop_func) (const ICalProperty *prop),
+                         ICalTimezone          *default_zone,
+                         ICalTime              **out_itt,
+                         ICalTimezone          **out_timezone)

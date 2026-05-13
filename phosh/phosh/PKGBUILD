@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh
 pkgver=0.54.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Wayland shell for GNOME on mobile devices."
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://gitlab.gnome.org/World/Phosh/phosh"
@@ -17,6 +17,7 @@ depends=(
     'libcap'
     'libgmobile'
     'libhandy'
+    'libical'
     'libnm'
     'libpulse'
     'gnome-bluetooth-3.0'
@@ -40,12 +41,18 @@ checkdepends=('xmlstarlet' 'xorg-server-xvfb')
 install="$pkgname.install"
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc}
         'pam_phosh'
-        'phosh.service')
+        'phosh.service'
+        'libical-4.patch')
 b2sums=('3321913a68545900d57e08b73280f41aebda30308f4b86caf981a224b155a4bf9018d58ca5fbddf268d4b4eeda28463b001a0710c37142272560d60c27b1c37b'
         'SKIP'
         'd89e16605e2e8e29834f9537bd09ef3f76f1cf6420cdd99346a760cab8c7217f86898be66c24b206b464239fc8b5277150abd19bae81af72187a435bd8c2f869'
-        '5a769e4bda9c2c23cc386ac657dfb4267f130ee22644c3bf247f7373ee53afcf30d3086906e020d005e0b860742356f004cc5543bd1ed62fb82fb71d7e9b430e')
+        '5a769e4bda9c2c23cc386ac657dfb4267f130ee22644c3bf247f7373ee53afcf30d3086906e020d005e0b860742356f004cc5543bd1ed62fb82fb71d7e9b430e'
+        '1e852c5f5d26689d0deebade2aa1ee59a92625c159829f185d132967a95b8e00481eebeffeab61c435053d4e152ea616fca7178d68bb72e0dbc8a61a854f0b98')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
+
+prepare() {
+    patch -d $pkgname-$pkgver -p1 < libical-4.patch # Fix build with libical 4
+}
 
 build() {
     local meson_options=(
