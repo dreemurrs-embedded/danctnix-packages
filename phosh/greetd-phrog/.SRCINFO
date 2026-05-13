@@ -1,0 +1,25 @@
+pkgbase = greetd-phrog
+	pkgdesc = Mobile device greeter
+	pkgver = 0.50.0
+	pkgrel = 1
+	url = https://github.com/samcday/phrog
+	arch = x86_64
+	arch = armv7h
+	arch = aarch64
+	license = GPL-3.0-only
+	checkdepends = dbus
+	checkdepends = foot
+	checkdepends = xorg-server-xvfb
+	makedepends = cargo
+	depends = greetd
+	depends = phoc
+	depends = phosh
+	depends = stevia
+	source = https://github.com/samcday/phrog/archive/0.50.0/phrog-0.50.0.tar.gz
+	source = greetd-config.toml
+	source = phrog.service
+	b2sums = 55b53e52c6b80dcb4ab16054380fc03e90904398c5ca75f65f08254f74d2fd3eb22322d57b79dd8923c929216ce3de837e5bcfc39e9471b82f73946338f57a74
+	b2sums = 337ca7add6c6220c05e4fd89eb4f964b0ec962c3356922b195a4ad07b7067a06974c1972b4b32807e25a40d72f7f00545fd1c895b8438e3f1a58b3fb4de40c39
+	b2sums = 9ab649e23b8e35ec309ab41295aa504a7c10aed1555b61a59694f9e6104f085abb9ea06d77f80495df40b454ed65dec82fd15448460cdf7e4ef8dd2444cff4ad
+
+pkgname = greetd-phrog

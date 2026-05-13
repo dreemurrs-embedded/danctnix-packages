@@ -1,0 +1,67 @@
+# Maintainer: Danct12 <danct12@disroot.org>
+_pkgname=phrog
+pkgname=greetd-phrog
+pkgver=0.50.0
+pkgrel=1
+pkgdesc="Mobile device greeter"
+arch=('x86_64' 'armv7h' 'aarch64')
+url="https://github.com/samcday/phrog"
+license=('GPL-3.0-only')
+depends=(
+  greetd
+  phoc
+  phosh
+  stevia
+)
+makedepends=('cargo')
+checkdepends=('dbus' 'foot' 'xorg-server-xvfb')
+source=(
+  "https://github.com/samcday/$_pkgname/archive/$pkgver/$_pkgname-$pkgver.tar.gz"
+  greetd-config.toml
+  phrog.service
+)
+b2sums=('55b53e52c6b80dcb4ab16054380fc03e90904398c5ca75f65f08254f74d2fd3eb22322d57b79dd8923c929216ce3de837e5bcfc39e9471b82f73946338f57a74'
+        '337ca7add6c6220c05e4fd89eb4f964b0ec962c3356922b195a4ad07b7067a06974c1972b4b32807e25a40d72f7f00545fd1c895b8438e3f1a58b3fb4de40c39'
+        '9ab649e23b8e35ec309ab41295aa504a7c10aed1555b61a59694f9e6104f085abb9ea06d77f80495df40b454ed65dec82fd15448460cdf7e4ef8dd2444cff4ad')
+
+prepare() {
+  cd $_pkgname-$pkgver
+
+  export RUSTUP_TOOLCHAIN=stable
+  cargo fetch --locked --target host-tuple
+}
+
+build() {
+  cd $_pkgname-$pkgver
+
+  export RUSTUP_TOOLCHAIN=stable
+  export CARGO_TARGET_DIR=target
+  cargo build --frozen --release --all-features
+}
+
+check() {
+  cd $_pkgname-$pkgver
+
+  export RUSTUP_TOOLCHAIN=stable
+  export XDG_RUNTIME_DIR="$srcdir"
+  dbus-run-session xvfb-run -a phoc -E "cargo test --frozen --all-features"
+}
+
+package() {
+  cd $_pkgname-$pkgver
+
+  # systemd
+  install -Dm644 $srcdir/phrog.service -t "$pkgdir"/usr/lib/systemd/system/
+  install -Dm644 data/mobi.phosh.Phrog.service -t "$pkgdir"/usr/lib/systemd/user/
+  install -Dm644 data/mobi.phosh.Phrog.target -t "$pkgdir"/usr/lib/systemd/user/
+  install -Dm644 data/systemd-session.conf -t "$pkgdir"/usr/lib/systemd/user/gnome-session@phrog.target.d/
+
+  install -Dm644 $srcdir/greetd-config.toml -t "$pkgdir"/etc/phrog/
+  install -Dm644 data/mobi.phosh.Phrog.desktop -t "$pkgdir"/usr/share/applications/
+  install -Dm644 data/mobi.phosh.phrog.gschema.xml -t "$pkgdir"/usr/share/glib-2.0/schemas/
+  install -Dm644 data/phrog.session -t "$pkgdir"/usr/share/gnome-session/sessions/
+  install -d "$pkgdir"/usr/share/phrog/autostart
+  install -d "$pkgdir"/etc/phrog/autostart
+  install -Dm755 target/release/phrog -t "$pkgdir"/usr/bin/
+  install -Dm755 data/phrog-greetd-session -t "$pkgdir"/usr/lib/$pkgname
+}
