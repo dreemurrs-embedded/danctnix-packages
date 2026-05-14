@@ -5,7 +5,7 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=7.0
+pkgver=7.0.6
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
@@ -14,8 +14,9 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 
 options=('!strip')
 
 # Source
-_tag="orange-pi-7.0-20260417-2214"
+_tag="orange-pi-7.0-20260508-1436"
 source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar.gz"
+        "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.5-6.xz"
         'config'
         'linux.preset'
         # Arch Linux upstream patches
@@ -42,6 +43,8 @@ prepare() {
       msg2 "Applying patch: $src..."
       patch -Np1 < "../$src"
   done
+
+  xzcat "${srcdir}/patch-7.0.5-6.xz" | patch -Np1
 
   cat "${srcdir}/config" > ./.config
 }
@@ -206,7 +209,8 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-md5sums=('49f60b365e42f53c17047c4a20831614'
+md5sums=('0b66afb32e8d1a27d8b00b6746eb5966'
+         'd6c9d763dbd198a5ab197e071986cbe5'
          'ec37f636b5e003fd6ad7a6061d80f105'
          '86d4a35722b5410e3b29fc92dae15d4b'
          '4919a5657242460d2f46a60545faf523'
