@@ -2,7 +2,7 @@
 # Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-pinetab2
-pkgver=7.0.danctnix1
+pkgver=7.0.6.danctnix1
 pkgrel=1
 pkgdesc='PineTab2'
 _srcname=linux-pinetab2
@@ -37,11 +37,11 @@ validpgpkeys=(
   647F28654894E3BD457199BE38DBBDC86092693E  # Greg Kroah-Hartman
   F09A933C0FE0331E558CA4E166CAB7EAA45DD781  # Danct12
 )
-b2sums=('3d9795083c8938f80f480de0d10bfd9c525640e59d5c7f22983de3f12ee42c84c31be902cafb05579ddb1c32bac5ed06b0d4953f9705450be185bd2d9ab08f89'
+b2sums=('0e8640c77249b251b22f162b8eb21d062308c4a5d16e3942882fbfbbb50a3ac981ad14db8e5612fb9e0a26f8f3a2c6bb07f0309e26ea59323430f780d22b2821'
         'SKIP'
-        '71fe98221e802b315e54b4b10d3e8c8f376695a36bae3541d876e5776a37f3fa33c8f8dfa6e51fcbd6f5396add02e5166634165f2351836a0ea0453c172fe56c'
+        '85ed1495b8a200e257ddfb0f74089865e313d192a7269a81f1bc847c96ef1ba1fa1a752d7eaac81b05c84b9332368967519b4e402bb3ade874f8183e90802a65'
         'SKIP'
-        '19c35c69a4ed40635fb6ad108d2e0ed3d0edc682972255b4a9b719d09e377aa916e533b2e29f4aed256d3a393d77df9e11b661b690acd96edcf61eafe016f55b')
+        'd794251d578f6c8106a9e2b0bd0c3e9661c2618f9bf925aa2f3833a218f250845e4724ebf65820a94c274207d42e9db5a12da3620f82113250590e5bc8b96978')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
