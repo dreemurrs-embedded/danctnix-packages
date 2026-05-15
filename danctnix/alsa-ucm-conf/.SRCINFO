@@ -1,19 +1,23 @@
 pkgbase = alsa-ucm-conf
 	pkgdesc = ALSA Use Case Manager configuration (and topologies)
 	pkgver = 1.2.15.3
-	pkgrel = 1.1
+	pkgrel = 1.2
 	url = https://alsa-project.org/
 	arch = any
 	license = BSD-3-Clause
+	provides = alsa-ucm-pinephonepro
 	source = https://alsa-project.org//files/pub/lib/alsa-ucm-conf-1.2.15.3.tar.bz2
 	source = https://alsa-project.org//files/pub/lib/alsa-ucm-conf-1.2.15.3.tar.bz2.sig
 	source = 0001-PinePhone-Use-postmarketOS-UCM-configs.patch
+	source = 0002-RK817-Correct-Playback-Property.patch
 	validpgpkeys = F04DF50737AC1A884C4B3D718380596DA6E59C91
 	sha512sums = 079aeb45bc3f98448f6e48a1267db5d3f46a51d7060eb8275d0a084574e23eec34f07108610538e898c397fa24941ccf1bb7722c6b4bb0fa9c48904addc03973
 	sha512sums = SKIP
 	sha512sums = 4e9c760f6303c3c37d1196c79696246c0881e2446f3c56aaad00b6ee42e8629296991c1c933debd3a572cc028dc29988c9cb323862e1df463642c21f0c63f9e0
+	sha512sums = 7854cdba7ecc49649f99f81835769e4c3af148dfb7cf0a3070f670e493fb9c00568e12f5c23268d58361a6fbb2daf61206807921372737673f4dc300f907c5ab
 	b2sums = 7b563fa4685988bf509f4accdab1146b49a807eae8d4ebff3d634c1086c70130930a0e09e08af0be0996dd56d4fdbd58e9d7daa37f762106fa493198589ceac4
 	b2sums = SKIP
 	b2sums = 1ce71e5142061f6f9f3e35c6f40f874e81de7e2ac6811dcd70a78b0031af545bd124735723f2f3237db159bf58b3983109675d93a5dabdd5a4dd5b3a449775d3
+	b2sums = 33da2beb8845b34244490a9e6297c98ce1da7bfde830c90dd9f9da8ca93b0465257c585b1998d00b2db386b86d1a510955de73f471d149580a97ed4dfd265db9
 
 pkgname = alsa-ucm-conf
