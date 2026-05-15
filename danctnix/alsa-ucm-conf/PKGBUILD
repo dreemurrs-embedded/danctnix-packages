@@ -3,12 +3,13 @@
 
 pkgname=alsa-ucm-conf
 pkgver=1.2.15.3
-pkgrel=1.2
+pkgrel=1.3
 pkgdesc="ALSA Use Case Manager configuration (and topologies)"
 arch=(any)
 url="https://alsa-project.org/"
 license=(BSD-3-Clause)
 provides=('alsa-ucm-pinephonepro')
+conflicts=('alsa-ucm-pinephonepro')
 source=(
   $url/files/pub/lib/$pkgname-$pkgver.tar.bz2{,.sig}
   0001-PinePhone-Use-postmarketOS-UCM-configs.patch
