@@ -1,4 +1,4 @@
-From 4ac2313a4e70e134a802c8470752c0bdf5a9b529 Mon Sep 17 00:00:00 2001
+From 31ae6469ddc455cd64f5b4ea5bbd7a91a3e457af Mon Sep 17 00:00:00 2001
 From: Danct12 <danct12@disroot.org>
 Date: Thu, 14 May 2026 21:23:29 +0000
 Subject: [PATCH] PinePhone*: Use postmarketOS UCM configs
@@ -10,11 +10,13 @@ Subject: [PATCH] PinePhone*: Use postmarketOS UCM configs
  ucm2/PinePhonePro/PINE64-PinePhonePro-.conf   |  16 +
  ucm2/PinePhonePro/VoiceCall.conf              | 276 +++++++++++++++++
  .../simple-card/PINE64-PinePhonePro-.conf     |   1 +
- 6 files changed, 613 insertions(+), 11 deletions(-)
+ ucm2/conf.d/simple-card/PinePhonePro.conf     |   1 +
+ 7 files changed, 614 insertions(+), 11 deletions(-)
  create mode 100644 ucm2/PinePhonePro/HiFi.conf
  create mode 100644 ucm2/PinePhonePro/PINE64-PinePhonePro-.conf
  create mode 100644 ucm2/PinePhonePro/VoiceCall.conf
  create mode 120000 ucm2/conf.d/simple-card/PINE64-PinePhonePro-.conf
+ create mode 120000 ucm2/conf.d/simple-card/PinePhonePro.conf
 
 diff --git a/ucm2/Allwinner/A64/PinePhone/HiFi.conf b/ucm2/Allwinner/A64/PinePhone/HiFi.conf
 index 83c5c43..870f78c 100644
@@ -803,6 +805,14 @@ new file mode 120000
 index 0000000..93c4ff1
 --- /dev/null
 +++ b/ucm2/conf.d/simple-card/PINE64-PinePhonePro-.conf
+@@ -0,0 +1 @@
++../../PinePhonePro/PINE64-PinePhonePro-.conf
+\ No newline at end of file
+diff --git a/ucm2/conf.d/simple-card/PinePhonePro.conf b/ucm2/conf.d/simple-card/PinePhonePro.conf
+new file mode 120000
+index 0000000..93c4ff1
+--- /dev/null
++++ b/ucm2/conf.d/simple-card/PinePhonePro.conf
 @@ -0,0 +1 @@
 +../../PinePhonePro/PINE64-PinePhonePro-.conf
 \ No newline at end of file
