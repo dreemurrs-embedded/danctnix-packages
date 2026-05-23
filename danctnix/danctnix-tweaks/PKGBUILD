@@ -2,22 +2,25 @@
 
 pkgname=danctnix-tweaks
 pkgver=0.3
-pkgrel=5
+pkgrel=6
 pkgdesc="Tweaks made to DanctNIX Mobile."
 arch=(any)
 url="https://danctnix.org"
 license=('MIT')
 install=$pkgname.install
-source=(00-journal-size.conf
-        danctnix.sh
-        packagekit-rm-lock.service
-        blacklist-dirtyfrag.conf)
+source=(
+  00-journal-size.conf
+  00-logtoram.conf
+  danctnix.sh
+  packagekit-rm-lock.service
+  blacklist-dirtyfrag.conf)
 
 package() {
   mkdir -p "$pkgdir"
 
   # Limit log size to 64 MB
-  install -Dm644 00-journal-size.conf $pkgdir/etc/systemd/journald.conf.d/00-journal-size.conf
+  install -Dm644 -t "$pkgdir/usr/lib/systemd/journald.conf.d" "00-journal-size.conf"
+  install -Dm644 -t "$pkgdir/usr/lib/systemd/journald.conf.d" "00-logtoram.conf"
 
   # XDG override
   install -Dm755 -t "$pkgdir/etc/profile.d" "$srcdir/danctnix.sh"
@@ -30,6 +33,7 @@ package() {
   install -Dm644 -t "$pkgdir/etc/modprobe.d" "$srcdir/blacklist-dirtyfrag.conf"
 }
 md5sums=('3b3ccac2ebb5ada20d81f758c1591a19'
+         '107d6ee32fe6581ae956eef53f10c52f'
          '4e060d406b742a03336224389c2e648a'
          '002308e4f5d9c10fade7eec8cfcde1b0'
          '4927c5910ec3f3757bbde25cdd1d950f')
