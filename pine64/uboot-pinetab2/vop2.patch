@@ -27,7 +27,7 @@ index 96af6d28ef0..e7c4b963fa6 100644
  	help
  	  Select the Designware MIPI DSI controller in use on some Rockchip
 -- 
-2.53.0
+2.54.0
 
 
 From 987b1371b4780b17833e884176dfb4284b393ac0 Mon Sep 17 00:00:00 2001
@@ -101,7 +101,7 @@ index fa512173510..c47992dfb13 100644
  	/* constraint: 5Mhz <= Fref / N <= 40MHz */
  	min_prediv = DIV_ROUND_UP(fin, 40 * USEC_PER_SEC);
 -- 
-2.53.0
+2.54.0
 
 
 From a517ccc8da244bc5233a3ca2f18eb8a665d3de6c Mon Sep 17 00:00:00 2001
@@ -133,7 +133,7 @@ index c47992dfb13..95e825eb3d6 100644
  		return ret;
  	}
 -- 
-2.53.0
+2.54.0
 
 
 From 7b70a4dab419720f48c62e31acc58a9d2ad2868e Mon Sep 17 00:00:00 2001
@@ -215,7 +215,7 @@ index 95e825eb3d6..d21ea7953a6 100644
  
  static const struct rockchip_dw_dsi_chip_data rk3399_chip_data[] = {
 -- 
-2.53.0
+2.54.0
 
 
 From 3d3343315d0cb580a3c61d091dc34291f9c7a2b9 Mon Sep 17 00:00:00 2001
@@ -249,10 +249,10 @@ index c74fe678d12..7c5b2b8e7cc 100644
  
  static void dw_mipi_dsi_video_packet_config(struct dw_mipi_dsi *dsi,
 -- 
-2.53.0
+2.54.0
 
 
-From 11243fda03be729e6d144bff2d7c53a53e6facfa Mon Sep 17 00:00:00 2001
+From b13eaddf079c07450fabc754444fbd1ecaaf31ad Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Tue, 7 Jan 2025 15:31:21 +0700
 Subject: [PATCH 06/14] video: Add BOE TH101MB31IG002-28A MIPI-DSI panel
@@ -263,10 +263,10 @@ PineTab2.
 Reviewed-by: Svyatoslav Ryhel <clamor95@gmail.com>
 Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
 ---
- drivers/video/Kconfig                  |  10 ++
+ drivers/video/Kconfig                  |  10 +
  drivers/video/Makefile                 |   1 +
- drivers/video/boe-th101mb31ig002-28a.c | 236 +++++++++++++++++++++++++
- 3 files changed, 247 insertions(+)
+ drivers/video/boe-th101mb31ig002-28a.c | 260 +++++++++++++++++++++++++
+ 3 files changed, 271 insertions(+)
  create mode 100644 drivers/video/boe-th101mb31ig002-28a.c
 
 diff --git a/drivers/video/Kconfig b/drivers/video/Kconfig
@@ -304,10 +304,10 @@ index 984768ea156..dc18dda4258 100644
  obj-$(CONFIG_VIDEO_LCD_HITACHI_TX10D07VM0BAA) += hitachi-tx10d07vm0baa.o
 diff --git a/drivers/video/boe-th101mb31ig002-28a.c b/drivers/video/boe-th101mb31ig002-28a.c
 new file mode 100644
-index 00000000000..2c377a31669
+index 00000000000..85a9cb1b583
 --- /dev/null
 +++ b/drivers/video/boe-th101mb31ig002-28a.c
-@@ -0,0 +1,236 @@
+@@ -0,0 +1,260 @@
 +// SPDX-License-Identifier: GPL-2.0-only
 +/*
 + * Copyright (c) 2023 Alexander Warnecke <awarnecke002@hotmail.com>
@@ -397,7 +397,7 @@ index 00000000000..2c377a31669
 +	if (ret)
 +		return ret;
 +
-+	mdelay(120);
++	mdelay(125);
 +
 +	ret = mipi_dsi_dcs_set_display_on(device);
 +	if (ret)
@@ -507,11 +507,11 @@ index 00000000000..2c377a31669
 +
 +	/* reset panel */
 +	dm_gpio_set_value(&priv->reset, 0);
-+	udelay(10);
++	udelay(20);
 +	dm_gpio_set_value(&priv->reset, 1);
-+	udelay(10);
++	udelay(20);
 +	dm_gpio_set_value(&priv->reset, 0);
-+	mdelay(5);
++	mdelay(125);
 +
 +	plat->lanes = 4;
 +	plat->format = MIPI_DSI_FMT_RGB888;
@@ -519,6 +519,28 @@ index 00000000000..2c377a31669
 +			   MIPI_DSI_MODE_VIDEO_BURST |
 +			   MIPI_DSI_MODE_EOT_PACKET |
 +			   MIPI_DSI_MODE_LPM;
++
++	return 0;
++}
++
++/*
++ * HACK: This panel is known to have issues with display reset, so
++ * for now we'll disable the display before booting to the OS.
++ */
++static int th101mb31ig002_28a_panel_remove(struct udevice *dev)
++{
++	struct th101mb31ig002_28a_panel_priv *priv = dev_get_priv(dev);
++	struct mipi_dsi_panel_plat *plat = dev_get_plat(dev);
++	struct mipi_dsi_device *device = plat->device;
++
++	mipi_dsi_dcs_set_display_off(device);
++	mipi_dsi_dcs_enter_sleep_mode(device);
++	mdelay(130);
++
++	dm_gpio_set_value(&priv->reset, 1);
++	mdelay(10);
++	dm_gpio_set_value(&priv->enable, 0);
++	mdelay(50);
 +
 +	return 0;
 +}
@@ -541,14 +563,16 @@ index 00000000000..2c377a31669
 +	.ops		= &th101mb31ig002_28a_panel_ops,
 +	.of_to_plat	= th101mb31ig002_28a_panel_of_to_plat,
 +	.probe		= th101mb31ig002_28a_panel_probe,
++	.remove		= th101mb31ig002_28a_panel_remove,
 +	.plat_auto	= sizeof(struct mipi_dsi_panel_plat),
 +	.priv_auto	= sizeof(struct th101mb31ig002_28a_panel_priv),
++	.flags		= DM_FLAG_OS_PREPARE,
 +};
 -- 
-2.53.0
+2.54.0
 
 
-From 2fa8189eecc5499849cf225a85c9849adbee2e61 Mon Sep 17 00:00:00 2001
+From bea8a3bdc873595f97ef9c117479e9ae8d834077 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:32:46 +0700
 Subject: [PATCH 07/14] video: rockchip: Add VOP2 support
@@ -1754,10 +1778,10 @@ index 00000000000..0f591a65eea
 +
 +#endif
 -- 
-2.53.0
+2.54.0
 
 
-From acc1d7f49d9c4e139ff159b91f2e91d7f8734177 Mon Sep 17 00:00:00 2001
+From 1cb6aa79456d2fbe8d1bd2f0d5a57fcbd074a70e Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Tue, 14 Jan 2025 21:24:36 +0700
 Subject: [PATCH 08/14] video: rockchip: vop2: Add video bridge support
@@ -1900,10 +1924,10 @@ index 7ad28058abb..03cf5e3b11c 100644
  	uc_priv->xsize = timing.hactive.typ;
  	uc_priv->ysize = timing.vactive.typ;
 -- 
-2.53.0
+2.54.0
 
 
-From 16b16c13d1a4d456afae6d46a9001f00d92a5064 Mon Sep 17 00:00:00 2001
+From aba1ba6dc2db6899bfc2e6c819feebaf9ab0171b Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 18:39:35 +0700
 Subject: [PATCH 09/14] video: rockchip: Add HDMI support for RK3568
@@ -2008,10 +2032,10 @@ index 00000000000..c3f4504ca8f
 +	.priv_auto = sizeof(struct rk_hdmi_priv),
 +};
 -- 
-2.53.0
+2.54.0
 
 
-From 290217a54c8f5a569cba9ebb68bdb308f4a71391 Mon Sep 17 00:00:00 2001
+From 5bf835a3badc0ddedf097d37a0fd42ab01a68d94 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 12 Apr 2025 19:39:50 +0700
 Subject: [PATCH 10/14] clk: rockchip: rk3568: Use assigned VPLL clock when
@@ -2043,10 +2067,10 @@ index 533031caead..cd0e24d77dc 100644
  			     DCLK0_VOP_DIV_MASK | DCLK0_VOP_SEL_MASK,
  			     (DCLK_VOP_SEL_VPLL << DCLK0_VOP_SEL_SHIFT) |
 -- 
-2.53.0
+2.54.0
 
 
-From fdd7d2e680070794618835968871a6a100c23e75 Mon Sep 17 00:00:00 2001
+From 281ef497484d6e91699c1124d4fc7983ca568111 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:34:22 +0700
 Subject: [PATCH 11/14] arm: dts: rockchip: rk356x: Prerelocate VOP in U-Boot
@@ -2076,10 +2100,10 @@ index 738b9673d35..1ed06239f05 100644
  	bootph-all;
  };
 -- 
-2.53.0
+2.54.0
 
 
-From 1c92e3f4fd7f41cc921abce8f4831e2118a92930 Mon Sep 17 00:00:00 2001
+From 8bf96c169e4a578d457d9c4fffbac03f8a27f589 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 4 Jan 2025 20:35:53 +0700
 Subject: [PATCH 12/14] configs: quartz64: Enable vidconsole
@@ -2108,10 +2132,10 @@ index dfe0fee94cd..bf391458219 100644
  #include <configs/rk3568_common.h>
  
 -- 
-2.53.0
+2.54.0
 
 
-From 28506d23f0cf645d52582a44a258ff096577f4d8 Mon Sep 17 00:00:00 2001
+From 5f13f7f53faec8f28eb8ba50d237db29137bbb4b Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Sat, 11 Jan 2025 19:34:20 +0700
 Subject: [PATCH 13/14] configs: pinetab2-rk3566: Enable video and USB keyboard
@@ -2121,11 +2145,11 @@ built in USB keyboard.
 
 Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
 ---
- configs/pinetab2-rk3566_defconfig | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ configs/pinetab2-rk3566_defconfig | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/configs/pinetab2-rk3566_defconfig b/configs/pinetab2-rk3566_defconfig
-index 6e5fde591d0..3b8441e3552 100644
+index 6e5fde591d0..3d3a502431f 100644
 --- a/configs/pinetab2-rk3566_defconfig
 +++ b/configs/pinetab2-rk3566_defconfig
 @@ -68,6 +68,7 @@ CONFIG_MMC_SDHCI_SDMA=y
@@ -2136,15 +2160,16 @@ index 6e5fde591d0..3b8441e3552 100644
  CONFIG_PHY_ROCKCHIP_INNO_USB2=y
  CONFIG_PHY_ROCKCHIP_NANENG_COMBOPHY=y
  CONFIG_SPL_PINCTRL=y
-@@ -93,6 +94,7 @@ CONFIG_USB_OHCI_HCD=y
+@@ -93,6 +94,8 @@ CONFIG_USB_OHCI_HCD=y
  CONFIG_USB_OHCI_GENERIC=y
  CONFIG_USB_DWC3=y
  CONFIG_USB_DWC3_GENERIC=y
 +CONFIG_USB_KEYBOARD=y
++CONFIG_SYS_USB_EVENT_POLL_VIA_INT_QUEUE=y
  CONFIG_USB_HOST_ETHER=y
  CONFIG_USB_ETHER_ASIX=y
  CONFIG_USB_ETHER_ASIX88179=y
-@@ -100,4 +102,12 @@ CONFIG_USB_ETHER_RTL8152=y
+@@ -100,4 +103,12 @@ CONFIG_USB_ETHER_RTL8152=y
  CONFIG_USB_GADGET=y
  CONFIG_USB_GADGET_DOWNLOAD=y
  CONFIG_USB_FUNCTION_ROCKUSB=y
@@ -2158,10 +2183,10 @@ index 6e5fde591d0..3b8441e3552 100644
 +CONFIG_VIDEO_REMOVE=y
  CONFIG_ERRNO_STR=y
 -- 
-2.53.0
+2.54.0
 
 
-From d7b73d6fdb3be4617c8801a61be67ed03621b0a3 Mon Sep 17 00:00:00 2001
+From 7ce7cc3eb7297288410cc6f78f4f29cb073c5cc7 Mon Sep 17 00:00:00 2001
 From: Dang Huynh <dang.huynh@mainlining.org>
 Date: Thu, 23 Apr 2026 01:54:46 +0000
 Subject: [PATCH 14/14] configs: pinetab2-rk3566: Enable USB keyboard on
@@ -2173,7 +2198,7 @@ Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
  1 file changed, 1 insertion(+)
 
 diff --git a/configs/pinetab2-rk3566_defconfig b/configs/pinetab2-rk3566_defconfig
-index 3b8441e3552..048331dc763 100644
+index 3d3a502431f..75f2e0a9b3d 100644
 --- a/configs/pinetab2-rk3566_defconfig
 +++ b/configs/pinetab2-rk3566_defconfig
 @@ -23,6 +23,7 @@ CONFIG_FIT_VERBOSE=y
@@ -2185,5 +2210,5 @@ index 3b8441e3552..048331dc763 100644
  # CONFIG_DISPLAY_CPUINFO is not set
  CONFIG_DISPLAY_BOARDINFO_LATE=y
 -- 
-2.53.0
+2.54.0
 
