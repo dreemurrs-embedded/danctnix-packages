@@ -1,0 +1,26 @@
+pkgbase = phosh-wallpapers
+	pkgdesc = Wallpapers for Phosh UI
+	pkgver = 0.55.0
+	pkgrel = 1
+	url = https://gitlab.gnome.org/guidog/phosh-wallpapers
+	arch = any
+	makedepends = meson
+	makedepends = plymouth
+	source = https://sources.phosh.mobi/releases/phosh-wallpapers/phosh-wallpapers-0.55.0.tar.xz
+	source = https://sources.phosh.mobi/releases/phosh-wallpapers/phosh-wallpapers-0.55.0.tar.xz.asc
+	validpgpkeys = 0DB3932762F78E592F6522AFBB5A2C77584122D3
+	sha256sums = 8c3022b77874236addebcfaf5835852cb2d7bbe361c37d66e976d92a054e62fb
+	sha256sums = SKIP
+
+pkgname = phosh-wallpapers
+	pkgdesc = Wallpapers for Phosh UI
+	license = CC-BY-SA-4.0 AND GPL-3.0-or-later
+
+pkgname = plymouth-theme-phosh
+	pkgdesc = Plymouth theme for Phosh UI
+	license = CC-BY-SA-4.0 AND GPL-3.0-or-later
+	depends = plymouth
+
+pkgname = sound-theme-phosh
+	pkgdesc = Sound theme for Phosh UI
+	license = CC0 AND CC-BY-SA-4.0
