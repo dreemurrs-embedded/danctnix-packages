@@ -1,7 +1,7 @@
 pkgbase = danctnix-tweaks
 	pkgdesc = Tweaks made to DanctNIX Mobile.
 	pkgver = 0.3
-	pkgrel = 7
+	pkgrel = 8
 	url = https://danctnix.org
 	install = danctnix-tweaks.install
 	arch = any
@@ -17,6 +17,6 @@ pkgbase = danctnix-tweaks
 	md5sums = 4e060d406b742a03336224389c2e648a
 	md5sums = 002308e4f5d9c10fade7eec8cfcde1b0
 	md5sums = 4927c5910ec3f3757bbde25cdd1d950f
-	md5sums = 39907820448ec59e06e7087c27abf780
+	md5sums = 55807722c1c07aed8349499b93112d93
 
 pkgname = danctnix-tweaks

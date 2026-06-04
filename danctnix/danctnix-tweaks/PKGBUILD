@@ -2,7 +2,7 @@
 
 pkgname=danctnix-tweaks
 pkgver=0.3
-pkgrel=7
+pkgrel=8
 pkgdesc="Tweaks made to DanctNIX Mobile."
 arch=(any)
 url="https://danctnix.org"
@@ -42,4 +42,4 @@ md5sums=('3b3ccac2ebb5ada20d81f758c1591a19'
          '4e060d406b742a03336224389c2e648a'
          '002308e4f5d9c10fade7eec8cfcde1b0'
          '4927c5910ec3f3757bbde25cdd1d950f'
-         '39907820448ec59e06e7087c27abf780')
+         '55807722c1c07aed8349499b93112d93')
