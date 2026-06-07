@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=livi
-pkgver=0.4.0
+pkgver=0.5.0
 pkgrel=1
 pkgdesc="GTK4 video player using GStreamer as backend"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -35,5 +35,5 @@ package() {
     meson install -C output --destdir "$pkgdir"
 }
 
-md5sums=('17035503aaa726f4f10ed43d8e2999ec'
+md5sums=('2b976773547f95c5f1c61fb9030958bf'
          'SKIP')
