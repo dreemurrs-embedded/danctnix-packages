@@ -5,7 +5,7 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=7.0.6
+pkgver=7.0.11
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
@@ -17,6 +17,11 @@ options=('!strip')
 _tag="orange-pi-7.0-20260508-1436"
 source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar.gz"
         "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.5-6.xz"
+        "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.6-7.xz"
+        "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.7-8.xz"
+        "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.8-9.xz"
+        "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.9-10.xz"
+        "https://cdn.kernel.org/pub/linux/kernel/v7.x/incr/patch-7.0.10-11.xz"
         'config'
         'linux.preset'
         # Arch Linux upstream patches
@@ -45,6 +50,11 @@ prepare() {
   done
 
   xzcat "${srcdir}/patch-7.0.5-6.xz" | patch -Np1
+  xzcat "${srcdir}/patch-7.0.6-7.xz" | patch -Np1
+  xzcat "${srcdir}/patch-7.0.7-8.xz" | patch -Np1
+  xzcat "${srcdir}/patch-7.0.8-9.xz" | patch -Np1
+  xzcat "${srcdir}/patch-7.0.9-10.xz" | patch -Np1
+  xzcat "${srcdir}/patch-7.0.10-11.xz" | patch -Np1
 
   cat "${srcdir}/config" > ./.config
 }
@@ -209,12 +219,17 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-md5sums=('0b66afb32e8d1a27d8b00b6746eb5966'
-         'd6c9d763dbd198a5ab197e071986cbe5'
-         'ec37f636b5e003fd6ad7a6061d80f105'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         '4919a5657242460d2f46a60545faf523'
-         '571aee8d8a58c719288fee4185ab1713'
-         'da2ad89730c2fce222ca0e286585a868'
-         '7d80f76f1647afa00de320f5866484a1'
-         '9b42c7def68f61a6e3c7a43700361730')
+sha256sums=('81d46c3cd80836de56ef4259171e91b310efe7603f2cb20be7298841e9963029'
+            '053b95975d6cb6719dc7276400579f67f27e8ec63a860f3b4abfda19784649ee'
+            '308db70cc417d95faababfbbacf57a2594526c5395ccbc7a2a4787a1abce1f63'
+            'f9c78c2cc8d8c0ee4ff47f730a3cde2bc81abe130e7cfb104e6c3e6e21840951'
+            'f0afdc2f470813157e67fdf200d4028174629859e53333833347517a14c66e82'
+            'ea9ae3c15b7386dccbe16ce26d43f6bcd9ac2751dc5df709413700c6d1655f66'
+            '356d5c506268165eadc1e9161f30ea4616feea15747f9117fa8b82a7185c709d'
+            '9c0b71a1b6b9d686de2d4c7ecc3dd99c6b69276ebcfae96fb9a5f3bdcfa6f86d'
+            '66644820faa950a5fc59181f5aefcbed6d7ed652b29aee69979a2be2a032025d'
+            '1f685119eebc178e4aa42ec5154f7fa8fcc49bddddb2557618be98d510c12e90'
+            '702745d98cc34fe852967106d69504030f70e7d95f59cb7296c51d1175df3c5f'
+            '16fff3c042d71977715d9e6943b2d7ecd2ce4feac8364c6f0eb572fbc3ab30c4'
+            '0c71eb3a198043fee78de51f2cfb10ac186aa0c1613071eb6576aa5a72221b67'
+            'e66e0543cfb7d4c1360b65a1e008059d4e32ea1e510b64dfadbbd38833de0148')
