@@ -1,4 +1,4 @@
-From 4061bf81c366ccb309e2e597c5012ca246809b3a Mon Sep 17 00:00:00 2001
+From a173d5346be2b336a5f523020d09716a6750d3ce Mon Sep 17 00:00:00 2001
 From: Bobby The Builder <bob@najdan.com>
 Date: Thu, 12 Jan 2023 10:23:39 -0500
 Subject: [PATCH] common: expose DRAM clock speed
@@ -9,10 +9,10 @@ Subject: [PATCH] common: expose DRAM clock speed
  2 files changed, 9 insertions(+)
 
 diff --git a/common/board_f.c b/common/board_f.c
-index e6117a7ba5..1fcfd3da86 100644
+index df2b0dc899b..463bd9a26a0 100644
 --- a/common/board_f.c
 +++ b/common/board_f.c
-@@ -251,6 +251,9 @@ static int show_dram_config(void)
+@@ -233,6 +233,9 @@ static int show_dram_config(void)
  	debug("\nDRAM:  ");
  
  	print_size(gd->ram_size, "");
@@ -20,13 +20,13 @@ index e6117a7ba5..1fcfd3da86 100644
 +	printf(" @ %d MHz", CONFIG_DRAM_CLK);
 +#endif
  	if (!sizes_near(gd->ram_size, size)) {
- 		printf(" (effective ");
+ 		printf(" (total ");
  		print_size(size, ")");
 diff --git a/common/main.c b/common/main.c
-index 682f3359ea..877df4c858 100644
+index b0b6e74f5d3..240d3835a1f 100644
 --- a/common/main.c
 +++ b/common/main.c
-@@ -46,6 +46,12 @@ void main_loop(void)
+@@ -48,6 +48,12 @@ void main_loop(void)
  	if (IS_ENABLED(CONFIG_VERSION_VARIABLE))
  		env_set("ver", version_string);  /* set version variable */
  
@@ -40,5 +40,5 @@ index 682f3359ea..877df4c858 100644
  
  	if (IS_ENABLED(CONFIG_USE_PREBOOT))
 -- 
-2.38.1
+2.54.0
 
