@@ -1,0 +1,8 @@
+# shellcheck shell=bash
+
+post_upgrade() {
+	# Previous versions of this package used "/" as the home directory for "greeter".
+	# Additionally, systemd does not update sysusers' home directories for
+	# existing users.
+	usermod -d /var/lib/greetd/greeter greeter || true
+}

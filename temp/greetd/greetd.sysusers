@@ -1,0 +1,2 @@
+u greeter - "greetd greeter user" /var/lib/greetd/greeter /bin/bash
+m greeter video

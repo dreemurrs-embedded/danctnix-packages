@@ -1,0 +1,83 @@
+# Maintainer: Caleb Maclennan <caleb@alerque.com>
+# Contributor: Eric Engestrom <aur [at] engestrom [dot] ch>
+# Contributor: Kenny Levinsen <aur [at] kl [dot] wtf>
+
+# DANCTNIX: Applied patch no. 1 from
+#   https://gitlab.archlinux.org/archlinux/packaging/packages/greetd/-/merge_requests/1
+
+pkgbase=greetd
+pkgname=($pkgbase $pkgbase-agreety)
+pkgver=0.10.3
+pkgrel=2.1
+pkgdesc='Generic greeter daemon'
+arch=(x86_64 armv7h aarch64)
+url="https://git.sr.ht/~kennylevinsen/$pkgbase"
+license=(GPL-3.0-only)
+depends=(glibc
+         libgcc
+         systemd)
+makedepends=(cargo
+             scdoc)
+# optdepends=('greetd-gtkgreet: Simple GTK based greeter'
+#             'greetd-dlm: Dumb Login Manager'
+#             'greetd-wlgreet: Wayland greeter')
+#             'greetd-tuigreet: A console UI greeter')
+#             'greetd-regreet: Wayland greeter')
+_archive="$pkgbase-$pkgver"
+install=greetd.install
+source=("$_archive.tar.gz::$url/archive/$pkgver.tar.gz"
+        "$pkgbase.sysusers"
+        "$pkgbase.tmpfiles"
+        "$pkgbase.pam")
+sha256sums=('ee5cb70e0add4ca9c9fe57e47581ab0002d44c07743fb5492469f3b570db640b'
+            '4141c86b6446a9bcb21b00e03a7242cdc939d6ce39ef9048d1d646c064794893'
+            '9aa3ca619064a346cca42ada4f4b198cabbc7789cbe1d035c486b5d79a133d7d'
+            '993a3096c2b113e6800f2abbd5d4233ebf1a97eef423990d3187d665d3490b92')
+
+prepare() {
+	cd "$_archive"
+	sed -i -e '/feature.doc_cfg/d' greetd_ipc/src/lib.rs
+	cargo fetch --locked --target "$(rustc --print host-tuple)"
+}
+
+build() {
+	cd "$_archive"
+	cargo build --frozen --release --all-features
+	make -C man all
+}
+
+check() {
+	cd "$_archive"
+	cargo test --frozen --all-features
+}
+
+package_greetd() {
+	# The default config uses agreety, so even though people can substitute
+	# other packages that provide a greeter we should keep the agreety dependency
+	# until installing a different one would work without manual intervention.
+	depends+=("$pkgbase-agreety"
+	          "$pkgbase-greeter"
+	          pam)
+	backup=("etc/$pkgbase/config.toml"
+	        "etc/pam.d/$pkgbase")
+	cd "$_archive"
+	install -Dm0755 -t "$pkgdir/usr/bin/" "target/release/$pkgname"
+	install -Dm0644 -t "$pkgdir/usr/lib/systemd/system/" "$pkgname.service"
+	install -Dm0644 -t "$pkgdir/etc/$pkgname/" config.toml
+	install -Dm0644 "../$pkgname.pam" "$pkgdir/etc/pam.d/$pkgname"
+	install -Dm0644 "../$pkgname.sysusers" "$pkgdir/usr/lib/sysusers.d/$pkgname.conf"
+	install -Dm0644 "../$pkgname.tmpfiles" "$pkgdir/usr/lib/tmpfiles.d/$pkgname.conf"
+	make -C man DESTDIR="$pkgdir" PREFIX=/usr install
+	find "$pkgdir" -type f -name '*agreety*' -delete
+}
+
+package_greetd-agreety() {
+	depends=(glibc
+	         libgcc
+	         "$pkgbase")
+	provides=("$pkgbase-greeter")
+	cd "$_archive"
+	install -Dm0755 -t "$pkgdir/usr/bin/" "target/release/${pkgname#*-}"
+	make -C man DESTDIR="$pkgdir" PREFIX=/usr install
+	find "$pkgdir" -type f -name '*greetd*' -delete
+}
