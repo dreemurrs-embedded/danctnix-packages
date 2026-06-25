@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=device-pine64-pinetab2
 pkgver=0.2
-pkgrel=6
+pkgrel=7
 pkgdesc="PineTab 2 device package"
 arch=(aarch64)
 url="https://github.com/dreemurrs-embedded/Pine64-Arch"
@@ -17,12 +17,14 @@ source=(machine-info
     phoc.ini
     99-pinetab2-accel.rules
     panfrost-gl3.sh
+    pt2-kwinvars.sh
 )
 
 package() {
     install -Dm644 "$srcdir"/machine-info "$pkgdir"/etc/machine-info
     install -Dm644 "$srcdir"/gsk-renderer-gl.sh -t "$pkgdir"/etc/profile.d/
     install -Dm644 "$srcdir"/panfrost-gl3.sh -t "$pkgdir"/etc/profile.d/
+    install -Dm644 "$srcdir"/pt2-kwinvars.sh -t "$pkgdir"/etc/profile.d/
 
     install -Dm644 "$srcdir"/99-pinetab2-accel.rules -t "$pkgdir"/usr/lib/udev/rules.d/
 
@@ -42,4 +44,5 @@ md5sums=('bf6d4aa77990277b73ab139d1e8fea09'
          '2818ea269586a19b26df60ef43ba8e98'
          'ecd8742a921d805e6756abc522da1dba'
          'b8ce72e965d5c21499edc0ba1700c01a'
-         'd4056da3ae2da109cc2c056796684419')
+         'd4056da3ae2da109cc2c056796684419'
+         'b10f4e7282e116c773b272d328d31687')

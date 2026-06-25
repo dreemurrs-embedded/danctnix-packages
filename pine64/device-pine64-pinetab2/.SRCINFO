@@ -1,7 +1,7 @@
 pkgbase = device-pine64-pinetab2
 	pkgdesc = PineTab 2 device package
 	pkgver = 0.2
-	pkgrel = 6
+	pkgrel = 7
 	url = https://github.com/dreemurrs-embedded/Pine64-Arch
 	install = device-pine64-pinetab2.install
 	arch = aarch64
@@ -16,6 +16,7 @@ pkgbase = device-pine64-pinetab2
 	source = phoc.ini
 	source = 99-pinetab2-accel.rules
 	source = panfrost-gl3.sh
+	source = pt2-kwinvars.sh
 	md5sums = bf6d4aa77990277b73ab139d1e8fea09
 	md5sums = df623da01912f5ce89c178639fc22656
 	md5sums = cd17d8d80b01d88f7ec2a948f3398dff
@@ -23,5 +24,6 @@ pkgbase = device-pine64-pinetab2
 	md5sums = ecd8742a921d805e6756abc522da1dba
 	md5sums = b8ce72e965d5c21499edc0ba1700c01a
 	md5sums = d4056da3ae2da109cc2c056796684419
+	md5sums = b10f4e7282e116c773b272d328d31687
 
 pkgname = device-pine64-pinetab2
