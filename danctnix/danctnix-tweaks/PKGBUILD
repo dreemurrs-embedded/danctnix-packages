@@ -2,7 +2,7 @@
 
 pkgname=danctnix-tweaks
 pkgver=0.3
-pkgrel=8
+pkgrel=9
 pkgdesc="Tweaks made to DanctNIX Mobile."
 arch=(any)
 url="https://danctnix.org"
@@ -15,6 +15,7 @@ source=(
   packagekit-rm-lock.service
   blacklist-dirtyfrag.conf
   systemd-modemmanager-suspend.conf
+  80-danctnix.preset
 )
 
 package() {
@@ -23,6 +24,7 @@ package() {
   # Limit log size to 64 MB
   install -Dm644 -t "$pkgdir/usr/lib/systemd/journald.conf.d" "00-journal-size.conf"
   install -Dm644 -t "$pkgdir/usr/lib/systemd/journald.conf.d" "00-logtoram.conf"
+  install -Dm644 -t "$pkgdir/usr/lib/systemd/system-preset" "80-danctnix.preset"
 
   # modemmanger suspend
   install -Dm644 -t "$pkgdir/usr/lib/systemd/system/ModemManager.service.d" "systemd-modemmanager-suspend.conf"
@@ -42,4 +44,5 @@ md5sums=('3b3ccac2ebb5ada20d81f758c1591a19'
          '4e060d406b742a03336224389c2e648a'
          '002308e4f5d9c10fade7eec8cfcde1b0'
          '4927c5910ec3f3757bbde25cdd1d950f'
-         '55807722c1c07aed8349499b93112d93')
+         '55807722c1c07aed8349499b93112d93'
+         'aba09a452becc6dfef44aad9cc4e8b9f')

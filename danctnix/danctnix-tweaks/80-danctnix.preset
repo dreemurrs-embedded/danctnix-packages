@@ -1,0 +1,6 @@
+disable systemd-networkd.service
+disable systemd-networkd-wait-online.service
+disable systemd-resolved.service
+
+enable NetworkManager.service
+enable fstrim.timer
