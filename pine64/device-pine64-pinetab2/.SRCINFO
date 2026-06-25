@@ -1,12 +1,13 @@
 pkgbase = device-pine64-pinetab2
 	pkgdesc = PineTab 2 device package
 	pkgver = 0.2
-	pkgrel = 7
+	pkgrel = 8
 	url = https://github.com/dreemurrs-embedded/Pine64-Arch
 	install = device-pine64-pinetab2.install
 	arch = aarch64
 	license = MIT
 	depends = bes2600-firmware
+	depends = danctnix-tweaks
 	depends = linux-pinetab2
 	depends = uboot-pinetab2
 	source = machine-info
