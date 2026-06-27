@@ -1,7 +1,7 @@
 pkgbase = greetd-phrog
 	pkgdesc = Mobile device greeter
 	pkgver = 0.50.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/samcday/phrog
 	arch = x86_64
 	arch = armv7h
@@ -19,7 +19,7 @@ pkgbase = greetd-phrog
 	source = greetd-config.toml
 	source = phrog.service
 	b2sums = 55b53e52c6b80dcb4ab16054380fc03e90904398c5ca75f65f08254f74d2fd3eb22322d57b79dd8923c929216ce3de837e5bcfc39e9471b82f73946338f57a74
-	b2sums = 337ca7add6c6220c05e4fd89eb4f964b0ec962c3356922b195a4ad07b7067a06974c1972b4b32807e25a40d72f7f00545fd1c895b8438e3f1a58b3fb4de40c39
+	b2sums = 23abf35246a7568d512917c2870ad828619ae83c4534ebd35d249028586ac685e11e3a1854a6b186b61e4ae1834bed6c6fd81b1d842b2e3286fec5fcd6740d1a
 	b2sums = 9ab649e23b8e35ec309ab41295aa504a7c10aed1555b61a59694f9e6104f085abb9ea06d77f80495df40b454ed65dec82fd15448460cdf7e4ef8dd2444cff4ad
 
 pkgname = greetd-phrog
