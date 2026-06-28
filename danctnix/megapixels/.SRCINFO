@@ -1,7 +1,7 @@
 pkgbase = megapixels
 	pkgdesc = The Linux-phone camera application
 	pkgver = 2.1.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://gitlab.com/megapixels-org/Megapixels
 	arch = x86_64
 	arch = armv7h
@@ -25,7 +25,9 @@ pkgbase = megapixels
 	replaces = gnome-camera
 	source = https://gitlab.com/megapixels-org/Megapixels/-/archive/2.1.0/Megapixels-2.1.0.tar.gz
 	source = 90-megapixels.rules
+	source = increase_buffer.patch
 	sha256sums = e942262d075055e3c388803bc722ec2333f9c769c346603e3bd3619649bb5a26
 	sha256sums = c9ff69c5963f6231ac6a7de5adc3e0327f47b501de9b084b49546bfb00e7fc58
+	sha256sums = e2a243bae16a113d9886c8f5101cdbc6502474792d2e052cd268f705ecdec2ca
 
 pkgname = megapixels

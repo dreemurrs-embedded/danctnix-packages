@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=megapixels
 pkgver=2.1.0
-pkgrel=1
+pkgrel=2
 pkgdesc="The Linux-phone camera application"
 url="https://gitlab.com/megapixels-org/Megapixels"
 license=('GPL-3.0-or-later')
@@ -22,9 +22,16 @@ makedepends=('gperf' 'meson' 'ninja')
 optdepends=('postprocessd: additional postprocess config')
 replaces=('pinhole' 'gnome-camera')
 source=("https://gitlab.com/megapixels-org/Megapixels/-/archive/${pkgver}/Megapixels-${pkgver}.tar.gz"
-        '90-megapixels.rules')
+        '90-megapixels.rules'
+        'increase_buffer.patch')
 sha256sums=('e942262d075055e3c388803bc722ec2333f9c769c346603e3bd3619649bb5a26'
-            'c9ff69c5963f6231ac6a7de5adc3e0327f47b501de9b084b49546bfb00e7fc58')
+            'c9ff69c5963f6231ac6a7de5adc3e0327f47b501de9b084b49546bfb00e7fc58'
+            'e2a243bae16a113d9886c8f5101cdbc6502474792d2e052cd268f705ecdec2ca')
+
+prepare() {
+    cd ${pkgname^}-$pkgver
+    patch -p1 < ../increase_buffer.patch
+}
 
 build() {
     arch-meson ${pkgname^}-$pkgver build

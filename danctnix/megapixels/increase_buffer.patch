@@ -1,0 +1,15 @@
+# Temporary workaround suggested by Martijn..
+
+diff --git a/src/process_pipeline.c b/src/process_pipeline.c
+index 4b37afb..32fee78 100644
+--- a/src/process_pipeline.c
++++ b/src/process_pipeline.c
+@@ -203,7 +203,7 @@ mp_process_pipeline_sync()
+         mp_pipeline_sync(pipeline);
+ }
+ 
+-#define NUM_BUFFERS 4
++#define NUM_BUFFERS 6
+ 
+ struct _MPProcessPipelineBuffer {
+         GLuint texture_id;
