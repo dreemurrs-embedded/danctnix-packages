@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export KWIN_COMPOSE=O2ES
+export KWIN_PERSISTENT_VBO=1

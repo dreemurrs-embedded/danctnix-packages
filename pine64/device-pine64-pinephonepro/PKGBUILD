@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=device-pine64-pinephonepro
 pkgver=0.4
-pkgrel=4
+pkgrel=5
 pkgdesc="PinePhone Pro device package"
 arch=(aarch64)
 url="https://github.com/dreemurrs-embedded/Pine64-Arch"
@@ -15,7 +15,9 @@ source=(boot.txt
         12_mobile-pinephone.gschema.override
         pinephone-suspend-hook.sh
         machine-info
-        pulseaudio-pinetweaks.conf)
+        pulseaudio-pinetweaks.conf
+        panfrost-gl3.sh
+        pt2-kwinvars.sh)
 
 package() {
     # Install boot script and mkscr, we've moved on to Tow-Boot.
@@ -38,6 +40,9 @@ package() {
 
     install -Dm644 "$srcdir"/pulseaudio-pinetweaks.conf \
         "$pkgdir"/etc/pulse/daemon.conf.d/pinetweaks.conf
+
+    install -Dm644 "$srcdir"/panfrost-gl3.sh -t "$pkgdir"/etc/profile.d/
+    install -Dm644 "$srcdir"/pt2-kwinvars.sh -t "$pkgdir"/etc/profile.d/
 }
 
 md5sums=('8511c66ce930618994635a72ddd6a67f'
@@ -46,4 +51,6 @@ md5sums=('8511c66ce930618994635a72ddd6a67f'
          '64752ddac7886945f8c5ad0d9cb09749'
          'b0912b95d7d810a0f161d9bd79fc162b'
          'a3414404885e67eadef3c22ef83034df'
-         '1504e684e5a2aec439e0674cdfc9d3c1')
+         '1504e684e5a2aec439e0674cdfc9d3c1'
+         'd4056da3ae2da109cc2c056796684419'
+         'b10f4e7282e116c773b272d328d31687')
