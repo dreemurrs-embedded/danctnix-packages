@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=device-pine64-pinephone
 pkgver=0.2
-pkgrel=7
+pkgrel=8
 pkgdesc="PinePhone device package"
 arch=(aarch64)
 url="https://github.com/dreemurrs-embedded/Pine64-Arch"
@@ -14,7 +14,8 @@ source=(10-proximity.rules
         12_mobile-pinephone.gschema.override
         machine-info
         pinephone-suspend-hook.sh
-        pulseaudio-pinetweaks.conf)
+        pulseaudio-pinetweaks.conf
+        blacklist-rtw8723cs.conf)
 
 package() {
   # Kanged from Mobian, this is to make iio-sensor-proxy works with proximity sensor.
@@ -32,6 +33,8 @@ package() {
   install -Dm644 "$srcdir"/machine-info "$pkgdir"/etc/machine-info
 
   install -Dm644 "$srcdir"/pulseaudio-pinetweaks.conf "$pkgdir"/etc/pulse/daemon.conf.d/pinetweaks.conf
+
+  install -Dm644 -t "$pkgdir"/etc/modprobe.d "$srcdir"/blacklist-rtw8723cs.conf
 }
 
 md5sums=('b72ff096c022588f72c226283ac328bd'
@@ -39,4 +42,5 @@ md5sums=('b72ff096c022588f72c226283ac328bd'
          '64752ddac7886945f8c5ad0d9cb09749'
          'b53781dde1d7a9a44e5076f3be463570'
          'b0912b95d7d810a0f161d9bd79fc162b'
-         '1504e684e5a2aec439e0674cdfc9d3c1')
+         '1504e684e5a2aec439e0674cdfc9d3c1'
+         '67b01e6304228725c3a971065feaa7ce')
