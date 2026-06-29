@@ -5,12 +5,12 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=6.18.9
+pkgver=6.18.37
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
 license=(GPL-2.0-only)
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 'cpio' 'pahole')
+makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 'cpio' 'pahole' 'xz')
 options=('!strip')
 
 # Source
@@ -18,6 +18,7 @@ _tag="93ef89e0f2e895c49d7973fed7f4cb06b524ddf9"
 source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar.gz"
         'config'
         'linux.preset'
+        '0001-Upgrade-from-6.18.9-6.18.37.patch.xz'
         # Arch Linux upstream patches
         'ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch'
         # PinePhone Patches
@@ -42,6 +43,8 @@ prepare() {
       msg2 "Applying patch: $src..."
       patch -Np1 < "../$src"
   done
+
+  xzcat ../0001-Upgrade-from-6.18.9-6.18.37.patch.xz | patch -Np1
 
   cat "${srcdir}/config" > ./.config
 }
@@ -207,8 +210,9 @@ for _p in "${pkgname[@]}"; do
 done
 
 md5sums=('b17f8179ea65d5a57e858269f1abd36c'
-         '5bd9c081f0a170ed5242b5c9c1881402'
+         '9451748aecf78756aa59286c461d8935'
          '86d4a35722b5410e3b29fc92dae15d4b'
+         '679b004a7d72de02404b79dadf657d7d'
          'ebee5494287dbeec8f76da0e39b9d6eb'
          '571aee8d8a58c719288fee4185ab1713'
          'da2ad89730c2fce222ca0e286585a868'
