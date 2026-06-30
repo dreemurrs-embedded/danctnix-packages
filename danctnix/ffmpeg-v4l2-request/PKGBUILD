@@ -17,7 +17,7 @@
 
 pkgname=ffmpeg-v4l2-request
 pkgver=8.1
-pkgrel=3
+pkgrel=4
 epoch=2
 pkgdesc='Complete solution to record, convert and stream audio and video'
 arch=(x86_64 armv7h aarch64)
