@@ -2,16 +2,20 @@
 # Contributor: Bernhard Landauer <oberon@manjaro.org>
 
 pkgname=plasma-phone-settings
-pkgver=r75.648f779
-pkgrel=4
+pkgver=r76.10c1aff
+pkgrel=1
 arch=('any')
 url="https://invent.kde.org/plasma-mobile/plasma-phone-settings"
 license=('CC0-1.0')
 pkgdesc='Configuration files for Plasma Mobile deployments'
 makedepends=('git')
 install=$pkgname.install
-source=("plasma-phone-settings::git+https://invent.kde.org/plasma-mobile/plasma-phone-settings.git")
-sha256sums=('SKIP')
+source=(
+  "plasma-phone-settings::git+https://invent.kde.org/plasma-mobile/plasma-phone-settings.git"
+  'org.kde.plasma.mobile.homescreen.folio.js'
+)
+sha256sums=('SKIP'
+            'e3b5a39e51eb6be2ec097eac30cbbf89ff2c774289155e0e5e84cda501458e7e')
 
 pkgver() {
   cd "$pkgname"
@@ -31,4 +35,7 @@ package() {
   mkdir -p $pkgdir/usr/lib/systemd/user/default.target.wants
   ln -sfv /usr/lib/systemd/user/pipewire.service \
       $pkgdir/usr/lib/systemd/user/default.target.wants/pipewire.service
+
+  install -Dm644 "$srcdir"/org.kde.plasma.mobile.homescreen.folio.js \
+    "$pkgdir"/usr/share/plasma/look-and-feel/org.kde.breeze.mobile/contents/plasmoidsetupscripts/org.kde.plasma.mobile.homescreen.folio.js
 }

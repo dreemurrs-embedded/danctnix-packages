@@ -1,14 +1,16 @@
 pkgbase = plasma-phone-settings
 	pkgdesc = Configuration files for Plasma Mobile deployments
-	pkgver = r75.648f779
-	pkgrel = 4
+	pkgver = r76.10c1aff
+	pkgrel = 1
 	url = https://invent.kde.org/plasma-mobile/plasma-phone-settings
 	install = plasma-phone-settings.install
 	arch = any
 	license = CC0-1.0
 	makedepends = git
 	source = plasma-phone-settings::git+https://invent.kde.org/plasma-mobile/plasma-phone-settings.git
+	source = org.kde.plasma.mobile.homescreen.folio.js
 	sha256sums = SKIP
+	sha256sums = e3b5a39e51eb6be2ec097eac30cbbf89ff2c774289155e0e5e84cda501458e7e
 
 pkgname = plasma-phone-settings
 	optdepends = modemmanager: Telephony capabilities
