@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=megapixels
 pkgver=2.1.0
-pkgrel=2
+pkgrel=3
 pkgdesc="The Linux-phone camera application"
 url="https://gitlab.com/megapixels-org/Megapixels"
 license=('GPL-3.0-or-later')
@@ -13,7 +13,7 @@ depends=(
     'imagemagick'
     'libdng'
     'libepoxy'
-    'libjpeg'
+    'libjpeg-turbo'
     'libmegapixels'
     'libraw'
     'zbar'

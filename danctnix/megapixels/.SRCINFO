@@ -1,7 +1,7 @@
 pkgbase = megapixels
 	pkgdesc = The Linux-phone camera application
 	pkgver = 2.1.0
-	pkgrel = 2
+	pkgrel = 3
 	url = https://gitlab.com/megapixels-org/Megapixels
 	arch = x86_64
 	arch = armv7h
@@ -16,7 +16,7 @@ pkgbase = megapixels
 	depends = imagemagick
 	depends = libdng
 	depends = libepoxy
-	depends = libjpeg
+	depends = libjpeg-turbo
 	depends = libmegapixels
 	depends = libraw
 	depends = zbar
