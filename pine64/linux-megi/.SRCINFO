@@ -1,5 +1,5 @@
 pkgbase = linux-megi
-	pkgver = 6.18.37
+	pkgver = 6.18.38
 	pkgrel = 1
 	url = https://codeberg.org/megi/linux
 	arch = aarch64
@@ -20,15 +20,17 @@ pkgbase = linux-megi
 	source = config
 	source = linux.preset
 	source = 0001-Upgrade-from-6.18.9-6.18.37.patch.xz
+	source = https://cdn.kernel.org/pub/linux/kernel/v6.x/incr/patch-6.18.37-38.xz
 	source = ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
 	source = dts-pinephone-drop-modem-power-node.patch
 	source = dts-pinephone-pro-remove-modem-node.patch
 	source = dts-pinephone-pro-add-modem-ri.patch
 	source = Revert-arm64-allwinner-dts-a64-enable-K101-IM2BYL02.patch
 	md5sums = b17f8179ea65d5a57e858269f1abd36c
-	md5sums = 9451748aecf78756aa59286c461d8935
+	md5sums = 71d76c2c45622733b02cef5d493ff4f2
 	md5sums = 86d4a35722b5410e3b29fc92dae15d4b
 	md5sums = 679b004a7d72de02404b79dadf657d7d
+	md5sums = 98b207385d9988f05f041adcda95bfa3
 	md5sums = ebee5494287dbeec8f76da0e39b9d6eb
 	md5sums = 571aee8d8a58c719288fee4185ab1713
 	md5sums = da2ad89730c2fce222ca0e286585a868
@@ -43,7 +45,7 @@ pkgname = linux-megi
 	depends = mkinitcpio>=0.7
 	optdepends = crda: to set the correct wireless channels of your country
 	provides = kernel26
-	provides = linux=6.18.37
+	provides = linux=6.18.38
 	provides = WIREGUARD-MODULE
 	conflicts = linux
 	replaces = linux-pine64
@@ -52,6 +54,6 @@ pkgname = linux-megi
 pkgname = linux-megi-headers
 	pkgdesc = Header files and scripts for building modules for linux kernel - Megous Kernel
 	depends = pahole
-	provides = linux-headers=6.18.37
+	provides = linux-headers=6.18.38
 	conflicts = linux-headers
 	replaces = linux-pine64-headers
