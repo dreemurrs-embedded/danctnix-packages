@@ -1,6 +1,6 @@
 pkgbase = xdg-desktop-portal-phosh
 	pkgdesc = Backend implementation for xdg-desktop-portal for Phosh mobile environment
-	pkgver = 0.55.0
+	pkgver = 0.56.1
 	pkgrel = 1
 	url = https://phosh.mobi
 	arch = x86_64
@@ -17,10 +17,11 @@ pkgbase = xdg-desktop-portal-phosh
 	depends = gtk4
 	depends = libadwaita
 	depends = xdg-desktop-portal
-	source = https://sources.phosh.mobi/releases/xdg-desktop-portal-phosh/xdg-desktop-portal-phosh-0.55.0.tar.xz
-	source = https://sources.phosh.mobi/releases/xdg-desktop-portal-phosh/xdg-desktop-portal-phosh-0.55.0.tar.xz.asc
+	provides = xdg-desktop-portal-impl
+	source = https://sources.phosh.mobi/releases/xdg-desktop-portal-phosh/xdg-desktop-portal-phosh-0.56.1.tar.xz
+	source = https://sources.phosh.mobi/releases/xdg-desktop-portal-phosh/xdg-desktop-portal-phosh-0.56.1.tar.xz.asc
 	validpgpkeys = 0DB3932762F78E592F6522AFBB5A2C77584122D3
-	b2sums = 4ae0c1aeacece1b4bac0e2e14cfc922c747e164d8d6fedc6166299f67368db095e58214c696c9dc2bdbe8b569a232f7dc39cecd80551a98f86d0658ea02acf0e
+	b2sums = bc654b3a698a3f4b37e6f3b26e5672add552b1675f0325cd49fcaf93f651a81bb838000ee1e62b972232a248b150fa40852dc8afac1c245adaf76911ef4dbff7
 	b2sums = SKIP
 
 pkgname = xdg-desktop-portal-phosh
