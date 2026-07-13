@@ -1,7 +1,7 @@
 pkgbase = uboot-pinetab2
 	pkgdesc = U-Boot for PineTab 2
 	pkgver = 2026.04
-	pkgrel = 5
+	pkgrel = 6
 	url = http://www.denx.de/wiki/U-Boot/WebHome
 	install = uboot-pinetab2.install
 	arch = aarch64
@@ -29,7 +29,7 @@ pkgbase = uboot-pinetab2
 	md5sums = bc0fb36579d7dd49fe59e58561bccf92
 	md5sums = 60f502a0ba9ba167bb732bb327776e5d
 	md5sums = fdf6687808ae980404ee29fc4fe626fe
-	md5sums = ed65ec486f0e0dc9e9c3118dffaa3782
+	md5sums = 65462d6233b6bb9761c829a078da76b1
 	md5sums = 021623a04afd29ac3f368977140cfbfd
 	md5sums = ba8a770aba341e33afb0c7ce00df4b0d
 

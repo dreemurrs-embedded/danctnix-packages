@@ -4,7 +4,7 @@ buildarch=8
 
 pkgname=uboot-pinetab2
 pkgver=2026.04
-pkgrel=5
+pkgrel=6
 pkgdesc="U-Boot for PineTab 2"
 arch=('aarch64')
 url='http://www.denx.de/wiki/U-Boot/WebHome'
@@ -29,7 +29,7 @@ md5sums=('f0be5b9b87dcbc1ac7539ed0fdc2d468'
          'bc0fb36579d7dd49fe59e58561bccf92'
          '60f502a0ba9ba167bb732bb327776e5d'
          'fdf6687808ae980404ee29fc4fe626fe'
-         'ed65ec486f0e0dc9e9c3118dffaa3782'
+         '65462d6233b6bb9761c829a078da76b1'
          '021623a04afd29ac3f368977140cfbfd'
          'ba8a770aba341e33afb0c7ce00df4b0d')
 

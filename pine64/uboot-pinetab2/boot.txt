@@ -14,7 +14,14 @@ else
 	setenv bootdir "/boot"
 fi
 
-setenv bootargs loglevel=4 root=/dev/mmcblk${linux_mmcdev}p${rootpart} rw rootwait
+setenv bootargs loglevel=4 rw rootwait console=tty0
+
+if test -e mmc ${devnum}:1 encrypted.scr; then
+	load mmc ${devnum}:1 ${loadaddr} encrypted.scr
+	source ${loadaddr}
+else
+	setenv bootargs ${bootargs} root=/dev/mmcblk${linux_mmcdev}p${rootpart}
+fi
 
 echo "Loading kernel..."
 load mmc ${devnum}:1 ${ramdisk_addr_r} ${bootdir}/vmlinuz-linux-pinetab2
