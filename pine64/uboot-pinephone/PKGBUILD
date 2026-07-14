@@ -5,7 +5,7 @@ buildarch=8
 
 pkgname=uboot-pinephone
 pkgver=2026.04
-pkgrel=2
+pkgrel=3
 pkgdesc="U-Boot for PinePhone"
 arch=('aarch64')
 url='http://www.denx.de/wiki/U-Boot/WebHome'
@@ -24,15 +24,17 @@ source=("https://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
         'boot.txt'
         'mkscr'
         'update-u-boot'
-        'scp.bin')
+        'scp.bin'
+        'sun50i-a64-psci.dts')
 md5sums=('79f208e510be1602aaba446fcad3b028'
          '23ce1cb39cdb03653d3913671b87a71e'
          '3fc1e82b24c60a938a96e48b06984e7a'
          '98ad5f31b1d7ff2e6e03555f29ebc6e6'
-         '8d4ae37bd2bb889f7d13118736bfa1f3'
+         '9afd6645a972157ef8fb39ccb3ff9018'
          '021623a04afd29ac3f368977140cfbfd'
          '5f85361d1d5ce47ff11ec4009cc2e18a'
-         'c60f45624f84b2f087b9208381c8c235')
+         'c60f45624f84b2f087b9208381c8c235'
+         '2d997e7a34d01ba07deb1ddc3b2026c1')
 
 prepare() {
   cd u-boot-${pkgver/rc/-rc}
@@ -126,4 +128,6 @@ package() {
 
   cp ../boot.txt ../mkscr "${pkgdir}"/boot
   mkdir -p "${pkgdir}"/usr/bin && cp ../update-u-boot "${pkgdir}"/usr/bin
+
+  dtc -@ -I dts -O dtb -o "${pkgdir}"/boot/sun50i-a64-psci.dtbo ../sun50i-a64-psci.dts
 }

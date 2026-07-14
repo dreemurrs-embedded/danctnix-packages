@@ -1,0 +1,44 @@
+// Source: https://github.com/megous/linux/commit/9584b9c889dce3d58fcd465697d0a9857f764739
+/dts-v1/;
+/plugin/;
+
+&{/cpus} {
+
+	cpu@0 {
+		cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
+	};
+
+	cpu@1 {
+		cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
+	};
+
+	cpu@2 {
+		cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
+	};
+
+	cpu@3 {
+		cpu-idle-states = <&cpu_sleep>, <&cluster_sleep>;
+	};
+
+	idle-states {
+		entry-method = "psci";
+
+		cpu_sleep: cpu-sleep {
+			compatible = "arm,idle-state";
+			local-timer-stop;
+			entry-latency-us = <800>;
+			exit-latency-us = <1500>;
+			min-residency-us = <25000>;
+			arm,psci-suspend-param = <0x00010003>;
+		};
+
+		cluster_sleep: cluster-sleep {
+			compatible = "arm,idle-state";
+			local-timer-stop;
+			entry-latency-us = <850>;
+			exit-latency-us = <1500>;
+			min-residency-us = <50000>;
+			arm,psci-suspend-param = <0x01010013>;
+		};
+	};
+};
