@@ -5,7 +5,7 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=6.18.38
+pkgver=6.18.39
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
@@ -20,6 +20,7 @@ source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar
         'linux.preset'
         '0001-Upgrade-from-6.18.9-6.18.37.patch.xz'
         "https://cdn.kernel.org/pub/linux/kernel/v6.x/incr/patch-6.18.37-38.xz"
+        "https://cdn.kernel.org/pub/linux/kernel/v6.x/incr/patch-6.18.38-39.xz"
         # Arch Linux upstream patches
         'ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch'
         # PinePhone Patches
@@ -48,6 +49,7 @@ prepare() {
   xzcat ../0001-Upgrade-from-6.18.9-6.18.37.patch.xz | patch -Np1
 
   xzcat ../patch-6.18.37-38.xz | patch -Np1
+  xzcat ../patch-6.18.38-39.xz | patch -Np1
 
   cat "${srcdir}/config" > ./.config
 }
@@ -217,6 +219,7 @@ md5sums=('b17f8179ea65d5a57e858269f1abd36c'
          '86d4a35722b5410e3b29fc92dae15d4b'
          '679b004a7d72de02404b79dadf657d7d'
          '98b207385d9988f05f041adcda95bfa3'
+         'e8c3b83bcf4ff5eb4231d6beb64942c9'
          'ebee5494287dbeec8f76da0e39b9d6eb'
          '571aee8d8a58c719288fee4185ab1713'
          'da2ad89730c2fce222ca0e286585a868'
