@@ -1,0 +1,33 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 9962eed..326e363 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -10,7 +10,7 @@ pkg_check_modules(RAW REQUIRED libraw)
+ pkg_check_modules(TIFF REQUIRED libtiff-4)
+ pkg_check_modules(JPEG REQUIRED libjpeg)
+ pkg_check_modules(EXIF REQUIRED libexif)
+-pkg_check_modules(CV REQUIRED opencv4)
++pkg_check_modules(CV REQUIRED opencv5)
+ 
+ add_compile_options(-Wall -Wextra -pedantic)
+ 
+@@ -22,4 +22,4 @@ target_compile_options(postprocessd PUBLIC ${RAW_CFLAGS_OTHER} ${TIFF_CFLAGS_OTH
+ add_executable(postprocess-single single.c postprocess.c postprocess.h util.c util.h stacker.cpp stacker.h stackercpp.cpp stackercpp.h)
+ target_link_libraries(postprocess-single ${RAW_LIBRARIES} ${TIFF_LIBRARIES} ${JPEG_LIBRARIES} ${EXIF_LIBRARIES} ${CV_LIBRARIES})
+ target_include_directories(postprocess-single PUBLIC ${RAW_INCLUDE_DIRS} ${TIFF_INCLUDE_DIRS} ${JPEG_INCUDE_DIRS} ${EXIF_INCUDE_DIRS} ${CV_INCLUDE_DIRS})
+-target_compile_options(postprocess-single PUBLIC ${RAW_CFLAGS_OTHER} ${TIFF_CFLAGS_OTHER} ${JPEG_CFLAGS_OTHER} ${EXIF_CFLAGS_OTHER} ${CV_CFLAGS_OTHER})
+\ No newline at end of file
++target_compile_options(postprocess-single PUBLIC ${RAW_CFLAGS_OTHER} ${TIFF_CFLAGS_OTHER} ${JPEG_CFLAGS_OTHER} ${EXIF_CFLAGS_OTHER} ${CV_CFLAGS_OTHER})
+diff --git a/meson.build b/meson.build
+index fa7b0a2..bd74a61 100644
+--- a/meson.build
++++ b/meson.build
+@@ -8,7 +8,7 @@ raw = dependency('libraw')
+ tiff = dependency('libtiff-4')
+ jpeg = dependency('libjpeg')
+ exif = dependency('libexif')
+-cv = dependency('opencv4')
++cv = dependency('opencv5')
+ 
+ executable('postprocessd', 'main.c','postprocess.c', 'stacker.cpp', 'stackercpp.cpp', 'util.c',
+     dependencies: [raw, tiff, jpeg, exif, cv],

@@ -1,15 +1,22 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=postprocessd
 pkgver=0.3.0
-pkgrel=5
+pkgrel=6
 pkgdesc="A native postprocessing pipeline for Megapixels"
 url="https://git.sr.ht/~martijnbraam/postprocessd"
 license=('GPL')
 arch=('x86_64' 'armv7h' 'aarch64')
 depends=('libraw' 'libtiff' 'libjpeg-turbo' 'libexif' 'opencv')
 makedepends=('scdoc' 'meson' 'ninja')
-source=("$pkgname-$pkgver.tar.gz::https://git.sr.ht/~martijnbraam/postprocessd/archive/$pkgver.tar.gz")
-sha256sums=('4fa41f0ebd0321d3abd51084b3546c97bef95f34ed0614c01d77250d9e5274c3')
+source=("$pkgname-$pkgver.tar.gz::https://git.sr.ht/~martijnbraam/postprocessd/archive/$pkgver.tar.gz"
+        'opencv5.patch')
+sha256sums=('4fa41f0ebd0321d3abd51084b3546c97bef95f34ed0614c01d77250d9e5274c3'
+            '4c72f6e36cae22406dddb4a1fc6174cf554244413b55de8d9fcaa33373d35dd5')
+
+prepare() {
+    cd $pkgname-$pkgver
+    patch -p1 < ../opencv5.patch
+}
 
 build() {
     arch-meson $pkgname-$pkgver build
