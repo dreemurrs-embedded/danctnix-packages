@@ -4,8 +4,8 @@
 buildarch=8
 
 pkgname=uboot-pinephone
-pkgver=2026.04
-pkgrel=3
+pkgver=2026.07
+pkgrel=1
 pkgdesc="U-Boot for PinePhone"
 arch=('aarch64')
 url='http://www.denx.de/wiki/U-Boot/WebHome'
@@ -26,7 +26,7 @@ source=("https://ftp.denx.de/pub/u-boot/u-boot-${pkgver/rc/-rc}.tar.bz2"
         'update-u-boot'
         'scp.bin'
         'sun50i-a64-psci.dts')
-md5sums=('79f208e510be1602aaba446fcad3b028'
+md5sums=('336d4cb1452f2ed70da86da2d8560060'
          '23ce1cb39cdb03653d3913671b87a71e'
          '3fc1e82b24c60a938a96e48b06984e7a'
          '98ad5f31b1d7ff2e6e03555f29ebc6e6'
