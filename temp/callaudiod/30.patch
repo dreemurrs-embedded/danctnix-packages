@@ -1,0 +1,38 @@
+From 98f6eb698dba1e2064732d8eb95414190a2b5a52 Mon Sep 17 00:00:00 2001
+From: Dang Huynh <dang.huynh@mainlining.org>
+Date: Mon, 20 Jul 2026 10:15:34 +0000
+Subject: [PATCH] cad-pulse: Avoid a possible NULL dereference
+
+target_port may not return an available sink port, this outputs
+"no available output found!" into the log and return a NULL
+pointer.
+
+However, set_output_port does not check for a non-NULL pointer
+when printing a debug message. This will cause callaudiod to
+crash in some rare setups.
+
+This is a one line patch which adds a simple check for that,
+pa_sink_info does not need a check since it's already done at the
+beginning.
+---
+ src/cad-pulse.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/src/cad-pulse.c b/src/cad-pulse.c
+index 6ea4ea6..a69f03d 100644
+--- a/src/cad-pulse.c
++++ b/src/cad-pulse.c
+@@ -954,9 +954,8 @@ static void set_output_port(pa_context *ctx, const pa_sink_info *info, int eol,
+             target_port = get_available_sink_port(info, operation->pulse->speaker_port);
+     }
+ 
+-    g_debug("active port is '%s', target port is '%s'", info->active_port->name, target_port);
+-
+     if (target_port && g_strcmp0(info->active_port->name, target_port) != 0) {
++        g_debug("active port is '%s', target port is '%s'", info->active_port->name, target_port);
+         g_debug("switching to target port '%s'", target_port);
+         op = pa_context_set_sink_port_by_index(ctx, operation->pulse->sink_id,
+                                                target_port,
+-- 
+GitLab
+

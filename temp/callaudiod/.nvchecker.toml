@@ -1,0 +1,3 @@
+[callaudiod]
+source = "git"
+git = "https://gitlab.com/mobian1/callaudiod.git"
