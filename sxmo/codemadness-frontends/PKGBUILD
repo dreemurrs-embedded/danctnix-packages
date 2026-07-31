@@ -1,8 +1,9 @@
-# Maintainer: Aren <aren@peacevolution.org>
+# Maintainer: Raezroth <raezroth@noreply.codeberg.org>
+# Contributor: Aren <aren@peacevolution.org>
 # Contributor: Anjandev Momi <anjan@momi.ca>
 
 pkgname=codemadness-frontends
-pkgver=0.6
+pkgver=0.9
 pkgrel=1
 pkgdesc="Experimental (cli, web, and gopher) frontends for youtube, reddit, & duckduckgo"
 url="https://www.codemadness.org/idiotbox.html"
@@ -10,6 +11,7 @@ arch=('x86_64' 'armv7h' 'aarch64')
 license=('ISC')
 depends=('libressl')
 source=(https://codemadness.org/releases/frontends/frontends-$pkgver.tar.gz)
+sha256sums=('e9ee5b4895d2bbee7ccf0c682a45a97daa6142970685c5afc6fd2c1cb6ed194e')
 
 prepare() {
   cd frontends-$pkgver
@@ -33,11 +35,4 @@ package() {
   install -Dm755 youtube/cgi $pkgdir/usr/bin/youtube-cgi
   install -Dm755 youtube/gopher $pkgdir/usr/bin/youtube-gopher
   install -Dm755 youtube/cli $pkgdir/usr/bin/youtube-cli
-
-  install -Dm755 duckduckgo/gopher $pkgdir/usr/bin/duckduckgo-gopher
-  install -Dm755 duckduckgo/cli $pkgdir/usr/bin/duckduckgo-cli
-
-  install -Dm755 reddit/gopher $pkgdir/usr/bin/reddit-gopher
-  install -Dm755 reddit/cli $pkgdir/usr/bin/reddit-cli
 }
-sha256sums=('d0fea32daae0ddba8164af9a10fbefc1e55de88e52b2f46a142231d08c676715')
