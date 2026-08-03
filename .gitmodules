@@ -4,6 +4,3 @@
 [submodule "sxmo/pnc"]
 	path = sxmo/pnc
 	url = https://aur.archlinux.org/pnc.git
-[submodule "sxmo/lisgd"]
-	path = sxmo/lisgd
-	url = https://aur.archlinux.org/lisgd.git
