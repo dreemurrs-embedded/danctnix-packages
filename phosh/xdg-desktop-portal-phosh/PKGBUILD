@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=xdg-desktop-portal-phosh
-pkgver=0.56.1
+pkgver=0.57.0
 pkgrel=1
 pkgdesc="Backend implementation for xdg-desktop-portal for Phosh mobile environment"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -22,7 +22,7 @@ makedepends=(
 )
 provides=(xdg-desktop-portal-impl)
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc})
-b2sums=('bc654b3a698a3f4b37e6f3b26e5672add552b1675f0325cd49fcaf93f651a81bb838000ee1e62b972232a248b150fa40852dc8afac1c245adaf76911ef4dbff7'
+b2sums=('b507882c1bbc292f04d7c8129ebefb8dfe3f48d289613ea6165122e5f5db1698980b50088458f40a43d3e29d65e413fd2cf02846a394ff123b774f7ac24b51e9'
         'SKIP')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
