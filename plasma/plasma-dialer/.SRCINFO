@@ -1,6 +1,6 @@
 pkgbase = plasma-dialer
 	pkgdesc = Phone Dialer for Plasma Mobile
-	pkgver = 6.7.1
+	pkgver = 6.7.4
 	pkgrel = 1
 	epoch = 1
 	url = https://community.kde.org/Plasma/Mobile
@@ -24,14 +24,13 @@ pkgbase = plasma-dialer
 	depends = kpeople
 	depends = libphonenumber
 	depends = modemmanager-qt
-	depends = qtmpris
-	source = https://download.kde.org/stable/plasma/6.7.1/plasma-dialer-6.7.1.tar.xz
-	source = https://download.kde.org/stable/plasma/6.7.1/plasma-dialer-6.7.1.tar.xz.sig
+	source = https://download.kde.org/stable/plasma/6.7.4/plasma-dialer-6.7.4.tar.xz
+	source = https://download.kde.org/stable/plasma/6.7.4/plasma-dialer-6.7.4.tar.xz.sig
 	validpgpkeys = E0A3EB202F8E57528E13E72FD7574483BB57B18D
 	validpgpkeys = 0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D
 	validpgpkeys = D07BD8662C56CB291B316EB2F5675605C74E02CF
 	validpgpkeys = 1FA881591C26B276D7A5518EEAAF29B42A678C20
-	sha256sums = d41a629f2759fcdbe25ee2d0db5ad4d58df1657b80efdd5a57c2b93670aadf28
+	sha256sums = bef22243d64bb6b3eddec3db1334d9b3deebc0ea065e71e058aefad1350eb587
 	sha256sums = SKIP
 
 pkgname = plasma-dialer
