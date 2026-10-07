@@ -1,6 +1,6 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phoc
-pkgver=0.57.0
+pkgver=0.58.0
 pkgrel=1
 pkgdesc="wlroots based Wayland compositor for mobile phones"
 arch=('x86_64' 'armv7h' 'aarch64')
@@ -31,13 +31,18 @@ makedepends=(
 )
 checkdepends=('xorg-server-xvfb')
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc})
-b2sums=('eea36a6d45bba5c98c8cb4d7089db8866f239973e8515d816aa0449e19d5d08cdbd179dbedda785724cb17b44e5545e336865ce30cc1e3efab19ad8164fd9bc9'
+b2sums=('637cd5b91ef9eeca27ccf3b4c2e6fabdb50e09f5bd945658d69a18666aaad350326900eeba1e191972d16484d6a0d9de84f80d3f81706687a3e31de8ce03945a'
         'SKIP')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
 
 prepare() {
   cd $pkgname-$pkgver/subprojects/wlroots-0.20.x
   patch -p1 -i "../packagefiles/wlroots/0001-Revert-layer-shell-error-on-0-dimension-without-anch.patch"
+
+  patch -p1 -i "../packagefiles/wlroots/text-input-v2/0001-text-input-v3-Introduce-version.patch"
+  patch -p1 -i "../packagefiles/wlroots/text-input-v2/0002-text-input-Add-version-2-events.patch"
+  patch -p1 -i "../packagefiles/wlroots/text-input-v2/0003-text-input-v3-Add-version-2-requests.patch"
+  patch -p1 -i "../packagefiles/wlroots/text-input-v2/0004-text-input-v3-Bump-protocol-version-to-2.patch"
 }
 
 build() {
