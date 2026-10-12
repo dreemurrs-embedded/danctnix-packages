@@ -1,7 +1,7 @@
 pkgbase = xdg-desktop-portal-phosh
 	pkgdesc = Backend implementation for xdg-desktop-portal for Phosh mobile environment
 	pkgver = 0.58.0
-	pkgrel = 1
+	pkgrel = 2
 	url = https://phosh.mobi
 	arch = x86_64
 	arch = armv7h

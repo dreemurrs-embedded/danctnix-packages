@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=xdg-desktop-portal-phosh
 pkgver=0.58.0
-pkgrel=1
+pkgrel=2
 pkgdesc="Backend implementation for xdg-desktop-portal for Phosh mobile environment"
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://phosh.mobi"
