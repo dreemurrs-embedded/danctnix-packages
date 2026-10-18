@@ -1,0 +1,15 @@
+post_upgrade() {
+	if usr/bin/pacman-key -l >/dev/null 2>&1; then
+		usr/bin/pacman-key --populate archports-drzee
+	fi
+
+        if [ -f /usr/share/pacman/keyrings/drzee.gpg ]; then
+		rm /usr/share/pacman/keyrings/drzee.gpg
+	fi
+}
+
+post_install() {
+	if [ -x usr/bin/pacman-key ]; then
+		post_upgrade
+	fi
+}

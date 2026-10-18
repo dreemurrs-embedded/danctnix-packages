@@ -1,0 +1,33 @@
+# Maintainer: Danct12 <danct12@disroot.org>
+
+pkgname=archports-keyring
+pkgver=20261018
+pkgrel=1
+pkgdesc="Arch Linux Ports GPG keyring"
+arch=('any')
+url="https://danctnix.org"
+license=('GPL-3.0-or-later')
+install=$pkgname.install
+source=(archports-drzee.gpg
+        archports-revoked
+        archports-trusted
+        $pkgname.install)
+
+sha512sums=('d73150d116cf3e74ad484d738e593df057dc375bae9cb49e274b1ee2f7527911fa2e2e800c12f6b10066355a6c78731d9a055360ebb6254aab48ae91c642b512'
+            'cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e'
+            '77b13625027013e700bd7d1d752c00e04671d6fc74536aea156ac68064fcbd87b638d6af8bab15290dae09835a7250361b0d29c948bd5f0b722ef4b28202c46e'
+            '7afe6b2a87abfcc7df4f5850eaad3e39733d4117b50b6fb61f16ece19190a2ad024afb6d7e80f01330cf2c672e0efded871609044eadacc692c16c74c2fe8d5b')
+
+pkgver() {
+    date +%Y%m%d
+}
+
+package() {
+    local destdir=usr/share/pacman/keyrings
+
+    install -d $pkgdir/$destdir
+
+    install -Dm644 archports-drzee.gpg $pkgdir/$destdir/
+
+    install -Dm644 archports{-trusted,-revoked} $pkgdir/$destdir/
+}
