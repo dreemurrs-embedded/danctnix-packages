@@ -2,13 +2,13 @@
 
 pkgname=archports-keyring
 pkgver=20261018
-pkgrel=1
+pkgrel=2
 pkgdesc="Arch Linux Ports GPG keyring"
 arch=('any')
 url="https://danctnix.org"
 license=('GPL-3.0-or-later')
 install=$pkgname.install
-source=(archports-drzee.gpg
+source=(archports.gpg
         archports-revoked
         archports-trusted
         $pkgname.install)
@@ -26,8 +26,5 @@ package() {
     local destdir=usr/share/pacman/keyrings
 
     install -d $pkgdir/$destdir
-
-    install -Dm644 archports-drzee.gpg $pkgdir/$destdir/
-
-    install -Dm644 archports{-trusted,-revoked} $pkgdir/$destdir/
+    install -Dm644 archports{.gpg,-trusted,-revoked} $pkgdir/$destdir/
 }

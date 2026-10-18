@@ -1,12 +1,12 @@
 pkgbase = archports-keyring
 	pkgdesc = Arch Linux Ports GPG keyring
 	pkgver = 20261018
-	pkgrel = 1
+	pkgrel = 2
 	url = https://danctnix.org
 	install = archports-keyring.install
 	arch = any
 	license = GPL-3.0-or-later
-	source = archports-drzee.gpg
+	source = archports.gpg
 	source = archports-revoked
 	source = archports-trusted
 	source = archports-keyring.install
