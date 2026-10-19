@@ -4,7 +4,7 @@
 
 pkgname=callaudiod
 pkgver=0.1.99
-pkgrel=3.1
+pkgrel=3.2
 pkgdesc='Call audio routing daemon (deprecated)'
 arch=(x86_64 armv7h aarch64)
 url='https://gitlab.com/mobian1/callaudiod'
@@ -25,9 +25,11 @@ makedepends=(
 source=(
   "git+https://gitlab.com/mobian1/callaudiod.git#tag=${pkgver/[a-z]/.&}"
   "https://gitlab.com/mobian1/callaudiod/-/merge_requests/30.patch"
+  "0001-cad-pulse-Correct-PipeWire-server-name.patch"
 )
 b2sums=('8f123d321bb6ffbe1e5d60f768306212fcd8c43b8a3de3eeaffb7edc0d2376a76a6213b54c047f3acd35fdbee449b02ee780e0bc127f25f42946ab3b234607cc'
-        'acc5cf1c80e2584e6a9465ce62963441fdb4f8d792538548869a32f38d11655094fd6a5acfa3f5f227e8c8783dc495106f298104729dc917f32793f67883b4f7')
+        'acc5cf1c80e2584e6a9465ce62963441fdb4f8d792538548869a32f38d11655094fd6a5acfa3f5f227e8c8783dc495106f298104729dc917f32793f67883b4f7'
+        'd9db63c1da908d8cf8c394993261682dd6f05517e4abaff2953ecab3238d8b9460c6a29961b4e5d623322bc6cc629917548acedf211477bd5923380a35d2bc27')
 
 prepare() {
   cd $pkgname
@@ -37,6 +39,7 @@ prepare() {
   git cherry-pick -n fe87a9267f1e074d19055d7a236e6b6f759af11d
 
   patch -p1 < ../30.patch
+  patch -p1 < ../0001-cad-pulse-Correct-PipeWire-server-name.patch
 }
 
 build() {

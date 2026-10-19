@@ -1,0 +1,34 @@
+From 995447f1463ee097b0f7e030cc0cf9007f61308a Mon Sep 17 00:00:00 2001
+From: Danct12 <danct12@disroot.org>
+Date: Mon, 19 Oct 2026 07:37:19 +0000
+Subject: [PATCH] cad-pulse: Correct PipeWire server name
+
+PipeWire reports the PulseAudio server name as:
+"PulseAudio (on PipeWire 1.6.9)"
+
+Whereas, init_server_info() is searching for "Pipewire".
+
+Because g_strrstr() is a case-sensitive function, the search fails
+and the WirePlumber check never happened.
+
+Fixes: 1cc7552d79e3 ("Do not do routing when wireplumber is in charge of it")
+---
+ src/cad-pulse.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/cad-pulse.c b/src/cad-pulse.c
+index a69f03dc95b4..c643e9719c08 100644
+--- a/src/cad-pulse.c
++++ b/src/cad-pulse.c
+@@ -564,7 +564,7 @@ static void init_server_info(pa_context *ctx, const pa_server_info *info, void *
+     CadPulse *self = data;
+     static void *wireplumber_dll;
+ 
+-    if (g_strrstr(info->server_name, "Pipewire") == NULL)
++    if (g_strrstr(info->server_name, "PipeWire") == NULL)
+         return;
+ 
+     if (!wireplumber_dll)
+-- 
+2.56.0
+
