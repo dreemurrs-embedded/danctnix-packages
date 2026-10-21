@@ -1,5 +1,5 @@
 pkgbase = linux-megi
-	pkgver = 6.18.55
+	pkgver = 6.18.57
 	pkgrel = 1
 	url = https://codeberg.org/megi/linux
 	arch = aarch64
@@ -23,6 +23,7 @@ pkgbase = linux-megi
 	source = 0002-Upgrade-from-6.18.37-6.18.54.patch.xz
 	source = 0003-Upgrade-from-6.18.54-6.18.55.patch.xz
 	source = 0004-Revert-arm64-dts-allwinner-sun50i-a64-pinephone-Fix-.patch.xz
+	source = 0005-Upgrade-from-6.18.55-6.18.57.patch.xz
 	source = ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
 	source = dts-pinephone-drop-modem-power-node.patch
 	source = dts-pinephone-pro-remove-modem-node.patch
@@ -35,6 +36,7 @@ pkgbase = linux-megi
 	md5sums = 327e33b677425bcb1a59e361bbcf86f3
 	md5sums = 6e6fdfd389432a1c96eee31743e23028
 	md5sums = 3bc3ed5075dc0c2696a2ad6ab43a16bf
+	md5sums = 8cdc1fe2eade008485a3a235dca7ebe7
 	md5sums = ebee5494287dbeec8f76da0e39b9d6eb
 	md5sums = 571aee8d8a58c719288fee4185ab1713
 	md5sums = da2ad89730c2fce222ca0e286585a868
@@ -49,7 +51,7 @@ pkgname = linux-megi
 	depends = mkinitcpio>=0.7
 	optdepends = crda: to set the correct wireless channels of your country
 	provides = kernel26
-	provides = linux=6.18.55
+	provides = linux=6.18.57
 	provides = WIREGUARD-MODULE
 	conflicts = linux
 	replaces = linux-pine64
@@ -58,6 +60,6 @@ pkgname = linux-megi
 pkgname = linux-megi-headers
 	pkgdesc = Header files and scripts for building modules for linux kernel - Megous Kernel
 	depends = pahole
-	provides = linux-headers=6.18.55
+	provides = linux-headers=6.18.57
 	conflicts = linux-headers
 	replaces = linux-pine64-headers

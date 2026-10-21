@@ -5,7 +5,7 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=6.18.55
+pkgver=6.18.57
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
@@ -22,6 +22,7 @@ source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar
         '0002-Upgrade-from-6.18.37-6.18.54.patch.xz'
         '0003-Upgrade-from-6.18.54-6.18.55.patch.xz'
         '0004-Revert-arm64-dts-allwinner-sun50i-a64-pinephone-Fix-.patch.xz'
+        '0005-Upgrade-from-6.18.55-6.18.57.patch.xz'
         # Arch Linux upstream patches
         'ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch'
         # PinePhone Patches
@@ -218,6 +219,7 @@ md5sums=('b17f8179ea65d5a57e858269f1abd36c'
          '327e33b677425bcb1a59e361bbcf86f3'
          '6e6fdfd389432a1c96eee31743e23028'
          '3bc3ed5075dc0c2696a2ad6ab43a16bf'
+         '8cdc1fe2eade008485a3a235dca7ebe7'
          'ebee5494287dbeec8f76da0e39b9d6eb'
          '571aee8d8a58c719288fee4185ab1713'
          'da2ad89730c2fce222ca0e286585a868'
