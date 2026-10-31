@@ -4,7 +4,7 @@
 
 pkgname=plasma-dialer
 epoch=1
-pkgver=6.8.1
+pkgver=6.8.2
 pkgrel=1
 pkgdesc="Phone Dialer for Plasma Mobile"
 arch=('aarch64' 'x86_64')
@@ -34,7 +34,7 @@ esac
 
 source=(https://download.kde.org/$_rel/plasma/$pkgver/$pkgname-$pkgver.tar.xz{,.sig})
 install=$pkgname.install
-sha256sums=('9c899b04665ce069263bce860596c7b9addb85f46addd5b90a85a412d3fd88b1'
+sha256sums=('c4bd2b2d65542bbe8f8bc20c21221ad96b748efd018a20166d715583f87e0990'
             'SKIP')
 validpgpkeys=('E0A3EB202F8E57528E13E72FD7574483BB57B18D'  # Jonathan Esk-Riddell <jr@jriddell.org>
               '0AAC775BB6437A8D9AF7A3ACFE0784117FBCE11D'  # Bhushan Shah <bshah@kde.org>
