@@ -1,11 +1,11 @@
 pkgbase = uboot-pinetab2
 	pkgdesc = U-Boot for PineTab 2
-	pkgver = 2026.07
+	pkgver = 2026.10.danctnix2
 	pkgrel = 1
-	url = http://www.denx.de/wiki/U-Boot/WebHome
+	url = https://codeberg.org/DanctNIX/u-boot/commits/tag/v2026.10-danctnix2
 	install = uboot-pinetab2.install
 	arch = aarch64
-	license = GPL
+	license = GPL-2.0-only
 	makedepends = bc
 	makedepends = git
 	makedepends = python
@@ -16,21 +16,25 @@ pkgbase = uboot-pinetab2
 	depends = uboot-tools
 	replaces = uboot-pinetab2-mainline
 	backup = boot/boot.txt
-	source = git+https://github.com/u-boot/u-boot.git#tag=v2026.07
-	source = rkbin::git+https://github.com/rockchip-linux/rkbin.git#commit=74213af1e952c4683d2e35952507133b61394862
-	source = vop2.patch
-	source = magichat.patch
+	source = https://git.u-boot-project.org/u-boot/u-boot/-/releases/v2026.10/downloads/u-boot-2026.10.tar.bz2
+	source = https://git.u-boot-project.org/u-boot/u-boot/-/releases/v2026.10/downloads/u-boot-2026.10.tar.bz2.sig
+	source = https://codeberg.org/DanctNIX/u-boot/releases/download/v2026.10-danctnix2/v2026.10-danctnix2.patch.zst
+	source = https://codeberg.org/DanctNIX/u-boot/releases/download/v2026.10-danctnix2/v2026.10-danctnix2.patch.zst.sig
+	source = rkbin::git+https://github.com/rockchip-linux/rkbin.git#commit=3e288fe814e059dd06833495f845cab04ac20a5c
 	source = bl31.elf
 	source = boot.txt
 	source = mkscr
 	source = update-u-boot
-	md5sums = e780532ad246d9e50e346cb08c1611f0
-	md5sums = eaf22ccd32e4d70bf87dbe4df02d1c72
-	md5sums = bc0fb36579d7dd49fe59e58561bccf92
-	md5sums = 60f502a0ba9ba167bb732bb327776e5d
-	md5sums = fdf6687808ae980404ee29fc4fe626fe
-	md5sums = 65462d6233b6bb9761c829a078da76b1
-	md5sums = 021623a04afd29ac3f368977140cfbfd
-	md5sums = ba8a770aba341e33afb0c7ce00df4b0d
+	validpgpkeys = F3CEA8743D60E0192F9B4C7A2BE2A0F50ABFE40A
+	validpgpkeys = F09A933C0FE0331E558CA4E166CAB7EAA45DD781
+	b2sums = 5816915cb64cc3902de20adf6cdb2ae2cce43474d269a2917123fdb5bd5f44fd33f3bd6edd731cdb563d1b7f2778130fce6aa92a9db112e7f365be1700e5eff9
+	b2sums = SKIP
+	b2sums = 3ab3078115086972c6ef88c53e92d4d1f90e29faeaeb8ac13cc6681459517c1bc0ccf87c42374eac431e5f8ede2c475cb21d196ce16fbe6b0e74fe989293415c
+	b2sums = SKIP
+	b2sums = ee9f6d0a09eb32f69c39841f4dbb1d0ed2f6af0392d0424888edad92e0568a5aa43f2d28cd1efc8b4dc0e2c3bb5e61cfcf1617ef5ece1fc474aec372e748370c
+	b2sums = d41387d0238f71f616102df49c4f6d688b45a3be50fec2d6e128704cc0684b1d771d726db58ed82509b0f4c47cbe269f7c1243dfe780fb7436f91d0003848c19
+	b2sums = 58d9bc6c0e29230605926cacad4b30ac92a5cc55e620e1e4543f9c8227c92c3d3bdbbfad2db91007b1f09148bf62abfd8a8cbe8439b789128d5f82cb585048c5
+	b2sums = 4ea782264696aa85e30847413088bd338e2beb2ec4e57c2808f80af28ac613ab4ae82b37eb0ff902e66f8a12082a1f9a546bbf20dfeb4c43f59f465987043ede
+	b2sums = 9b5dde0edf82edb6ee66cd610305734753527abdad108f795ec7e4741841eec12efd7444bf236e3345e297070cb109a666da4d958064604fc9f93db9482634df
 
 pkgname = uboot-pinetab2
