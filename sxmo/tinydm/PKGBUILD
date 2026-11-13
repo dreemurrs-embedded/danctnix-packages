@@ -2,7 +2,7 @@
 
 pkgname=tinydm
 pkgver=1.3.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Tiny wayland / x11 session starter for single user machines"
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://gitlab.nura.eco/nura/tinydm"
@@ -17,6 +17,10 @@ prepare() {
 
   # Remove logging setup, so logs go to stdout (and therefore the journal)
   sed -i 's@\(setup_log\)$@# \1@g' tinydm-run-session.sh
+
+  # Replace default Nura G/UID with default Arch G/UID.
+  sed -i 's@User=10000@User=1000@' tinydm.service
+  sed -i 's@Group=10000@Group=1000@' tinydm.service
 }
 
 package() {
