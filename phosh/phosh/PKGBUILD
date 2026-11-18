@@ -1,7 +1,7 @@
 # Maintainer: Danct12 <danct12@disroot.org>
 pkgname=phosh
-pkgver=0.58.0
-pkgrel=2
+pkgver=0.59.0
+pkgrel=1
 pkgdesc="Wayland shell for GNOME on mobile devices."
 arch=('x86_64' 'armv7h' 'aarch64')
 url="https://gitlab.gnome.org/World/Phosh/phosh"
@@ -41,18 +41,12 @@ checkdepends=('xmlstarlet' 'xorg-server-xvfb')
 install="$pkgname.install"
 source=(https://sources.phosh.mobi/releases/$pkgname/$pkgname-$pkgver.tar.xz{,.asc}
         'pam_phosh'
-        'phosh.service'
-        'libical-4.patch')
-b2sums=('daa34077f2cf9f1dabecd7f147e7bc047c3cfcdf6a0676c024e0d0d8696798c24e89c999a8d68cff43371ee6dba447ece0dc898547045957dd5058c85d66d9fc'
+        'phosh.service')
+b2sums=('5a9a4f83f11e54b48d80d1dfde410dc73de8a9ecfadc1b1b6dda2b8a649f8db27d929974367257c2bf26fca5bf93b41ee53c1b58a7e5d0c7d7d33b72c284323a'
         'SKIP'
         'd89e16605e2e8e29834f9537bd09ef3f76f1cf6420cdd99346a760cab8c7217f86898be66c24b206b464239fc8b5277150abd19bae81af72187a435bd8c2f869'
-        '5a769e4bda9c2c23cc386ac657dfb4267f130ee22644c3bf247f7373ee53afcf30d3086906e020d005e0b860742356f004cc5543bd1ed62fb82fb71d7e9b430e'
-        '1e852c5f5d26689d0deebade2aa1ee59a92625c159829f185d132967a95b8e00481eebeffeab61c435053d4e152ea616fca7178d68bb72e0dbc8a61a854f0b98')
+        '5a769e4bda9c2c23cc386ac657dfb4267f130ee22644c3bf247f7373ee53afcf30d3086906e020d005e0b860742356f004cc5543bd1ed62fb82fb71d7e9b430e')
 validpgpkeys=('0DB3932762F78E592F6522AFBB5A2C77584122D3')
-
-prepare() {
-    patch -d $pkgname-$pkgver -p1 < libical-4.patch # Fix build with libical 4
-}
 
 build() {
     local meson_options=(
