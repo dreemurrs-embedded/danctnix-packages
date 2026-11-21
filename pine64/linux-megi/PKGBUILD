@@ -5,7 +5,7 @@ buildarch=8
 
 pkgbase=linux-megi
 _desc="Megous Kernel"
-pkgver=6.18.57
+pkgver=7.3
 pkgrel=1
 arch=('aarch64')
 url="https://codeberg.org/megi/linux"
@@ -14,21 +14,13 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc' 'python' 
 options=('!strip')
 
 # Source
-_tag="93ef89e0f2e895c49d7973fed7f4cb06b524ddf9"
+_tag="88af81e226a88ae422a9c301246e7ae64cda0b75"
 source=("linux-$_tag.tar.gz::https://codeberg.org/megi/linux/archive/${_tag}.tar.gz"
         'config'
         'linux.preset'
-        '0001-Upgrade-from-6.18.9-6.18.37.patch.xz'
-        '0002-Upgrade-from-6.18.37-6.18.54.patch.xz'
-        '0003-Upgrade-from-6.18.54-6.18.55.patch.xz'
-        '0004-Revert-arm64-dts-allwinner-sun50i-a64-pinephone-Fix-.patch.xz'
-        '0005-Upgrade-from-6.18.55-6.18.57.patch.xz'
+        'Revert-arm64-dts-allwinner-sun50i-a64-pinephone-Fix-.patch'
         # Arch Linux upstream patches
         'ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch'
-        # PinePhone Patches
-        'dts-pinephone-drop-modem-power-node.patch'
-        'dts-pinephone-pro-remove-modem-node.patch'
-        'dts-pinephone-pro-add-modem-ri.patch'
         # PineTab Patches
         'Revert-arm64-allwinner-dts-a64-enable-K101-IM2BYL02.patch')
 
@@ -70,7 +62,12 @@ _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
   depends=('coreutils' 'kmod' 'mkinitcpio>=0.7')
   optdepends=('crda: to set the correct wireless channels of your country')
-  provides=('kernel26' "linux=${pkgver}" "WIREGUARD-MODULE")
+  provides=(
+    "linux=${pkgver}"
+    "KSMBD-MODULE"
+    "NTSYNC-MODULE"
+    "WIREGUARD-MODULE"
+  )
   conflicts=('linux')
   replaces=('linux-pine64')
   backup=("etc/mkinitcpio.d/${pkgbase}.preset")
@@ -212,16 +209,9 @@ for _p in "${pkgname[@]}"; do
   }"
 done
 
-md5sums=('b17f8179ea65d5a57e858269f1abd36c'
-         'e890f475c632b3a6e80398e290bef34c'
+md5sums=('a5656b2aa0412f8342d133f82ccdbbdd'
+         'c15c2294476d750eb0ae455fb458feec'
          '86d4a35722b5410e3b29fc92dae15d4b'
-         '679b004a7d72de02404b79dadf657d7d'
-         '327e33b677425bcb1a59e361bbcf86f3'
-         '6e6fdfd389432a1c96eee31743e23028'
-         '3bc3ed5075dc0c2696a2ad6ab43a16bf'
-         '8cdc1fe2eade008485a3a235dca7ebe7'
-         'ebee5494287dbeec8f76da0e39b9d6eb'
-         '571aee8d8a58c719288fee4185ab1713'
-         'da2ad89730c2fce222ca0e286585a868'
-         '7d80f76f1647afa00de320f5866484a1'
+         '8e6e5563e6037b9e79cc5ee59b3c14df'
+         '60978a5bafd0c71b17947806fffbbb55'
          '9b42c7def68f61a6e3c7a43700361730')

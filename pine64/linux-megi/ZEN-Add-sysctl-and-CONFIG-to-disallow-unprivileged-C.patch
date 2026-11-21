@@ -1,4 +1,4 @@
-From 74c15b6d7cc32490623e04aacba330e2f50ee07e Mon Sep 17 00:00:00 2001
+From 4a68ec158a3c00a348202d1af0d6cc265ae28b28 Mon Sep 17 00:00:00 2001
 From: Serge Hallyn <serge.hallyn@canonical.com>
 Date: Fri, 31 May 2013 19:12:12 +0100
 Subject: [PATCH] add sysctl to allow disabling unprivileged CLONE_NEWUSER
@@ -17,10 +17,10 @@ issues are found, we have a fail-safe.
  1 file changed, 24 insertions(+)
 
 diff --git a/kernel/fork.c b/kernel/fork.c
-index 3da0f08615a95e..07349223afff68 100644
+index efe6157fedb4..6106c3a76dc2 100644
 --- a/kernel/fork.c
 +++ b/kernel/fork.c
-@@ -123,6 +123,12 @@
+@@ -127,6 +127,12 @@
  
  #include <kunit/visibility.h>
  
@@ -33,8 +33,8 @@ index 3da0f08615a95e..07349223afff68 100644
  /*
   * Minimum number of threads to boot the kernel
   */
-@@ -1990,6 +1996,11 @@ __latent_entropy struct task_struct *copy_process(
- 			return ERR_PTR(-EINVAL);
+@@ -2121,6 +2127,11 @@ __latent_entropy struct task_struct *copy_process(
+ 			return ERR_PTR(-EPERM);
  	}
  
 +	if ((clone_flags & CLONE_NEWUSER) && !unprivileged_userns_clone) {
@@ -45,7 +45,7 @@ index 3da0f08615a95e..07349223afff68 100644
  	/*
  	 * Force any signals received before this point to be delivered
  	 * before the fork happens.  Collect up signals sent to multiple
-@@ -3025,6 +3036,10 @@ static int check_unshare_flags(unsigned long unshare_flags)
+@@ -3200,6 +3211,10 @@ static int check_unshare_flags(unsigned long unshare_flags)
  		if (!current_is_single_threaded())
  			return -EINVAL;
  	}
@@ -56,7 +56,7 @@ index 3da0f08615a95e..07349223afff68 100644
  
  	return 0;
  }
-@@ -3255,6 +3270,15 @@ static const struct ctl_table fork_sysctl_table[] = {
+@@ -3433,6 +3448,15 @@ static const struct ctl_table fork_sysctl_table[] = {
  		.mode		= 0644,
  		.proc_handler	= sysctl_max_threads,
  	},

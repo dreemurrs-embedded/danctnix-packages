@@ -1,5 +1,5 @@
 pkgbase = linux-megi
-	pkgver = 6.18.57
+	pkgver = 7.3
 	pkgrel = 1
 	url = https://codeberg.org/megi/linux
 	arch = aarch64
@@ -16,31 +16,17 @@ pkgbase = linux-megi
 	makedepends = pahole
 	makedepends = xz
 	options = !strip
-	source = linux-93ef89e0f2e895c49d7973fed7f4cb06b524ddf9.tar.gz::https://codeberg.org/megi/linux/archive/93ef89e0f2e895c49d7973fed7f4cb06b524ddf9.tar.gz
+	source = linux-88af81e226a88ae422a9c301246e7ae64cda0b75.tar.gz::https://codeberg.org/megi/linux/archive/88af81e226a88ae422a9c301246e7ae64cda0b75.tar.gz
 	source = config
 	source = linux.preset
-	source = 0001-Upgrade-from-6.18.9-6.18.37.patch.xz
-	source = 0002-Upgrade-from-6.18.37-6.18.54.patch.xz
-	source = 0003-Upgrade-from-6.18.54-6.18.55.patch.xz
-	source = 0004-Revert-arm64-dts-allwinner-sun50i-a64-pinephone-Fix-.patch.xz
-	source = 0005-Upgrade-from-6.18.55-6.18.57.patch.xz
+	source = Revert-arm64-dts-allwinner-sun50i-a64-pinephone-Fix-.patch
 	source = ZEN-Add-sysctl-and-CONFIG-to-disallow-unprivileged-C.patch
-	source = dts-pinephone-drop-modem-power-node.patch
-	source = dts-pinephone-pro-remove-modem-node.patch
-	source = dts-pinephone-pro-add-modem-ri.patch
 	source = Revert-arm64-allwinner-dts-a64-enable-K101-IM2BYL02.patch
-	md5sums = b17f8179ea65d5a57e858269f1abd36c
-	md5sums = e890f475c632b3a6e80398e290bef34c
+	md5sums = a5656b2aa0412f8342d133f82ccdbbdd
+	md5sums = c15c2294476d750eb0ae455fb458feec
 	md5sums = 86d4a35722b5410e3b29fc92dae15d4b
-	md5sums = 679b004a7d72de02404b79dadf657d7d
-	md5sums = 327e33b677425bcb1a59e361bbcf86f3
-	md5sums = 6e6fdfd389432a1c96eee31743e23028
-	md5sums = 3bc3ed5075dc0c2696a2ad6ab43a16bf
-	md5sums = 8cdc1fe2eade008485a3a235dca7ebe7
-	md5sums = ebee5494287dbeec8f76da0e39b9d6eb
-	md5sums = 571aee8d8a58c719288fee4185ab1713
-	md5sums = da2ad89730c2fce222ca0e286585a868
-	md5sums = 7d80f76f1647afa00de320f5866484a1
+	md5sums = 8e6e5563e6037b9e79cc5ee59b3c14df
+	md5sums = 60978a5bafd0c71b17947806fffbbb55
 	md5sums = 9b42c7def68f61a6e3c7a43700361730
 
 pkgname = linux-megi
@@ -50,8 +36,9 @@ pkgname = linux-megi
 	depends = kmod
 	depends = mkinitcpio>=0.7
 	optdepends = crda: to set the correct wireless channels of your country
-	provides = kernel26
-	provides = linux=6.18.57
+	provides = linux=7.3
+	provides = KSMBD-MODULE
+	provides = NTSYNC-MODULE
 	provides = WIREGUARD-MODULE
 	conflicts = linux
 	replaces = linux-pine64
@@ -60,6 +47,6 @@ pkgname = linux-megi
 pkgname = linux-megi-headers
 	pkgdesc = Header files and scripts for building modules for linux kernel - Megous Kernel
 	depends = pahole
-	provides = linux-headers=6.18.57
+	provides = linux-headers=7.3
 	conflicts = linux-headers
 	replaces = linux-pine64-headers

@@ -1,0 +1,28 @@
+From fd848c4ce5ef500c016b68ab4977435a4649a246 Mon Sep 17 00:00:00 2001
+From: Danct12 <danct12@disroot.org>
+Date: Fri, 9 Oct 2026 09:45:44 +0000
+Subject: [PATCH 2/2] Revert "arm64: dts: allwinner: sun50i-a64-pinephone: Fix
+ mpu6050 mount matrix"
+
+---
+ arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+index 99118898b86d..231dca430e40 100644
+--- a/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
++++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-pinephone.dtsi
+@@ -702,8 +702,8 @@ accelerometer@68 {
+ 		interrupts = <7 5 IRQ_TYPE_EDGE_RISING>; /* PH5 */
+ 		vdd-supply = <&reg_dldo1>;
+ 		vddio-supply = <&reg_dldo1>;
+-		mount-matrix = "0", "-1", "0",
+-			       "1", "0", "0",
++		mount-matrix = "0", "1", "0",
++			       "-1", "0", "0",
+ 			       "0", "0", "1";
+ 	};
+ };
+-- 
+2.56.0
+
