@@ -5,10 +5,10 @@ gen_uboot_script() {
 
 post_install() {
     gen_uboot_script
-    systemctl enable eg25-manager
+    systemctl enable modem-power-boot
 }
 
 post_upgrade() {
     gen_uboot_script
-    systemctl enable eg25-manager
+    systemctl enable modem-power-boot
 }
