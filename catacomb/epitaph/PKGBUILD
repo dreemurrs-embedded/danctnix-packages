@@ -1,0 +1,52 @@
+# Maintainer: Christian Dürr <contact@christianduerr.com>
+
+pkgname=epitaph
+pkgdesc="A Wayland mobile panel"
+pkgver=1.5.0
+pkgrel=1
+arch=("x86_64" "aarch64")
+url="https://git.sr.ht/~undeadleech/epitaph"
+license=("GPL-3.0-only")
+makedepends=("git" "rust" "cargo")
+depends=("fontconfig" "libpulse" "libxkbcommon" "mesa")
+optdepends=(
+    "networkmanager: WiFi connection status"
+    "modemmanager: GPS/Cellular connection status"
+    "pulse-native-provider: Audio volume"
+    "dbus: Network/ModemManager communication"
+)
+source=("git+$url#tag=v$pkgver?signed" "sysuser.conf")
+validpgpkeys=(
+    "4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4"  # Christian Dürr <contact@christianduerr.com>
+)
+sha256sums=(
+    "4e97e114433f2478e8fbce68cd0b9626efddf3e328e90bd72018b28f6cba6b18"
+    "8bcbc0941d3a6e458a3b1eb2e8443dee7bdb5c7e040ebcc90d46cd22eb6108bb"
+)
+
+prepare() {
+  cd "$pkgname"
+
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+build() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline
+}
+
+check() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo test --locked --offline
+}
+
+package() {
+  mkdir -p -m 750 "$pkgdir/usr/share/polkit-1/rules.d"
+  install -D -m 644 "$pkgname/rules/66-epitaph.rules.polkit" "$pkgdir/usr/share/polkit-1/rules.d/66-epitaph.rules"
+  install -D -m 644 "$pkgname/rules/66-epitaph.rules.udev" "$pkgdir/usr/lib/udev/rules.d/66-epitaph.rules"
+  install -D -m 644 "sysuser.conf" "$pkgdir/usr/lib/sysusers.d/epitaph.conf"
+
+  install -D -m 755 "$pkgname/target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+}

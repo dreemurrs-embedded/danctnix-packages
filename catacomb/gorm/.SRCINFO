@@ -1,0 +1,22 @@
+pkgbase = gorm
+	pkgdesc = Mobile-optimized Linux WiFi settings
+	pkgver = 1.2.2
+	pkgrel = 1
+	url = https://git.sr.ht/~undeadleech/gorm
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = rust
+	makedepends = cargo
+	makedepends = desktop-file-utils
+	depends = dbus
+	depends = libxkbcommon
+	depends = mesa
+	depends = networkmanager
+	depends = pango
+	source = git+https://git.sr.ht/~undeadleech/gorm#tag=v1.2.2?signed
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = 342a9161616cf5fddaeae569bea260ac68af154e053895ee7b3d6a42cf589859
+
+pkgname = gorm

@@ -1,0 +1,21 @@
+pkgbase = tzompantli
+	pkgdesc = A Wayland mobile application drawer
+	pkgver = 1.3.1
+	pkgrel = 2
+	url = https://git.sr.ht/~undeadleech/tzompantli
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = rust
+	makedepends = cargo
+	depends = fontconfig
+	depends = libxkbcommon
+	depends = mesa
+	source = git+https://git.sr.ht/~undeadleech/tzompantli#tag=v1.3.1?signed
+	source = sysuser.conf
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = ef73c8cd35dc66cdd009ac5c2f87b5b6f17a1d03906d0499b379dc88dc7c2bda
+	sha256sums = 8bcbc0941d3a6e458a3b1eb2e8443dee7bdb5c7e040ebcc90d46cd22eb6108bb
+
+pkgname = tzompantli

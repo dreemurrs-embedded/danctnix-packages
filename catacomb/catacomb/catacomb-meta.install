@@ -1,0 +1,16 @@
+post_install() {
+    # Set Catacomb as the default TinyDM session.
+    if ! [ -L /var/lib/tinydm/default-session.desktop ]; then
+      if [ -f "/usr/share/wayland-sessions/catacomb.desktop" ]; then
+        tinydm-set-session -s "/usr/share/wayland-sessions/catacomb.desktop"
+      fi
+    fi
+}
+
+post_upgrade() {
+    post_install
+}
+
+post_remove() {
+  tinydm-unset-session "/usr/share/wayland-sessions/catacomb.desktop"
+}

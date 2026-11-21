@@ -1,0 +1,47 @@
+# Maintainer: Christian Dürr <contact@christianduerr.com>
+
+pkgname=aevum
+pkgdesc="Wayland mobile alarm clock"
+pkgver=2.3.2
+pkgrel=1
+arch=("x86_64" "aarch64")
+url="https://git.sr.ht/~undeadleech/aevum"
+license=("GPL-3.0-only")
+makedepends=("git" "cargo" "desktop-file-utils" "clang")
+depends=("alsa-lib" "libpipewire" "libpulse" "dbus" "fontconfig" "libxkbcommon" "mesa")
+source=("git+$url#tag=v$pkgver?signed")
+validpgpkeys=(
+    "4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4"  # Christian Dürr <contact@christianduerr.com>
+)
+sha256sums=("4660b938e01948c35d36c1d5d14a0a318dafc1dc2bd0949a078fe14e81acb3ec")
+options=(!lto)
+
+prepare() {
+  cd "$pkgname"
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+build() {
+  cd "$pkgname"
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline --manifest-path rezz/Cargo.toml
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline --manifest-path cli/Cargo.toml
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline
+}
+
+check() {
+  cd "$pkgname"
+  CARGO_INCREMENTAL=0 cargo test --locked --offline --manifest-path rezz/Cargo.toml
+  CARGO_INCREMENTAL=0 cargo test --locked --offline --manifest-path cli/Cargo.toml
+  CARGO_INCREMENTAL=0 cargo test --locked --offline
+}
+
+package() {
+  cd "$pkgname"
+  desktop-file-install -m 644 --dir "$pkgdir/usr/share/applications/" "Aevum.desktop"
+  install -D -m644 "rezz/org.catacombing.rezz.conf" "$pkgdir/usr/share/dbus-1/system.d/org.catacombing.rezz.conf"
+  install -D -m644 "rezz/rezz.service" "$pkgdir/usr/lib/systemd/system/rezz.service"
+  install -D -m755 "target/release/rezz" "$pkgdir/usr/bin/rezz"
+  install -D -m755 "target/release/aevum" "$pkgdir/usr/bin/aevum"
+  install -D -m755 "target/release/aevum-cli" "$pkgdir/usr/bin/aevum-cli"
+  install -D -m644 "logo.svg" "$pkgdir/usr/share/pixmaps/Aevum.svg"
+}

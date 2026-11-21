@@ -1,0 +1,25 @@
+pkgbase = aevum
+	pkgdesc = Wayland mobile alarm clock
+	pkgver = 2.3.2
+	pkgrel = 1
+	url = https://git.sr.ht/~undeadleech/aevum
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = cargo
+	makedepends = desktop-file-utils
+	makedepends = clang
+	depends = alsa-lib
+	depends = libpipewire
+	depends = libpulse
+	depends = dbus
+	depends = fontconfig
+	depends = libxkbcommon
+	depends = mesa
+	options = !lto
+	source = git+https://git.sr.ht/~undeadleech/aevum#tag=v2.3.2?signed
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = 4660b938e01948c35d36c1d5d14a0a318dafc1dc2bd0949a078fe14e81acb3ec
+
+pkgname = aevum

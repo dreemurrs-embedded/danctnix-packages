@@ -1,0 +1,16 @@
+pkgbase = tremor
+	pkgdesc = Force-feedback device control utility
+	pkgver = 1.1.0
+	pkgrel = 1
+	url = https://git.sr.ht/~undeadleech/tremor
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = rust
+	makedepends = cargo
+	source = git+https://git.sr.ht/~undeadleech/tremor#tag=v1.1.0?signed
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = 97ef6e61948bab84824f34a7fc5ad47f977164594902749b938358fb3d21848d
+
+pkgname = tremor

@@ -1,0 +1,45 @@
+# Maintainer: Christian Dürr <contact@christianduerr.com>
+
+pkgname=tzompantli
+pkgdesc="A Wayland mobile application drawer"
+pkgver=1.3.1
+pkgrel=2
+arch=("x86_64" "aarch64")
+url="https://git.sr.ht/~undeadleech/tzompantli"
+license=("GPL-3.0-only")
+makedepends=("git" "rust" "cargo")
+depends=("fontconfig" "libxkbcommon" "mesa")
+source=("git+$url#tag=v$pkgver?signed" "sysuser.conf")
+validpgpkeys=(
+    "4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4"  # Christian Dürr <contact@christianduerr.com>
+)
+sha256sums=(
+    "ef73c8cd35dc66cdd009ac5c2f87b5b6f17a1d03906d0499b379dc88dc7c2bda"
+    "8bcbc0941d3a6e458a3b1eb2e8443dee7bdb5c7e040ebcc90d46cd22eb6108bb"
+)
+
+prepare() {
+  cd "$pkgname"
+
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+build() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline
+}
+
+check() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo test --locked --offline
+}
+
+package() {
+  mkdir -p -m 750 "$pkgdir/usr/share/polkit-1/rules.d"
+  install -D -m 644 "$pkgname/rules/66-tzompantli.rules.polkit" "$pkgdir/usr/share/polkit-1/rules.d/66-tzompantli.rules"
+  install -D -m 644 "sysuser.conf" "$pkgdir/usr/lib/sysusers.d/tzompantli.conf"
+
+  install -D -m755 "$pkgname/target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+}

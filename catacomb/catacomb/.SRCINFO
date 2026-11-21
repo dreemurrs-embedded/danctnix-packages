@@ -1,0 +1,42 @@
+pkgbase = catacomb
+	pkgdesc = A Wayland Mobile Compositor
+	pkgver = 1.7.1
+	pkgrel = 2
+	url = https://git.sr.ht/~undeadleech/catacomb
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = rust
+	makedepends = cargo
+	makedepends = wayland
+	depends = libxkbcommon
+	depends = libinput
+	depends = seatd
+	depends = mesa
+	source = git+https://git.sr.ht/~undeadleech/catacomb#tag=v1.7.1?signed
+	source = catacomb-meta.install
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = 8c4b70e2ac5d8955b10536f9e3a8a71e8e5642a0f6ddeb11165ef7e07be63065
+	sha256sums = bc9d821a7549d99063e819ee44d27622176a494ed42587c706374b8594264b1a
+
+pkgname = catacomb
+	optdepends = iio-sensor-proxy: Accelerometer support
+
+pkgname = catacomb-meta
+	install = catacomb-meta.install
+	depends = catacomb
+	depends = epitaph
+	depends = wvkbd
+	depends = swayidle
+	depends = tinydm
+	depends = tremor
+	depends = tzompantli
+	depends = grim
+	depends = slurp
+	optdepends = alacritty: terminal emulator
+	optdepends = gorm: WiFi GUI
+	optdepends = aevum: alarm clock
+	optdepends = pinax: notepad
+	optdepends = tabula: wallpaper
+	backup = etc/catacomb/initrc

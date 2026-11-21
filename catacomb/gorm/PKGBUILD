@@ -1,0 +1,42 @@
+# Maintainer: Christian Dürr <contact@christianduerr.com>
+
+pkgname=gorm
+pkgdesc="Mobile-optimized Linux WiFi settings"
+pkgver=1.2.2
+pkgrel=1
+arch=("x86_64" "aarch64")
+url="https://git.sr.ht/~undeadleech/gorm"
+license=("GPL-3.0-only")
+makedepends=("git" "rust" "cargo" "desktop-file-utils")
+depends=("dbus" "libxkbcommon" "mesa" "networkmanager" "pango")
+source=("git+$url#tag=v$pkgver?signed")
+validpgpkeys=(
+    "4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4"  # Christian Dürr <contact@christianduerr.com>
+)
+sha256sums=("342a9161616cf5fddaeae569bea260ac68af154e053895ee7b3d6a42cf589859")
+
+prepare() {
+  cd "$pkgname"
+
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+build() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline
+}
+
+check() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo test --locked --offline
+}
+
+package() {
+  cd "$pkgname"
+  desktop-file-install -m 644 --dir "$pkgdir/usr/share/applications/" "gorm.desktop"
+  install -D -m 644 "10-gorm.rules" "$pkgdir/usr/share/polkit-1/rules.d/10-gorm.rules"
+  install -D -m 755 "./target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -D -m 644 "logo.svg" "$pkgdir/usr/share/pixmaps/Gorm.svg"
+}

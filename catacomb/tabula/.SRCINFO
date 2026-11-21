@@ -1,0 +1,18 @@
+pkgbase = tabula
+	pkgdesc = Wayland Wallpaper Tool
+	pkgver = 1.0.2
+	pkgrel = 2
+	url = https://git.sr.ht/~undeadleech/tabula
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = rust
+	makedepends = cargo
+	depends = libxkbcommon
+	depends = mesa
+	source = git+https://git.sr.ht/~undeadleech/tabula#tag=v1.0.2?signed
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = 09a58d31781d7dc8b953a4bde638be459f9e27870a2b6fc5ebb8908406bf2e8a
+
+pkgname = tabula

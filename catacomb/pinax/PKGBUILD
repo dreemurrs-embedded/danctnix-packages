@@ -1,0 +1,41 @@
+# Maintainer: Christian Dürr <contact@christianduerr.com>
+
+pkgname=pinax
+pkgdesc="Wayland mobile notepad"
+pkgver=1.3.0
+pkgrel=1
+arch=("x86_64" "aarch64")
+url="https://git.sr.ht/~undeadleech/pinax"
+license=("GPL-3.0-only")
+makedepends=("git" "rust" "cargo" "desktop-file-utils")
+depends=("fontconfig" "libxkbcommon" "mesa")
+source=("git+$url#tag=v$pkgver?signed")
+validpgpkeys=(
+    "4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4"  # Christian Dürr <contact@christianduerr.com>
+)
+sha256sums=("cb37a99e9d80a47cdc3b2ebf10cab004ccefa1ab68fbf921930121da998108ac")
+
+prepare() {
+  cd "$pkgname"
+
+  cargo fetch --locked --target "$CARCH-unknown-linux-gnu"
+}
+
+build() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo build --release --locked --offline
+}
+
+check() {
+  cd "$pkgname"
+
+  CARGO_INCREMENTAL=0 cargo test --locked --offline
+}
+
+package() {
+  cd "$pkgname"
+  desktop-file-install -m 644 --dir "$pkgdir/usr/share/applications/" "pinax.desktop"
+  install -D -m755 "./target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -D -m644 "logo.svg" "$pkgdir/usr/share/pixmaps/Pinax.svg"
+}

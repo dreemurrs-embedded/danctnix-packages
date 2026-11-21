@@ -1,0 +1,26 @@
+pkgbase = epitaph
+	pkgdesc = A Wayland mobile panel
+	pkgver = 1.5.0
+	pkgrel = 1
+	url = https://git.sr.ht/~undeadleech/epitaph
+	arch = x86_64
+	arch = aarch64
+	license = GPL-3.0-only
+	makedepends = git
+	makedepends = rust
+	makedepends = cargo
+	depends = fontconfig
+	depends = libpulse
+	depends = libxkbcommon
+	depends = mesa
+	optdepends = networkmanager: WiFi connection status
+	optdepends = modemmanager: GPS/Cellular connection status
+	optdepends = pulse-native-provider: Audio volume
+	optdepends = dbus: Network/ModemManager communication
+	source = git+https://git.sr.ht/~undeadleech/epitaph#tag=v1.5.0?signed
+	source = sysuser.conf
+	validpgpkeys = 4DAA67A9EA8B91FCC15B699C85CDAE3C164BA7B4
+	sha256sums = 4e97e114433f2478e8fbce68cd0b9626efddf3e328e90bd72018b28f6cba6b18
+	sha256sums = 8bcbc0941d3a6e458a3b1eb2e8443dee7bdb5c7e040ebcc90d46cd22eb6108bb
+
+pkgname = epitaph
