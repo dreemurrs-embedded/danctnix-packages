@@ -1,7 +1,7 @@
 pkgbase = linux-pinetab2
 	pkgdesc = PineTab2
 	pkgver = 7.3.1.danctnix1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://codeberg.org/DanctNIX/linux-pinetab2/commits/tag/v7.3.1-danctnix1
 	arch = aarch64
 	license = GPL-2.0-only
@@ -22,6 +22,7 @@ pkgbase = linux-pinetab2
 	source = https://codeberg.org/DanctNIX/linux-pinetab2/releases/download/v7.3.1-danctnix1/v7.3.1-danctnix1.patch.zst
 	source = https://codeberg.org/DanctNIX/linux-pinetab2/releases/download/v7.3.1-danctnix1/v7.3.1-danctnix1.patch.zst.sig
 	source = config
+	source = 0001-Revert-arm64-dts-rockchip-Add-cpu-idle-states-for-RK.patch
 	validpgpkeys = ABAF11C65A2970B130ABE3C479BE3E4300411886
 	validpgpkeys = 647F28654894E3BD457199BE38DBBDC86092693E
 	validpgpkeys = F09A933C0FE0331E558CA4E166CAB7EAA45DD781
@@ -30,6 +31,7 @@ pkgbase = linux-pinetab2
 	b2sums = 993e0a5a0166a1585dda127e14088e29864e24315d6986c2b4b9f48052e91f1ab77cd2a8c7db6150238ba848f0699c729d872a36b9db7466bf79d653b2ac3d99
 	b2sums = SKIP
 	b2sums = f32902fa5e09fabac768368080ef59c2d968632a7b442b985c3bd826cd5b9ddf2bce2fe287c115bfec9de03d263fa6825de19e65d63f9750c4560c3a1804e466
+	b2sums = df3e384b79e6dcafd9c4aaa84e54fc88a559729489dde0bc84097390b2c531c0a2512c99ec9576c83df0f09c5bc56c175702dd15fcc0e9f992fca9cfb601a919
 
 pkgname = linux-pinetab2
 	pkgdesc = The PineTab2 kernel and modules
