@@ -1,7 +1,7 @@
 post_install() {
-	systemctl enable eg25-manager
+	systemctl enable modem-power-boot
 }
 
 post_upgrade() {
-	systemctl enable eg25-manager
+	systemctl enable modem-power-boot
 }
