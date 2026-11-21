@@ -1,0 +1,26 @@
+# Maintainer: Danct12 <danct12@disroot.org>
+pkgname=modem-power-boot
+pkgver=0.1
+pkgrel=1
+pkgdesc="modem-power boot service"
+arch=('any')
+url="https://codeberg.org/DanctNIX/Pine64-Arch"
+license=('MIT')
+depends=('sh' 'systemd')
+conflicts=('eg25-manager')
+source=(
+  'LICENSE'
+  'modem-power'
+  'modem-power-boot.service'
+)
+sha256sums=('fbaebd6c4c439b6a61087751027559d827445d7eb5abaa55aab13ebe2e04e594'
+            '03c821643547f7a8c01e60c9694ab57818e6867492497e8c5bf1140b689aff6b'
+            '24593e8e25c0c8d7acc2d659210fd3b600f0c58b0e04ebec72fd91214df3cdcf')
+
+package() {
+  install -Dm755 -t "${pkgdir}/usr/bin" modem-power
+  install -Dm644 -t "${pkgdir}/usr/lib/systemd/system" modem-power-boot.service
+
+  install -Dm644 -t "${pkgdir}/usr/share/licenses/${pkgname}" LICENSE
+}
+

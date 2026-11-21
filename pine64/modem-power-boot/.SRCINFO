@@ -1,0 +1,18 @@
+pkgbase = modem-power-boot
+	pkgdesc = modem-power boot service
+	pkgver = 0.1
+	pkgrel = 1
+	url = https://codeberg.org/DanctNIX/Pine64-Arch
+	arch = any
+	license = MIT
+	depends = sh
+	depends = systemd
+	conflicts = eg25-manager
+	source = LICENSE
+	source = modem-power
+	source = modem-power-boot.service
+	sha256sums = fbaebd6c4c439b6a61087751027559d827445d7eb5abaa55aab13ebe2e04e594
+	sha256sums = 03c821643547f7a8c01e60c9694ab57818e6867492497e8c5bf1140b689aff6b
+	sha256sums = 24593e8e25c0c8d7acc2d659210fd3b600f0c58b0e04ebec72fd91214df3cdcf
+
+pkgname = modem-power-boot

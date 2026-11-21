@@ -1,0 +1,54 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (c) 2026 - DanctNIX Community
+
+set -e
+
+MODEM_PATH=/sys/class/modem-power/modem-power/device
+
+check_modem_power() {
+	if [ ! -f $MODEM_PATH/powered_blocking ]; then
+		echo "No modem power directory. Is the module loaded?"
+		exit 1
+	fi
+}
+
+# The blocks will delay boot times, but the driver (and personal testing)
+# take no more than 30-35 seconds.
+#
+# If you're developing YOUR OWN userspace then DO NOT enable this service.
+start() {
+	check_modem_power
+	echo 1 > $MODEM_PATH/powered_blocking
+}
+
+stop() {
+	check_modem_power
+	echo 0 > $MODEM_PATH/powered_blocking
+}
+
+restart() {
+	# Scary! But not implemented on PinePhone yet.. which should return
+	# "reset requested but not implemented" in dmesg but there's
+	# no practical way to detect it.
+	#
+	# Perhaps -EINVAL should be returned here.
+	if [ "$2" = "force" ]; then
+		echo 1 > $MODEM_PATH/hard_reset
+		return
+	fi
+
+	stop
+	start
+}
+
+help() {
+	echo "Usage: $0 start|stop|restart"
+}
+
+case $1 in
+	start) start ;;
+	stop) stop ;;
+	restart) restart "$@";;
+	*) help;;
+esac

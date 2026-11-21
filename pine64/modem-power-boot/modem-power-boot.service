@@ -1,0 +1,13 @@
+[Unit]
+Wants=modprobe@modem_power.service
+After=modprobe@modem_power.service
+Description=Modem Power
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/modem-power start
+ExecStop=/usr/bin/modem-power stop
+
+[Install]
+WantedBy=multi-user.target
