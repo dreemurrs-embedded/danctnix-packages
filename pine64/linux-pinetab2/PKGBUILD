@@ -2,8 +2,8 @@
 # Contributor: Jan Alexander Steffens (heftig) <heftig@archlinux.org>
 
 pkgbase=linux-pinetab2
-pkgver=7.3.1.danctnix1
-pkgrel=2
+pkgver=7.3.5.danctnix1
+pkgrel=1
 pkgdesc='PineTab2'
 _srcname=linux-pinetab2
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -31,19 +31,17 @@ source=(
   https://cdn.kernel.org/pub/linux/kernel/v${pkgver%%.*}.x/linux-${pkgver%.*}.tar.{xz,sign}
   ${_url_git}/releases/download/${_srctag}/${_srctag}.patch.zst{,.sig}
   config  # the main kernel config file
-  0001-Revert-arm64-dts-rockchip-Add-cpu-idle-states-for-RK.patch
 )
 validpgpkeys=(
   ABAF11C65A2970B130ABE3C479BE3E4300411886  # Linus Torvalds
   647F28654894E3BD457199BE38DBBDC86092693E  # Greg Kroah-Hartman
   F09A933C0FE0331E558CA4E166CAB7EAA45DD781  # Danct12
 )
-b2sums=('46aecb5a8b875642c8f627a2b9bc100ecedc91dc26e727131f9c6ea6d87bf89367fa6f4983b9f1188600609f8bbc35788cb2ce96802e656deb54fdc6670cdf79'
+b2sums=('333bad17d6e6ae06935b08e8715cc617f59c0fdbab52dd1026a16b1125c8e693482946dc46f5b6e1f7c24a3919ddc44a8dd39f045dcb3d2da8b8001c113f13c0'
         'SKIP'
-        '993e0a5a0166a1585dda127e14088e29864e24315d6986c2b4b9f48052e91f1ab77cd2a8c7db6150238ba848f0699c729d872a36b9db7466bf79d653b2ac3d99'
+        '85ea9cd67958196bcf2ad858c00eae9fd7c7ea68ef85bbfe07dda4c4c564a634e8ce939193b84370d6ef2f82244cae4e325b00a84902e4a47614fcb30ce42ce7'
         'SKIP'
-        'f32902fa5e09fabac768368080ef59c2d968632a7b442b985c3bd826cd5b9ddf2bce2fe287c115bfec9de03d263fa6825de19e65d63f9750c4560c3a1804e466'
-        'df3e384b79e6dcafd9c4aaa84e54fc88a559729489dde0bc84097390b2c531c0a2512c99ec9576c83df0f09c5bc56c175702dd15fcc0e9f992fca9cfb601a919')
+        'f32902fa5e09fabac768368080ef59c2d968632a7b442b985c3bd826cd5b9ddf2bce2fe287c115bfec9de03d263fa6825de19e65d63f9750c4560c3a1804e466')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
