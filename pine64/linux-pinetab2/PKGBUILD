@@ -3,7 +3,7 @@
 
 pkgbase=linux-pinetab2
 pkgver=7.3.5.danctnix1
-pkgrel=1
+pkgrel=2
 pkgdesc='PineTab2'
 _srcname=linux-pinetab2
 _srctag=v${pkgver%.*}-${pkgver##*.}
@@ -41,7 +41,7 @@ b2sums=('333bad17d6e6ae06935b08e8715cc617f59c0fdbab52dd1026a16b1125c8e693482946d
         'SKIP'
         '85ea9cd67958196bcf2ad858c00eae9fd7c7ea68ef85bbfe07dda4c4c564a634e8ce939193b84370d6ef2f82244cae4e325b00a84902e4a47614fcb30ce42ce7'
         'SKIP'
-        'f32902fa5e09fabac768368080ef59c2d968632a7b442b985c3bd826cd5b9ddf2bce2fe287c115bfec9de03d263fa6825de19e65d63f9750c4560c3a1804e466')
+        '199fa8120eaa9c6dada1e3fcdf44b37fe836ad5687bf6911d333dc9cee59fb1b23525a3980f442fcbcf5eb4789206a3079531627a63c2f75a65fb484bf55d1bb')
 
 export KBUILD_BUILD_HOST=archlinux
 export KBUILD_BUILD_USER=$pkgbase
